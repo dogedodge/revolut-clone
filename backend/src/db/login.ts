@@ -1,4 +1,3 @@
-// import pool from './connectionPool';
 import { Pool } from 'mysql2/promise';
 
 export async function login(pool: Pool, email: string, password: string) {
@@ -6,7 +5,6 @@ export async function login(pool: Pool, email: string, password: string) {
     'SELECT * FROM `users` WHERE `email` = ? AND `password` = ?',
     [email, password],
   );
-  // await pool.end();
-  console.log(result);
-  return true;
+  // console.log(result);
+  return result as User[];
 }
