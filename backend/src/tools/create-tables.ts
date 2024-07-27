@@ -1,4 +1,6 @@
 import mysql from 'mysql2/promise';
+import fs from 'fs/promises';
+import path from 'path';
 
 // Create the connection pool. The pool-specific settings are the defaults
 const pool = mysql.createPool({
@@ -17,14 +19,8 @@ const pool = mysql.createPool({
 
 async function createTables() {
   try {
-    const result = await pool.query(`
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(50) NOT NULL,
-  last_name VARCHAR(50) NOT NULL,
-  email VARCHAR(100) UNIQUE NOT NULL,
-  phone_number VARCHAR(15)
-);`);
+    const createTableSql = await fs.readFile(path.join(process.cwd(), 'mysql/create-tables.sql'), 'utf-8');
+    const result = await pool.query(createTableSql);
     console.log(result);
     console.log('Table users created!')
   } catch (err) {
