@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",                       // Target modern JavaScript
+    "target": "ES2017",                       // Target modern JavaScript
     "module": "CommonJS",                     // Use CommonJS module system
     "outDir": "./dist",                       // Output directory for compiled files
     "rootDir": "./src",                       // Root directory of input files

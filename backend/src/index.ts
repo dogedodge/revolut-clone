@@ -1,11 +1,5 @@
-import express from 'express';
-
-const app = express();
+import app from './app';
 const PORT = 3030;
-
-app.get(`/`, (req, res) => {
-  res.send('Hello World!')
-});
 
 app.listen(PORT, () => {
   console.log(`Revolute Clone backend listening on port ${PORT}`);
