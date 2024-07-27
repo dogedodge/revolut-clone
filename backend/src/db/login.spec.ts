@@ -1,6 +1,6 @@
-import { createConnectionPool } from "./connectionPool";
-import { login } from "./login";
-import crypto from "crypto";
+import { createConnectionPool } from './createConnectionPool';
+import { login } from './login';
+import crypto from 'crypto';
 
 function sha256Hash(data: string) {
   return crypto.createHash('sha256').update(data).digest('hex');
@@ -25,5 +25,4 @@ describe('DB login', () => {
     const users = await login(pool, 'john.doe@example.com', sha256Hash('Joh'));
     expect(users.length).toEqual(0);
   });
-
-})
+});

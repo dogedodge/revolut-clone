@@ -13,7 +13,7 @@ export function createConnectionPool() {
     queueLimit: 0,
     enableKeepAlive: true,
     keepAliveInitialDelay: 0,
-    multipleStatements: true // Enable multiple statements
+    multipleStatements: true, // Enable multiple statements
   });
 }
 
