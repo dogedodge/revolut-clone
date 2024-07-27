@@ -1,15 +1,15 @@
 # Use root/example as user/password credentials
-version: '3.8'
+# version: '3.8'
 
 services:
 
   db:
     image: mysql:8.4.2
-    container_name: my_mysql
+    # container_name: my_mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: revolute_db
+      MYSQL_DATABASE: revolut_db
     # (this is just an example, not intended to be a production configuration)
     ports:
       - "3306:3306"

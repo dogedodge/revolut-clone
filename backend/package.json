@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "tsc -p . && node dist/tools/seeding.js"
+    "createTable": "tsc -p . && node dist/tools/create-tables.js"
   },
   "author": "james.ye",
   "license": "ISC",

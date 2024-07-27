@@ -8,7 +8,12 @@ cd mysql
 docker-compose up -d
 ```
 
+### Open mysql client in terminal
+```bash
+mysql -u root -p
+```
+
 ### Seeding
 ```bash
-npm run seed
+npm run createTable
 ```
