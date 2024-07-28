@@ -1,6 +1,7 @@
 import mysql from 'mysql2/promise';
-import fs from 'fs/promises';
-import path from 'path';
+// import fs from 'fs/promises';
+// import path from 'path';
+import { loadSqlQuery } from '../utils';
 
 // Create the connection pool. The pool-specific settings are the defaults
 const pool = mysql.createPool({
@@ -15,21 +16,24 @@ const pool = mysql.createPool({
   queueLimit: 0,
   enableKeepAlive: true,
   keepAliveInitialDelay: 0,
-  multipleStatements: true // Enable multiple statements
+  multipleStatements: true, // Enable multiple statements
 });
 
 async function createTables() {
   try {
-    const createTableSql = await fs.readFile(path.join(process.cwd(), 'mysql/create-tables.sql'), 'utf-8');
+    // const createTableSql = await fs.readFile(path.join(process.cwd(), 'mysql/create-tables.sql'), 'utf-8');
+    const createTableSql = await loadSqlQuery('create-tables');
     const result = await pool.query(createTableSql);
     console.log(result);
-    console.log('Table users created!')
+    console.log('Table users created!');
   } catch (err) {
     console.error(err);
   }
 }
 
-createTables().finally(()=>{pool.end()});
+createTables().finally(() => {
+  pool.end();
+});
 
 // pool.query(`CREATE TABLE employees (
 //   employee_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,4 +50,3 @@ createTables().finally(()=>{pool.end()});
 //   console.log(`DB created!`);
 //   pool.end();
 // })
-

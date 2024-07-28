@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS users (
   last_name VARCHAR(50) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
   password CHAR(64) NOT NULL,
-  phone_number VARCHAR(15)
+  phone_number VARCHAR(15),
+  session_token CHAR(36)
 );
 
 INSERT INTO users (first_name, last_name, email, password, phone_number) VALUES
