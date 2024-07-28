@@ -19,13 +19,19 @@ const pool = mysql.createPool({
   multipleStatements: true, // Enable multiple statements
 });
 
+async function runSql(filePath: string) {
+  const sql = await loadSqlQuery(filePath);
+  const result = await pool.query(sql);
+  console.log(result);
+}
+
 async function createTables() {
   try {
     // const createTableSql = await fs.readFile(path.join(process.cwd(), 'mysql/create-tables.sql'), 'utf-8');
-    const createTableSql = await loadSqlQuery('create-tables');
-    const result = await pool.query(createTableSql);
-    console.log(result);
+    await runSql(`create-tables`);
     console.log('Table users created!');
+    await runSql('login');
+    console.log('Users login procedure created!');
   } catch (err) {
     console.error(err);
   }
