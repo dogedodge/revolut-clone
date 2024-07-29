@@ -11,3 +11,9 @@ export async function loadSqlQuery(filePath: string) {
   queryCache[filePath] = result;
   return result;
 }
+
+export function isDBReturnError<T>(
+  value: T | DBReturnError,
+): value is DBReturnError {
+  return typeof (value as DBReturnError).error === 'number';
+}
