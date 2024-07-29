@@ -22,7 +22,7 @@ const pool = mysql.createPool({
 async function createTables() {
   try {
     // const createTableSql = await fs.readFile(path.join(process.cwd(), 'mysql/create-tables.sql'), 'utf-8');
-    await runSql(pool, `create-tables`);
+    await runSql(pool, `tables/users`);
     console.log('Table users created!');
 
     await runSql(pool, 'tables/accounts');

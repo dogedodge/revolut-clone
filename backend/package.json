@@ -6,7 +6,7 @@
   "scripts": {
     "test": "tsc -p . && jest --detectOpenHandles",
     "start": "tsc -p . && node dist/index.js",
-    "createTable": "tsc -p . && node dist/tools/create-tables.js"
+    "createTables": "tsc -p . && node dist/tools/createTables.js"
   },
   "author": "james.ye",
   "license": "ISC",
