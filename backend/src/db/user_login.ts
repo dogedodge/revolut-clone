@@ -5,6 +5,6 @@ export async function login(pool: Pool, email: string, password: string) {
     email,
     password,
   ]);
-  console.log(result);
+  // console.log(result);
   return (result as Array<User[] | DBReturnError[]>)[0][0];
 }

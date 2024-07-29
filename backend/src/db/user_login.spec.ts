@@ -1,6 +1,6 @@
-import { isDBReturnError } from '../utils';
+import { isDBReturnError, runSql } from '../utils';
 import { createConnectionPool } from './createConnectionPool';
-import { login } from './login';
+import { login } from './user_login';
 import crypto from 'crypto';
 
 function sha256Hash(data: string) {
@@ -9,6 +9,10 @@ function sha256Hash(data: string) {
 
 describe('DB login', () => {
   const pool = createConnectionPool();
+
+  beforeAll(async () => {
+    await runSql(pool, 'procedures/user_login');
+  });
 
   afterAll(async () => {
     await pool.end();

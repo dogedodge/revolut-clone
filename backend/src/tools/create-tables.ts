@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise';
 // import fs from 'fs/promises';
 // import path from 'path';
-import { loadSqlQuery } from '../utils';
+import { runSql } from '../utils';
 
 // Create the connection pool. The pool-specific settings are the defaults
 const pool = mysql.createPool({
@@ -19,18 +19,12 @@ const pool = mysql.createPool({
   multipleStatements: true, // Enable multiple statements
 });
 
-async function runSql(filePath: string) {
-  const sql = await loadSqlQuery(filePath);
-  const result = await pool.query(sql);
-  console.log(result);
-}
-
 async function createTables() {
   try {
     // const createTableSql = await fs.readFile(path.join(process.cwd(), 'mysql/create-tables.sql'), 'utf-8');
-    await runSql(`create-tables`);
+    await runSql(pool, `create-tables`);
     console.log('Table users created!');
-    await runSql('login');
+    await runSql(pool, 'procedures/user_login');
     console.log('Users login procedure created!');
   } catch (err) {
     console.error(err);
