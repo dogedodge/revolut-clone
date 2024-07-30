@@ -13,10 +13,14 @@ export async function loadSqlQuery(filePath: string) {
   return result;
 }
 
-export async function runSql(pool: Pool, filePath: string) {
+export async function runSql(
+  pool: Pool,
+  filePath: string,
+  debug: boolean = false,
+) {
   const sql = await loadSqlQuery(filePath);
   const result = await pool.query(sql);
-  console.log(result);
+  if (debug) console.log(filePath, result);
 }
 
 export function isDBReturnError<T>(
