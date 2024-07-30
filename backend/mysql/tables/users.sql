@@ -7,7 +7,9 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(100) UNIQUE NOT NULL,
   password CHAR(64) NOT NULL,
   phone_number VARCHAR(15),
-  session_token CHAR(36)
+  session_token CHAR(36),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp of last update
 );
 
 INSERT INTO users (first_name, last_name, email, password, phone_number) VALUES
