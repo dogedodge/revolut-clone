@@ -1,4 +1,4 @@
-import { isDBReturnError, runSql } from '../utils';
+import { runSql } from '../utils';
 import { createConnectionPool } from './createConnectionPool';
 import { user_login } from './user_login';
 import crypto from 'crypto';
@@ -24,18 +24,14 @@ describe('user login', () => {
       'john.doe@example.com',
       sha256Hash('John'),
     );
-    // expect(isDBReturnError(user)).toBe(false);
 
-    // if (!isDBReturnError(user)) {
     expect(user.first_name).toEqual('John');
     expect(user.email).toEqual('john.doe@example.com');
-    // }
   });
 
   it('login fail', async () => {
     await expect(
       user_login(pool, 'john.doe@example.com', sha256Hash('Joh')),
     ).rejects.toThrow('Invalid email or password');
-    // expect(isDBReturnError(user)).toBe(true);
   });
 });

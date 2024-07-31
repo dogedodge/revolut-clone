@@ -22,9 +22,3 @@ export async function runSql(
   const result = await pool.query(sql);
   if (debug) console.log(filePath, result);
 }
-
-export function isDBReturnError<T>(
-  value: T | DBReturnError,
-): value is DBReturnError {
-  return typeof (value as DBReturnError).error === 'number';
-}
