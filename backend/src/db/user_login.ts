@@ -6,5 +6,5 @@ export async function user_login(pool: Pool, email: string, password: string) {
     password,
   ]);
   // console.log(result);
-  return (result as Array<User[]>)[0][0];
+  return (result as User[][])[0][0];
 }

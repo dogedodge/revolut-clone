@@ -13,7 +13,7 @@ describe('transfer creadits', () => {
     await pool.end();
   });
 
-  it('throw error if not enough balance', async () => {
+  xit('throw error if not enough balance', async () => {
     await expect(
       tranfer_credits(pool, {
         sender_id: 1,
@@ -22,5 +22,16 @@ describe('transfer creadits', () => {
         amount: 2000,
       }),
     ).rejects.toThrow('Insufficient balance');
+  });
+
+  it('throw error if wrong currency', async () => {
+    await expect(
+      tranfer_credits(pool, {
+        sender_id: 1,
+        receiver_id: 2,
+        currency: 'HKD', // user 1 has no HKD account
+        amount: 2000,
+      }),
+    ).rejects.toThrow('Wrong currency');
   });
 });

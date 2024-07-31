@@ -14,6 +14,6 @@ export async function tranfer_credits(pool: Pool, req: TransferCreditsRequest) {
     req.currency,
     req.amount,
   ]);
-  // console.log(result);
-  return (result as Array<User[] | DBReturnError[]>)[0][0];
+  console.log(result);
+  return (result as User[][])[0][0];
 }

@@ -20,6 +20,11 @@ BEGIN
     WHERE user_id = sender_id AND currency_code = currency
     FOR UPDATE;
 
+    IF sender_balance IS NULL THEN
+        ROLLBACK;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Wrong currency';
+    END IF;
+
     IF sender_balance < amount THEN
         -- If not enough balance, rollback transaction and exit
         ROLLBACK;

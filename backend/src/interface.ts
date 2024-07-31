@@ -1,7 +1,3 @@
-type DBReturnError = {
-  error: number;
-};
-
 type User = {
   id: number;
   first_name: string;
