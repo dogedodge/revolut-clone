@@ -7,7 +7,7 @@ function sha256Hash(data: string) {
   return crypto.createHash('sha256').update(data).digest('hex');
 }
 
-xdescribe('user login', () => {
+describe('user login', () => {
   const pool = createConnectionPool();
 
   beforeAll(async () => {
@@ -24,20 +24,18 @@ xdescribe('user login', () => {
       'john.doe@example.com',
       sha256Hash('John'),
     );
-    expect(isDBReturnError(user)).toBe(false);
+    // expect(isDBReturnError(user)).toBe(false);
 
-    if (!isDBReturnError(user)) {
-      expect(user.first_name).toEqual('John');
-      expect(user.email).toEqual('john.doe@example.com');
-    }
+    // if (!isDBReturnError(user)) {
+    expect(user.first_name).toEqual('John');
+    expect(user.email).toEqual('john.doe@example.com');
+    // }
   });
 
   it('login fail', async () => {
-    const user = await user_login(
-      pool,
-      'john.doe@example.com',
-      sha256Hash('Joh'),
-    );
-    expect(isDBReturnError(user)).toBe(true);
+    await expect(
+      user_login(pool, 'john.doe@example.com', sha256Hash('Joh')),
+    ).rejects.toThrow('Invalid email or password');
+    // expect(isDBReturnError(user)).toBe(true);
   });
 });
