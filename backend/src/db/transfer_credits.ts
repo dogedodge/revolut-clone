@@ -15,5 +15,5 @@ export async function tranfer_credits(pool: Pool, req: TransferCreditsRequest) {
     req.amount,
   ]);
   console.log(result);
-  return (result as User[][])[0][0];
+  // return (result as User[][])[0][0];
 }

@@ -34,4 +34,13 @@ describe('transfer creadits', () => {
       }),
     ).rejects.toThrow('Wrong currency');
   });
+
+  it('success', async () => {
+    await tranfer_credits(pool, {
+      sender_id: 1,
+      receiver_id: 2,
+      currency: 'GBP', // user 1 has no HKD account
+      amount: 10,
+    });
+  });
 });
