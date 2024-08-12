@@ -39,6 +39,9 @@ async function resetDB() {
     await runSql(pool, 'procedures/user_login');
     console.log('Users login procedure created!');
 
+    await runSql(pool, 'procedures/get_user_accounts');
+    console.log('Get user accounts procedure created!');
+
     await runSql(pool, 'procedures/transfer_credits');
     console.log('Transfer credits procedure created!');
   } catch (err) {

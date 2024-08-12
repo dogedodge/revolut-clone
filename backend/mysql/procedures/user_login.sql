@@ -1,4 +1,5 @@
 DROP PROCEDURE IF EXISTS user_login;
+
 CREATE PROCEDURE user_login(
     IN _email VARCHAR(100),
     IN _password CHAR(64)
@@ -6,8 +7,6 @@ CREATE PROCEDURE user_login(
 BEGIN
 
 DECLARE user_id INT;
--- DECLARE error_code INT;
--- SET error_code = 1;
 
 SELECT id INTO user_id
     FROM users WHERE email = _email AND password = _password;
