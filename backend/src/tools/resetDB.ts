@@ -21,7 +21,9 @@ const pool = mysql.createPool({
 
 async function resetDB() {
   try {
-    // const createTableSql = await fs.readFile(path.join(process.cwd(), 'mysql/create-tables.sql'), 'utf-8');
+    /**
+     * reset tables
+     */
     await runSql(pool, `tables/users`);
     console.log('Table users created!');
 
@@ -31,8 +33,14 @@ async function resetDB() {
     await runSql(pool, 'tables/transfer_records');
     console.log('Table transfer_records created!');
 
+    /**
+     * update procedures
+     */
     await runSql(pool, 'procedures/user_login');
     console.log('Users login procedure created!');
+
+    await runSql(pool, 'procedures/transfer_credits');
+    console.log('Transfer credits procedure created!');
   } catch (err) {
     console.error(err);
   }
