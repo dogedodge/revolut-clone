@@ -1,4 +1,4 @@
-import { Pool } from 'mysql2/promise';
+import { DBContext } from './DBContext';
 
 type TransferCreditsRequest = {
   sender_id: number;
@@ -7,8 +7,11 @@ type TransferCreditsRequest = {
   amount: number;
 };
 
-export async function tranferCredits(pool: Pool, req: TransferCreditsRequest) {
-  const [result] = await pool.execute(`CALL transfer_credits(?,?,?,?)`, [
+export async function tranferCredits(
+  ctx: DBContext,
+  req: TransferCreditsRequest,
+) {
+  const [result] = await ctx.pool.execute(`CALL transfer_credits(?,?,?,?)`, [
     req.sender_id,
     req.receiver_id,
     req.currency,

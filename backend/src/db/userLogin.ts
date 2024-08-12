@@ -1,7 +1,11 @@
-import { Pool } from 'mysql2/promise';
+import { DBContext } from './DBContext';
 
-export async function userLogin(pool: Pool, email: string, password: string) {
-  const [result] = await pool.execute(`CALL user_login(?,?)`, [
+export async function userLogin(
+  ctx: DBContext,
+  email: string,
+  password: string,
+) {
+  const [result] = await ctx.pool.execute(`CALL user_login(?,?)`, [
     email,
     password,
   ]);

@@ -1,9 +1,13 @@
 import { runSql } from '../utils';
 import { createConnectionPool } from './createConnectionPool';
+import { DBContext } from './DBContext';
 import { tranferCredits } from './transferCredits';
 
 describe('transfer creadits', () => {
   const pool = createConnectionPool();
+  const ctx: DBContext = {
+    pool,
+  };
 
   beforeAll(async () => {
     await runSql(pool, 'procedures/transfer_credits');
@@ -15,7 +19,7 @@ describe('transfer creadits', () => {
 
   xit('throw error if not enough balance', async () => {
     await expect(
-      tranferCredits(pool, {
+      tranferCredits(ctx, {
         sender_id: 1,
         receiver_id: 2,
         currency: 'GBP',
@@ -26,7 +30,7 @@ describe('transfer creadits', () => {
 
   it('throw error if wrong currency', async () => {
     await expect(
-      tranferCredits(pool, {
+      tranferCredits(ctx, {
         sender_id: 1,
         receiver_id: 2,
         currency: 'HKD', // user 1 has no HKD account
@@ -36,7 +40,7 @@ describe('transfer creadits', () => {
   });
 
   it('success', async () => {
-    const record = await tranferCredits(pool, {
+    const record = await tranferCredits(ctx, {
       sender_id: 1,
       receiver_id: 2,
       currency: 'GBP', // user 1 has no HKD account

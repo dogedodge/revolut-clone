@@ -1,5 +1,6 @@
 import { runSql } from '../utils';
 import { createConnectionPool } from './createConnectionPool';
+import { DBContext } from './DBContext';
 import { userLogin } from './userLogin';
 import crypto from 'crypto';
 
@@ -9,6 +10,9 @@ function sha256Hash(data: string) {
 
 describe('user login', () => {
   const pool = createConnectionPool();
+  const ctx: DBContext = {
+    pool,
+  };
 
   beforeAll(async () => {
     await runSql(pool, 'procedures/user_login');
@@ -20,7 +24,7 @@ describe('user login', () => {
 
   it('login success', async () => {
     const user = await userLogin(
-      pool,
+      ctx,
       'john.doe@example.com',
       sha256Hash('John'),
     );
@@ -31,7 +35,7 @@ describe('user login', () => {
 
   it('login fail', async () => {
     await expect(
-      userLogin(pool, 'john.doe@example.com', sha256Hash('Joh')),
+      userLogin(ctx, 'john.doe@example.com', sha256Hash('Joh')),
     ).rejects.toThrow('Invalid email or password');
   });
 });
