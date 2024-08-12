@@ -10,6 +10,7 @@ BEGIN
     DECLARE sender_balance DECIMAL(15, 2);
     DECLARE receiver_account_id INT;
     DECLARE receiver_exists BOOLEAN;
+    DECLARE transfer_record_id INT;
 
     -- Start transaction
     START TRANSACTION;
@@ -54,14 +55,19 @@ BEGIN
             VALUES (receiver_id, currency, amount, CONCAT(receiver_id, LPAD(FLOOR(RAND() * 1000000000), 10, '0')), 'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
         END IF;
 
+        -- Insert a transfer record
         INSERT INTO transfer_records (account_from, account_to, amount)
         VALUES (
             (SELECT id FROM accounts WHERE user_id = sender_id AND currency_code = currency),
             (SELECT id FROM accounts WHERE user_id = receiver_id AND currency_code = currency),
             amount
         );
+        SET transfer_record_id = LAST_INSERT_ID();
 
         -- Commit the transaction
         COMMIT;
+
+        -- return transfer record
+        SELECT * from transfer_records WHERE id = transfer_record_id;
     END IF;
 END;

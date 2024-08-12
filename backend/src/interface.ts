@@ -5,3 +5,11 @@ type User = {
   email: string;
   phone_number?: string;
 };
+
+type TransferRecord = {
+  id: number;
+  account_from: number;
+  account_to: number;
+  amount: string;
+  transfer_date: string;
+};

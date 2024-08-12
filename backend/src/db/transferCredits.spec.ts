@@ -36,11 +36,13 @@ describe('transfer creadits', () => {
   });
 
   it('success', async () => {
-    await tranferCredits(pool, {
+    const record = await tranferCredits(pool, {
       sender_id: 1,
       receiver_id: 2,
       currency: 'GBP', // user 1 has no HKD account
       amount: 10,
     });
+
+    expect(record.amount).toEqual('10.00');
   });
 });
