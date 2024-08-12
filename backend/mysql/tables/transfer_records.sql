@@ -5,7 +5,7 @@ CREATE TABLE transfer_records (
     account_from INT NOT NULL, -- accounts(id)
     account_to INT NOT NULL, -- accounts(id)
     amount DECIMAL(15,2) NOT NULL,
-    transfer_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    transfer_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     -- description VARCHAR(255),
-    -- status ENUM('Pending', 'Completed', 'Failed') NOT NULL DEFAULT 'Pending'
+    status ENUM('Pending', 'Completed', 'Failed') NOT NULL DEFAULT 'Pending'
 );

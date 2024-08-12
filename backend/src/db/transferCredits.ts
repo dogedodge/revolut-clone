@@ -17,7 +17,6 @@ export async function tranferCredits(
     req.currency,
     req.amount,
   ]);
-  console.log(result);
-  // return (result as User[][])[0][0];
+  // console.log(result);
   return (result as TransferRecord[][])[0][0];
 }

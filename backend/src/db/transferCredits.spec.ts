@@ -1,23 +1,18 @@
-import { runSql } from '../utils';
 import { createConnectionPool } from './createConnectionPool';
 import { DBContext } from './DBContext';
 import { tranferCredits } from './transferCredits';
 
-describe('transfer creadits', () => {
+describe('transferCreadits', () => {
   const pool = createConnectionPool();
   const ctx: DBContext = {
     pool,
   };
 
-  beforeAll(async () => {
-    await runSql(pool, 'procedures/transfer_credits');
-  });
-
   afterAll(async () => {
     await pool.end();
   });
 
-  xit('throw error if not enough balance', async () => {
+  it('throw error if not enough balance', async () => {
     await expect(
       tranferCredits(ctx, {
         sender_id: 1,

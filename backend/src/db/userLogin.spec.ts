@@ -1,4 +1,3 @@
-import { runSql } from '../utils';
 import { createConnectionPool } from './createConnectionPool';
 import { DBContext } from './DBContext';
 import { userLogin } from './userLogin';
@@ -8,15 +7,11 @@ function sha256Hash(data: string) {
   return crypto.createHash('sha256').update(data).digest('hex');
 }
 
-describe('user login', () => {
+describe('userLogin', () => {
   const pool = createConnectionPool();
   const ctx: DBContext = {
     pool,
   };
-
-  beforeAll(async () => {
-    await runSql(pool, 'procedures/user_login');
-  });
 
   afterAll(async () => {
     await pool.end();

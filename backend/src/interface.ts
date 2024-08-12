@@ -6,6 +6,14 @@ type User = {
   phone_number?: string;
 };
 
+type Account = {
+  id: number;
+  currency_code: string;
+  balance: string;
+  created_at: string;
+  updated_at: string;
+};
+
 type TransferRecord = {
   id: number;
   account_from: number;
