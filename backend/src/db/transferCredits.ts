@@ -7,7 +7,7 @@ type TransferCreditsRequest = {
   amount: number;
 };
 
-export async function tranfer_credits(pool: Pool, req: TransferCreditsRequest) {
+export async function tranferCredits(pool: Pool, req: TransferCreditsRequest) {
   const [result] = await pool.execute(`CALL transfer_credits(?,?,?,?)`, [
     req.sender_id,
     req.receiver_id,

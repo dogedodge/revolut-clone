@@ -1,6 +1,6 @@
 import { runSql } from '../utils';
 import { createConnectionPool } from './createConnectionPool';
-import { user_login } from './user_login';
+import { userLogin } from './userLogin';
 import crypto from 'crypto';
 
 function sha256Hash(data: string) {
@@ -19,7 +19,7 @@ describe('user login', () => {
   });
 
   it('login success', async () => {
-    const user = await user_login(
+    const user = await userLogin(
       pool,
       'john.doe@example.com',
       sha256Hash('John'),
@@ -31,7 +31,7 @@ describe('user login', () => {
 
   it('login fail', async () => {
     await expect(
-      user_login(pool, 'john.doe@example.com', sha256Hash('Joh')),
+      userLogin(pool, 'john.doe@example.com', sha256Hash('Joh')),
     ).rejects.toThrow('Invalid email or password');
   });
 });

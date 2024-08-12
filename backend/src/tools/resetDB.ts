@@ -19,7 +19,7 @@ const pool = mysql.createPool({
   multipleStatements: true, // Enable multiple statements
 });
 
-async function createTables() {
+async function resetDB() {
   try {
     // const createTableSql = await fs.readFile(path.join(process.cwd(), 'mysql/create-tables.sql'), 'utf-8');
     await runSql(pool, `tables/users`);
@@ -38,7 +38,7 @@ async function createTables() {
   }
 }
 
-createTables().finally(() => {
+resetDB().finally(() => {
   pool.end();
 });
 

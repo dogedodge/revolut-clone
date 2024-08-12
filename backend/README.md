@@ -18,5 +18,5 @@ mysql -u root -p
 ### Reset mysql db
 
 ```bash
-npm run createTables
+npm run resetDB
 ```
