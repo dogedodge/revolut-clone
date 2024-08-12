@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS accounts;
 
 -- Create the accounts table
 CREATE TABLE IF NOT EXISTS accounts (
-    account_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique account ID
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique account ID
     user_id INT NOT NULL,                      -- Foreign key to users table
     currency_code VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
     balance DECIMAL(15, 2) DEFAULT 0.00,       -- Account balance
