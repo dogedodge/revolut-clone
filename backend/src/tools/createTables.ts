@@ -28,6 +28,9 @@ async function createTables() {
     await runSql(pool, 'tables/accounts');
     console.log('Table account created!');
 
+    await runSql(pool, 'tables/transfer_records');
+    console.log('Table transfer_records created!');
+
     await runSql(pool, 'procedures/user_login');
     console.log('Users login procedure created!');
   } catch (err) {
