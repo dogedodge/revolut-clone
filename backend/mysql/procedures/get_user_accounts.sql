@@ -5,6 +5,6 @@ CREATE PROCEDURE get_user_accounts(
 )
 BEGIN
 
-SELECT * from accounts WHERE user_id = _user_id;
+SELECT * FROM accounts WHERE user_id = _user_id;
 
 END;
