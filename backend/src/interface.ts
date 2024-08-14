@@ -18,6 +18,7 @@ type TransferRecord = {
   id: number;
   account_from: number;
   account_to: number;
+  currency_code: string;
   amount: string;
   transfer_date: string;
 };
