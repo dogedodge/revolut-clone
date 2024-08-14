@@ -56,10 +56,11 @@ BEGIN
         END IF;
 
         -- Insert a transfer record
-        INSERT INTO transfer_records (account_from, account_to, amount)
+        INSERT INTO transfer_records (account_from, account_to, currency_code, amount)
         VALUES (
             (SELECT id FROM accounts WHERE user_id = sender_id AND currency_code = currency),
             (SELECT id FROM accounts WHERE user_id = receiver_id AND currency_code = currency),
+            currency,
             amount
         );
         SET transfer_record_id = LAST_INSERT_ID();
