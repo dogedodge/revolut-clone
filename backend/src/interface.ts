@@ -1,3 +1,8 @@
+type Cookies = {
+  user_id: string;
+  session_token: string;
+};
+
 type User = {
   id: number;
   first_name: string;
