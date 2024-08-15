@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import { createConnectionPool } from './db/createConnectionPool';
 import { DBContext } from './db/DBContext';
@@ -41,18 +41,17 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-app.get('/api/accounts', async (req, res) => {
+app.get('/api/accounts', async (req, res, next) => {
   const ctx = createDBContext(req.cookies);
   try {
     const accounts = await getUserAccounts(ctx);
     res.json({ accounts });
   } catch (err) {
-    const { message } = err as Error;
-    res.status(500).json({ message });
+    next(err);
   }
 });
 
-app.get('/api/accounts/:accountId/transfers', async (req, res) => {
+app.get('/api/accounts/:accountId/transfers', async (req, res, next) => {
   const ctx = createDBContext(req.cookies);
   const { accountId } = req.params;
 
@@ -60,13 +59,12 @@ app.get('/api/accounts/:accountId/transfers', async (req, res) => {
     const transfers = await getAccountRecords(ctx, parseInt(accountId));
     res.json({ transfers });
   } catch (err) {
-    const { message } = err as Error;
-    res.status(500).json({ message });
+    next(err);
   }
 });
 
 // todo: integrate express-validator
-app.post('/api/transfers', async (req, res) => {
+app.post('/api/transfers', async (req, res, next) => {
   const { sender_id, receiver_id, currency, amount } = req.body;
   const ctx = createDBContext(req.cookies);
 
@@ -79,9 +77,15 @@ app.post('/api/transfers', async (req, res) => {
     });
     res.json(transfer);
   } catch (err) {
-    const { message } = err as Error;
-    res.status(500).json({ message });
+    next(err);
   }
+});
+
+/** caught all unhandled exception here */
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  const { message } = err as Error;
+  console.error(err);
+  res.status(500).json({ message });
 });
 
 export default app;
