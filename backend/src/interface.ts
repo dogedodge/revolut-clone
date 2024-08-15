@@ -4,6 +4,7 @@ type User = {
   last_name: string;
   email: string;
   phone_number?: string;
+  session_token?: string;
 };
 
 type Account = {
