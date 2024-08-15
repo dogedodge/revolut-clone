@@ -5,6 +5,7 @@ import { DBContext } from './db/DBContext';
 import { userLogin } from './db/userLogin';
 import { getUserAccounts } from './db/getUserAccounts';
 import { getAccountRecords } from './db/getAccountRecords';
+import { tranferCredits } from './db/transferCredits';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -51,13 +52,32 @@ app.get('/api/accounts', async (req, res) => {
   }
 });
 
-app.get('/api/accounts/:accountId/records', async (req, res) => {
+app.get('/api/accounts/:accountId/transfers', async (req, res) => {
   const ctx = createDBContext(req.cookies);
   const { accountId } = req.params;
 
   try {
-    const records = await getAccountRecords(ctx, parseInt(accountId));
-    res.json({ records });
+    const transfers = await getAccountRecords(ctx, parseInt(accountId));
+    res.json({ transfers });
+  } catch (err) {
+    const { message } = err as Error;
+    res.status(500).json({ message });
+  }
+});
+
+// todo: integrate express-validator
+app.post('/api/transfers', async (req, res) => {
+  const { sender_id, receiver_id, currency, amount } = req.body;
+  const ctx = createDBContext(req.cookies);
+
+  try {
+    const transfer = await tranferCredits(ctx, {
+      sender_id,
+      receiver_id,
+      currency, // user 1 has no HKD account
+      amount,
+    });
+    res.json(transfer);
   } catch (err) {
     const { message } = err as Error;
     res.status(500).json({ message });
