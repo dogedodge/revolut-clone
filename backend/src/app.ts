@@ -4,6 +4,7 @@ import { createConnectionPool } from './db/createConnectionPool';
 import { DBContext } from './db/DBContext';
 import { userLogin } from './db/userLogin';
 import { getUserAccounts } from './db/getUserAccounts';
+import { getAccountRecords } from './db/getAccountRecords';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -11,10 +12,6 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-
-app.get(`/`, (req, res) => {
-  res.send('Hello World!');
-});
 
 const pool = createConnectionPool();
 function createDBContext(cookies: Cookies): DBContext {
@@ -48,6 +45,19 @@ app.get('/api/accounts', async (req, res) => {
   try {
     const accounts = await getUserAccounts(ctx);
     res.json({ accounts });
+  } catch (err) {
+    const { message } = err as Error;
+    res.status(500).json({ message });
+  }
+});
+
+app.get('/api/accounts/:accountId/records', async (req, res) => {
+  const ctx = createDBContext(req.cookies);
+  const { accountId } = req.params;
+
+  try {
+    const records = await getAccountRecords(ctx, parseInt(accountId));
+    res.json({ records });
   } catch (err) {
     const { message } = err as Error;
     res.status(500).json({ message });
