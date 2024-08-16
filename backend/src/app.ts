@@ -1,6 +1,6 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import { body, param, validationResult } from 'express-validator';
+import { body, param } from 'express-validator';
 import { userLogin } from './db/userLogin';
 import { getUserAccounts } from './db/getUserAccounts';
 import { getAccountRecords } from './db/getAccountRecords';
@@ -12,6 +12,7 @@ import {
 } from './middlewares/createDBContextMiddleware';
 import { inputValidationMiddleware } from './middlewares/inputValidationMiddleware';
 import { VALID_CURRENCIES } from './constants';
+import { reportBadRequestMiddleware } from './middlewares/reportBadRequestMiddleware';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -39,12 +40,8 @@ app.post(
       }
       return true;
     }),
+  reportBadRequestMiddleware,
   async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ code: 400, errors: errors.array() });
-    }
-
     const { email, password } = req.body;
     const { dbContext } = req as RequestWithDbContext;
     try {
@@ -84,12 +81,8 @@ app.get(
     .withMessage('Account ID is required')
     .isInt()
     .withMessage('Account ID must be an integer'),
+  reportBadRequestMiddleware,
   async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ code: 400, errors: errors.array() });
-    }
-
     const { dbContext } = req as any as RequestWithDbContext;
     const { accountId } = req.params || {};
 
@@ -124,12 +117,8 @@ app.post(
     .withMessage('Amount is required')
     .isDecimal({ force_decimal: false, decimal_digits: '0,2' })
     .withMessage('Amount must be a decimal with up to 2 decimal places'),
+  reportBadRequestMiddleware,
   async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ code: 400, errors: errors.array() });
-    }
-
     const { sender_id, receiver_id, currency, amount } = req.body;
     const { dbContext } = req as RequestWithDbContext;
 
