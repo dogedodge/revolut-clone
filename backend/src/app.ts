@@ -1,6 +1,6 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import { body, validationResult } from 'express-validator';
+import { body, param, validationResult } from 'express-validator';
 import { userLogin } from './db/userLogin';
 import { getUserAccounts } from './db/getUserAccounts';
 import { getAccountRecords } from './db/getAccountRecords';
@@ -53,15 +53,14 @@ app.post(
         httpOnly: true,
         secure: isProduction,
       });
-      res.json({ code: 0, user });
+      return res.json({ code: 0, user });
     } catch (err) {
       const { message } = err as Error;
       switch (message) {
         case 'Invalid email or password':
-          res.status(401).json({ code: 1, message });
-          break;
+          return res.status(401).json({ code: 1, message });
         default:
-          next(err);
+          return next(err);
       }
     }
   },
@@ -71,23 +70,36 @@ app.get('/api/accounts', async (req, res, next) => {
   const { dbContext } = req as RequestWithDbContext;
   try {
     const accounts = await getUserAccounts(dbContext);
-    res.json({ code: 0, accounts });
+    return res.json({ code: 0, accounts });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 });
 
-app.get('/api/accounts/:accountId/transfers', async (req, res, next) => {
-  const { dbContext } = req as any as RequestWithDbContext;
-  const { accountId } = req.params;
+app.get(
+  '/api/accounts/:accountId/transfers',
+  param('accountId')
+    .notEmpty()
+    .withMessage('Account ID is required')
+    .isInt()
+    .withMessage('Account ID must be an integer'),
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ code: 400, errors: errors.array() });
+    }
 
-  try {
-    const transfers = await getAccountRecords(dbContext, accountId);
-    res.json({ code: 0, transfers });
-  } catch (err) {
-    next(err);
-  }
-});
+    const { dbContext } = req as any as RequestWithDbContext;
+    const { accountId } = req.params || {};
+
+    try {
+      const transfers = await getAccountRecords(dbContext, accountId);
+      return res.json({ code: 0, transfers });
+    } catch (err) {
+      return next(err);
+    }
+  },
+);
 
 // todo: integrate express-validator
 app.post('/api/transfers', async (req, res, next) => {
@@ -101,18 +113,16 @@ app.post('/api/transfers', async (req, res, next) => {
       currency,
       amount,
     });
-    res.json({ code: 0, transfer });
+    return res.json({ code: 0, transfer });
   } catch (err) {
     const { message } = err as Error;
     switch (message) {
       case 'Insufficient balance':
-        res.status(400).json({ code: 1, message });
-        break;
+        return res.status(400).json({ code: 1, message });
       case 'Wrong currency':
-        res.status(400).json({ code: 2, message });
-        break;
+        return res.status(400).json({ code: 2, message });
       default:
-        next(err);
+        return next(err);
     }
   }
 });

@@ -16,12 +16,12 @@ export const createDBContextMiddleware = () => {
   }
 
   return (req: Request, res: Response, next: NextFunction) => {
-    console.log('createDBContextMiddleware');
+    // console.log('createDBContextMiddleware');
 
     (req as RequestWithDbContext).dbContext = createDBContext(
       req.cookies as any,
     );
 
-    next();
+    return next();
   };
 };

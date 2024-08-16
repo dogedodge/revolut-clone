@@ -9,5 +9,5 @@ export const unhandledExeptionMiddleware = (
   console.log('unhandledExeptionMiddleware');
   const { message } = err as Error;
   console.error(err);
-  res.status(500).json({ code: 500, message });
+  return res.status(500).json({ code: 500, message });
 };

@@ -32,5 +32,7 @@ export const inputValidationMiddleware = (
       .catch((err) => {
         next(err);
       });
+  } else {
+    next();
   }
 };
