@@ -1,12 +1,14 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import { createConnectionPool } from './db/createConnectionPool';
-import { DBContext } from './db/DBContext';
 import { userLogin } from './db/userLogin';
 import { getUserAccounts } from './db/getUserAccounts';
 import { getAccountRecords } from './db/getAccountRecords';
 import { tranferCredits } from './db/transferCredits';
 import { unhandledExeptionMiddleware } from './middlewares/unhandledExeptionMiddleware';
+import {
+  createDBContextMiddleware,
+  RequestWithDbContext,
+} from './middlewares/createDBContextMiddleware';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -14,20 +16,13 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-
-const pool = createConnectionPool();
-function createDBContext(cookies: Cookies): DBContext {
-  return {
-    pool,
-    ...cookies,
-  };
-}
+app.use(createDBContextMiddleware());
 
 app.post('/api/login', async (req, res, next) => {
   const { email, password } = req.body;
-  const ctx: DBContext = { pool };
+  const { dbContext } = req as RequestWithDbContext;
   try {
-    const user = await userLogin(ctx, email, password);
+    const user = await userLogin(dbContext, email, password);
     res.cookie('user_id', user.id, { httpOnly: true });
     res.cookie('session_token', user.session_token, {
       httpOnly: true,
@@ -47,9 +42,9 @@ app.post('/api/login', async (req, res, next) => {
 });
 
 app.get('/api/accounts', async (req, res, next) => {
-  const ctx = createDBContext(req.cookies);
+  const { dbContext } = req as RequestWithDbContext;
   try {
-    const accounts = await getUserAccounts(ctx);
+    const accounts = await getUserAccounts(dbContext);
     res.json({ code: 0, accounts });
   } catch (err) {
     next(err);
@@ -57,11 +52,11 @@ app.get('/api/accounts', async (req, res, next) => {
 });
 
 app.get('/api/accounts/:accountId/transfers', async (req, res, next) => {
-  const ctx = createDBContext(req.cookies);
+  const { dbContext } = req as any as RequestWithDbContext;
   const { accountId } = req.params;
 
   try {
-    const transfers = await getAccountRecords(ctx, accountId);
+    const transfers = await getAccountRecords(dbContext, accountId);
     res.json({ code: 0, transfers });
   } catch (err) {
     next(err);
@@ -71,10 +66,10 @@ app.get('/api/accounts/:accountId/transfers', async (req, res, next) => {
 // todo: integrate express-validator
 app.post('/api/transfers', async (req, res, next) => {
   const { sender_id, receiver_id, currency, amount } = req.body;
-  const ctx = createDBContext(req.cookies);
+  const { dbContext } = req as RequestWithDbContext;
 
   try {
-    const transfer = await tranferCredits(ctx, {
+    const transfer = await tranferCredits(dbContext, {
       sender_id,
       receiver_id,
       currency,
