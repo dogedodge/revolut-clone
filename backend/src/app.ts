@@ -6,13 +6,11 @@ import { getUserAccounts } from './db/getUserAccounts';
 import { getAccountRecords } from './db/getAccountRecords';
 import { tranferCredits } from './db/transferCredits';
 import { unhandledExeptionMiddleware } from './middlewares/unhandledExeptionMiddleware';
-import {
-  createDBContextMiddleware,
-  RequestWithDbContext,
-} from './middlewares/createDBContextMiddleware';
+import { createDBContextMiddleware } from './middlewares/createDBContextMiddleware';
 import { inputValidationMiddleware } from './middlewares/inputValidationMiddleware';
 import { VALID_CURRENCIES } from './constants';
 import { reportBadRequestMiddleware } from './middlewares/reportBadRequestMiddleware';
+import { getDBContext } from './utils/getDBContext';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -43,9 +41,8 @@ app.post(
   reportBadRequestMiddleware,
   async (req, res, next) => {
     const { email, password } = req.body;
-    const { dbContext } = req as RequestWithDbContext;
     try {
-      const user = await userLogin(dbContext, email, password);
+      const user = await userLogin(getDBContext(req), email, password);
       res.cookie('user_id', user.id, { httpOnly: true });
       res.cookie('session_token', user.session_token, {
         httpOnly: true,
@@ -65,9 +62,8 @@ app.post(
 );
 
 app.get('/api/accounts', async (req, res, next) => {
-  const { dbContext } = req as RequestWithDbContext;
   try {
-    const accounts = await getUserAccounts(dbContext);
+    const accounts = await getUserAccounts(getDBContext(req));
     return res.json({ code: 0, accounts });
   } catch (err) {
     return next(err);
@@ -83,11 +79,10 @@ app.get(
     .withMessage('Account ID must be an integer'),
   reportBadRequestMiddleware,
   async (req, res, next) => {
-    const { dbContext } = req as any as RequestWithDbContext;
     const { accountId } = req.params || {};
 
     try {
-      const transfers = await getAccountRecords(dbContext, accountId);
+      const transfers = await getAccountRecords(getDBContext(req), accountId);
       return res.json({ code: 0, transfers });
     } catch (err) {
       return next(err);
@@ -120,10 +115,9 @@ app.post(
   reportBadRequestMiddleware,
   async (req, res, next) => {
     const { sender_id, receiver_id, currency, amount } = req.body;
-    const { dbContext } = req as RequestWithDbContext;
 
     try {
-      const transfer = await tranferCredits(dbContext, {
+      const transfer = await tranferCredits(getDBContext(req), {
         sender_id,
         receiver_id,
         currency,
