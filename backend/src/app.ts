@@ -11,6 +11,7 @@ import {
   RequestWithDbContext,
 } from './middlewares/createDBContextMiddleware';
 import { inputValidationMiddleware } from './middlewares/inputValidationMiddleware';
+import { VALID_CURRENCIES } from './constants';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -101,31 +102,58 @@ app.get(
   },
 );
 
-// todo: integrate express-validator
-app.post('/api/transfers', async (req, res, next) => {
-  const { sender_id, receiver_id, currency, amount } = req.body;
-  const { dbContext } = req as RequestWithDbContext;
-
-  try {
-    const transfer = await tranferCredits(dbContext, {
-      sender_id,
-      receiver_id,
-      currency,
-      amount,
-    });
-    return res.json({ code: 0, transfer });
-  } catch (err) {
-    const { message } = err as Error;
-    switch (message) {
-      case 'Insufficient balance':
-        return res.status(400).json({ code: 1, message });
-      case 'Wrong currency':
-        return res.status(400).json({ code: 2, message });
-      default:
-        return next(err);
+app.post(
+  '/api/transfers',
+  body('sender_id')
+    .notEmpty()
+    .withMessage('Sender ID is required')
+    .isInt()
+    .withMessage('Sender ID must be an integer'),
+  body('receiver_id')
+    .notEmpty()
+    .withMessage('Receiver ID is required')
+    .isInt()
+    .withMessage('Receiver ID must be an integer'),
+  body('currency')
+    .notEmpty()
+    .withMessage('Currency is required')
+    .isIn(VALID_CURRENCIES)
+    .withMessage('Invalid currency'),
+  body('amount')
+    .notEmpty()
+    .withMessage('Amount is required')
+    .isDecimal({ force_decimal: false, decimal_digits: '0,2' })
+    .withMessage('Amount must be a decimal with up to 2 decimal places'),
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ code: 400, errors: errors.array() });
     }
-  }
-});
+
+    const { sender_id, receiver_id, currency, amount } = req.body;
+    const { dbContext } = req as RequestWithDbContext;
+
+    try {
+      const transfer = await tranferCredits(dbContext, {
+        sender_id,
+        receiver_id,
+        currency,
+        amount,
+      });
+      return res.json({ code: 0, transfer });
+    } catch (err) {
+      const { message } = err as Error;
+      switch (message) {
+        case 'Insufficient balance':
+          return res.status(400).json({ code: 1, message });
+        case 'Wrong currency':
+          return res.status(400).json({ code: 2, message });
+        default:
+          return next(err);
+      }
+    }
+  },
+);
 
 /** caught all unhandled exception here */
 app.use(unhandledExeptionMiddleware);
