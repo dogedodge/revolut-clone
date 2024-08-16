@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import cookieParser from 'cookie-parser';
 import { createConnectionPool } from './db/createConnectionPool';
 import { DBContext } from './db/DBContext';
@@ -6,6 +6,7 @@ import { userLogin } from './db/userLogin';
 import { getUserAccounts } from './db/getUserAccounts';
 import { getAccountRecords } from './db/getAccountRecords';
 import { tranferCredits } from './db/transferCredits';
+import { unhandledExeptionMiddleware } from './middlewares/unhandledExeptionMiddleware';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -16,11 +17,9 @@ app.use(cookieParser());
 
 const pool = createConnectionPool();
 function createDBContext(cookies: Cookies): DBContext {
-  const user_id = parseInt(cookies.user_id);
   return {
     pool,
-    user_id,
-    session_token: cookies.session_token,
+    ...cookies,
   };
 }
 
@@ -62,7 +61,7 @@ app.get('/api/accounts/:accountId/transfers', async (req, res, next) => {
   const { accountId } = req.params;
 
   try {
-    const transfers = await getAccountRecords(ctx, parseInt(accountId));
+    const transfers = await getAccountRecords(ctx, accountId);
     res.json({ code: 0, transfers });
   } catch (err) {
     next(err);
@@ -78,7 +77,7 @@ app.post('/api/transfers', async (req, res, next) => {
     const transfer = await tranferCredits(ctx, {
       sender_id,
       receiver_id,
-      currency, // user 1 has no HKD account
+      currency,
       amount,
     });
     res.json({ code: 0, transfer });
@@ -98,10 +97,6 @@ app.post('/api/transfers', async (req, res, next) => {
 });
 
 /** caught all unhandled exception here */
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  const { message } = err as Error;
-  console.error(err);
-  res.status(500).json({ code: 500, message });
-});
+app.use(unhandledExeptionMiddleware);
 
 export default app;
