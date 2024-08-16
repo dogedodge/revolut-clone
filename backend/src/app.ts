@@ -10,6 +10,7 @@ import {
   createDBContextMiddleware,
   RequestWithDbContext,
 } from './middlewares/createDBContextMiddleware';
+import { inputValidationMiddleware } from './middlewares/inputValidationMiddleware';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -17,6 +18,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(inputValidationMiddleware);
 app.use(createDBContextMiddleware());
 
 app.post(
@@ -32,7 +34,7 @@ app.post(
     .custom((value) => {
       // Validate password as a SHA256 hash
       if (!/^[a-f0-9]{64}$/.test(value)) {
-        throw new Error('Password must be a valid SHA256 hash');
+        throw new Error('Invalid password format');
       }
       return true;
     }),
