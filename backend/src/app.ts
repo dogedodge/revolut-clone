@@ -24,7 +24,7 @@ function createDBContext(cookies: Cookies): DBContext {
   };
 }
 
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', async (req, res, next) => {
   const { email, password } = req.body;
   const ctx: DBContext = { pool };
   try {
@@ -34,10 +34,16 @@ app.post('/api/login', async (req, res) => {
       httpOnly: true,
       secure: isProduction,
     });
-    res.json(user);
+    res.json({ code: 0, user });
   } catch (err) {
     const { message } = err as Error;
-    res.status(401).json({ message });
+    switch (message) {
+      case 'Invalid email or password':
+        res.status(401).json({ code: 1, message });
+        break;
+      default:
+        next(err);
+    }
   }
 });
 
@@ -45,7 +51,7 @@ app.get('/api/accounts', async (req, res, next) => {
   const ctx = createDBContext(req.cookies);
   try {
     const accounts = await getUserAccounts(ctx);
-    res.json({ accounts });
+    res.json({ code: 0, accounts });
   } catch (err) {
     next(err);
   }
@@ -57,7 +63,7 @@ app.get('/api/accounts/:accountId/transfers', async (req, res, next) => {
 
   try {
     const transfers = await getAccountRecords(ctx, parseInt(accountId));
-    res.json({ transfers });
+    res.json({ code: 0, transfers });
   } catch (err) {
     next(err);
   }
@@ -75,9 +81,19 @@ app.post('/api/transfers', async (req, res, next) => {
       currency, // user 1 has no HKD account
       amount,
     });
-    res.json(transfer);
+    res.json({ code: 0, transfer });
   } catch (err) {
-    next(err);
+    const { message } = err as Error;
+    switch (message) {
+      case 'Insufficient balance':
+        res.status(400).json({ code: 1, message });
+        break;
+      case 'Wrong currency':
+        res.status(400).json({ code: 2, message });
+        break;
+      default:
+        next(err);
+    }
   }
 });
 
@@ -85,7 +101,7 @@ app.post('/api/transfers', async (req, res, next) => {
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const { message } = err as Error;
   console.error(err);
-  res.status(500).json({ message });
+  res.status(500).json({ code: 500, message });
 });
 
 export default app;
