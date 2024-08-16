@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise';
 // import fs from 'fs/promises';
 // import path from 'path';
-import { runSql } from '../utils';
+import { runSqlFile } from './runSqlFile';
 
 // Create the connection pool. The pool-specific settings are the defaults
 const pool = mysql.createPool({
@@ -24,28 +24,28 @@ async function resetDB() {
     /**
      * reset tables
      */
-    await runSql(pool, `tables/users`);
+    await runSqlFile(pool, `tables/users`);
     console.log('Table users created!');
 
-    await runSql(pool, 'tables/accounts');
+    await runSqlFile(pool, 'tables/accounts');
     console.log('Table account created!');
 
-    await runSql(pool, 'tables/transfer_records');
+    await runSqlFile(pool, 'tables/transfer_records');
     console.log('Table transfer_records created!');
 
     /**
      * update procedures
      */
-    await runSql(pool, 'procedures/user_login');
+    await runSqlFile(pool, 'procedures/user_login');
     console.log('Users login procedure created!');
 
-    await runSql(pool, 'procedures/get_user_accounts');
+    await runSqlFile(pool, 'procedures/get_user_accounts');
     console.log('Get user accounts procedure created!');
 
-    await runSql(pool, 'procedures/get_account_records');
+    await runSqlFile(pool, 'procedures/get_account_records');
     console.log('Get account records procedure created!');
 
-    await runSql(pool, 'procedures/transfer_credits');
+    await runSqlFile(pool, 'procedures/transfer_credits');
     console.log('Transfer credits procedure created!');
   } catch (err) {
     console.error(err);

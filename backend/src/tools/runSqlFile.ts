@@ -3,7 +3,7 @@ import { Pool } from 'mysql2/promise';
 import path from 'path';
 
 const queryCache: { [key: string]: Promise<string> } = {};
-export async function loadSqlQuery(filePath: string) {
+async function loadSqlQuery(filePath: string) {
   const cache = queryCache[filePath];
   if (cache) return cache;
 
@@ -13,7 +13,7 @@ export async function loadSqlQuery(filePath: string) {
   return result;
 }
 
-export async function runSql(
+export async function runSqlFile(
   pool: Pool,
   filePath: string,
   debug: boolean = false,
