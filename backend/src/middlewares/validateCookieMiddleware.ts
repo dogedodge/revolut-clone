@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { cookie, validationResult } from 'express-validator';
 
-export const inputValidationMiddleware = (
+export const validateCookieMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction,

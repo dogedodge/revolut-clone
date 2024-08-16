@@ -7,7 +7,7 @@ import { getAccountRecords } from './db/getAccountRecords';
 import { tranferCredits } from './db/transferCredits';
 import { unhandledExeptionMiddleware } from './middlewares/unhandledExeptionMiddleware';
 import { createDBContextMiddleware } from './middlewares/createDBContextMiddleware';
-import { inputValidationMiddleware } from './middlewares/inputValidationMiddleware';
+import { validateCookieMiddleware } from './middlewares/validateCookieMiddleware';
 import { VALID_CURRENCIES } from './constants';
 import { reportBadRequestMiddleware } from './middlewares/reportBadRequestMiddleware';
 import { getDBContext } from './utils/getDBContext';
@@ -18,7 +18,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(inputValidationMiddleware);
+app.use(validateCookieMiddleware);
 app.use(createDBContextMiddleware());
 
 app.post(
