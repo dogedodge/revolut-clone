@@ -22,10 +22,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-  // args: {
-  //   user: {
-  //     name: 'Jane Doe',
-  //   },
-  // },
+export const User: Story = {
+  args: {
+    variant: 'user',
+  },
+};
+
+export const ChartBar: Story = {
+  args: {
+    variant: 'chart_bar',
+  },
+};
+
+export const CreditCard: Story = {
+  args: {
+    variant: 'credit_card',
+  },
 };
