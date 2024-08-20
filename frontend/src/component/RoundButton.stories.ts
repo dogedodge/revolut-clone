@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-// import { fn } from '@storybook/test';
 
-import { RoundButton } from './RoundButton';
+import RoundButton from './RoundButton';
 
 const meta = {
   title: 'Component/RoundButton',
@@ -12,11 +11,7 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'fullscreen',
   },
-  args: {
-    // onLogin: fn(),
-    // onLogout: fn(),
-    // onCreateAccount: fn(),
-  },
+  args: {},
 } satisfies Meta<typeof RoundButton>;
 
 export default meta;

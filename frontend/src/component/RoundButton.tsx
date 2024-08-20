@@ -1,9 +1,11 @@
-import UserIcon from '@heroicons/react/24/solid/UserIcon';
-import ChartBarIcon from '@heroicons/react/24/solid/ChartBarIcon';
-import CreditCardIcon from '@heroicons/react/24/solid/CreditCardIcon';
+import {
+  ChartBarIcon,
+  CreditCardIcon,
+  UserIcon,
+} from '@heroicons/react/24/solid';
 import { useState } from 'react';
 
-export interface ButtonProps {
+interface RoundButtonProps {
   variant?: 'user' | 'chart-bar' | 'credit-card';
   onClick?: () => void;
   className?: string;
@@ -11,11 +13,11 @@ export interface ButtonProps {
 
 const iconStyle = 'text-gray-100 size-6';
 
-export const RoundButton = ({
+const RoundButton: React.FC<RoundButtonProps> = ({
   variant = 'chart-bar',
   onClick,
   className = '',
-}: ButtonProps) => {
+}) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -52,3 +54,5 @@ export const RoundButton = ({
     </div>
   );
 };
+
+export default RoundButton;
