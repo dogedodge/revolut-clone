@@ -30,12 +30,12 @@ export const User: Story = {
 
 export const ChartBar: Story = {
   args: {
-    variant: 'chart_bar',
+    variant: 'chart-bar',
   },
 };
 
 export const CreditCard: Story = {
   args: {
-    variant: 'credit_card',
+    variant: 'credit-card',
   },
 };
