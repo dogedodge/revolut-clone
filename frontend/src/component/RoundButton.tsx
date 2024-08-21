@@ -3,7 +3,8 @@ import {
   CreditCardIcon,
   UserIcon,
 } from '@heroicons/react/24/solid';
-import { useState } from 'react';
+// import { useState } from 'react';
+import useClickEffect from '../hooks/useClickEffect';
 
 interface RoundButtonProps {
   variant?: 'user' | 'chart-bar' | 'credit-card';
@@ -18,15 +19,7 @@ const RoundButton: React.FC<RoundButtonProps> = ({
   onClick,
   className = '',
 }) => {
-  const [isClicked, setIsClicked] = useState(false);
-
-  const handleClick = () => {
-    setIsClicked(true);
-    setTimeout(() => setIsClicked(false), 200);
-    if (onClick) {
-      onClick();
-    }
-  };
+  const { isClicked, handleClick } = useClickEffect(onClick);
 
   let icon: React.ReactNode;
   switch (variant) {

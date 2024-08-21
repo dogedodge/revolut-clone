@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   PlusIcon,
   CurrencyDollarIcon,
   ArrowsRightLeftIcon,
   EllipsisHorizontalIcon,
 } from '@heroicons/react/24/solid';
+import useClickEffect from '../hooks/useClickEffect';
 
 interface RoundButtonWithTitleProps {
   variant?: 'add-money' | 'exchange' | 'move' | 'more';
@@ -19,15 +20,7 @@ const RoundButtonWithTitle: React.FC<RoundButtonWithTitleProps> = ({
   onClick,
   className = '',
 }) => {
-  const [isClicked, setIsClicked] = useState(false);
-
-  const handleClick = () => {
-    setIsClicked(true);
-    setTimeout(() => setIsClicked(false), 200);
-    if (onClick) {
-      onClick();
-    }
-  };
+  const { isClicked, handleClick } = useClickEffect(onClick);
 
   let icon: React.ReactNode;
   let title: string;

@@ -1,3 +1,5 @@
+import useClickEffect from '../hooks/useClickEffect';
+
 interface AccountBalanceDisplayProps {
   currency: string;
   balance: string | number;
@@ -8,11 +10,15 @@ interface AccountBalanceDisplayProps {
 const AccountBalanceDisplay: React.FC<AccountBalanceDisplayProps> = ({
   currency,
   balance,
+  onClick,
+  className,
 }) => {
+  const { isClicked, handleClick } = useClickEffect(onClick);
+
   const { integer, fractional } = decomponseDecimal(balance);
   const currencySymbol = '£'; // todo
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className={`flex flex-col justify-center items-center ${className}`}>
       <div className="text-white font-extralight text-lg mb-1">
         Main · {currency}
       </div>
@@ -20,7 +26,12 @@ const AccountBalanceDisplay: React.FC<AccountBalanceDisplayProps> = ({
         <span className="text-5xl">{`${currencySymbol}${integer}`}</span>
         <span className="text-lg">{fractional}</span>
       </div>
-      <div className="bg-indigo-400 text-white text-base px-4 py-2 rounded-full">
+      <div
+        onClick={handleClick}
+        className={`select-none bg-indigo-400 text-white text-base px-4 py-2 rounded-full ${
+          isClicked ? 'scale-95' : ''
+        }`}
+      >
         Accounts
       </div>
     </div>
