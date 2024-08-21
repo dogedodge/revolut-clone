@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
+    accountId: 5,
     currency: 'GBP',
     balance: 115.18,
   },
