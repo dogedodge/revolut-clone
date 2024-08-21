@@ -63,7 +63,7 @@ const RoundButtonWithTitle: React.FC<RoundButtonWithTitleProps> = ({
       <div className="h-10 w-10 bg-indigo-400 rounded-full flex items-center justify-center">
         {icon}
       </div>
-      <span className="text-gray-600 text-xs mt-1 select-none">{title}</span>
+      <span className="text-gray-100 text-xs mt-1 select-none">{title}</span>
     </div>
   );
 };
