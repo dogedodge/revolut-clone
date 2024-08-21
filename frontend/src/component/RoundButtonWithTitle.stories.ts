@@ -5,9 +5,6 @@ const meta: Meta<typeof RoundButtonWithTitle> = {
   title: 'Component/RoundButtonWithTitle',
   component: RoundButtonWithTitle,
   tags: ['autodocs'],
-  parameters: {
-    layout: 'fullscreen',
-  },
   args: {},
 };
 
