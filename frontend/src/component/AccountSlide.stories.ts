@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-// import { fn } from '@storybook/test';
+import { fn } from '@storybook/test';
 import AccountSlide from './AccountSlide';
 
 const meta: Meta<typeof AccountSlide> = {
   title: 'Component/AccountSlide',
   component: AccountSlide,
   tags: ['autodocs'],
-  // args: { onClick: fn() },
+  args: { onClick: fn() },
 };
 
 export default meta;
