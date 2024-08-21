@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import RoundButtonWithTitle from './RoundButtonWithTitle';
 
 const meta: Meta<typeof RoundButtonWithTitle> = {
   title: 'Component/RoundButtonWithTitle',
   component: RoundButtonWithTitle,
   tags: ['autodocs'],
-  args: {},
+  args: { onClick: fn() },
 };
 
 export default meta;

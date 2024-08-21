@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
+import { fn } from '@storybook/test';
 import RoundButton from './RoundButton';
 
 const meta = {
@@ -7,7 +7,7 @@ const meta = {
   component: RoundButton,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  args: {},
+  args: { onClick: fn() },
 } satisfies Meta<typeof RoundButton>;
 
 export default meta;
