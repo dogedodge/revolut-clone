@@ -7,8 +7,14 @@ import {
 } from '@heroicons/react/24/solid';
 import useClickEffect from '../hooks/useClickEffect';
 
+export type RoundButtonWithTitleVariant =
+  | 'add-money'
+  | 'exchange'
+  | 'move'
+  | 'more';
+
 interface RoundButtonWithTitleProps {
-  variant?: 'add-money' | 'exchange' | 'move' | 'more';
+  variant: RoundButtonWithTitleVariant;
   onClick?: () => void;
   className?: string;
 }
