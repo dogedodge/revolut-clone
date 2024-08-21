@@ -11,7 +11,7 @@ const AccountBalanceDisplay: React.FC<AccountBalanceDisplayProps> = ({
   currency,
   balance,
   onClick,
-  className,
+  className = '',
 }) => {
   const { isClicked, handleClick } = useClickEffect(onClick);
 
