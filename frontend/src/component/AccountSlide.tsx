@@ -11,11 +11,15 @@ const actionBtnVariants: RoundButtonWithTitleVariant[] = [
 ];
 
 interface AccountSlideProps {
+  currency: string;
+  balance: string | number;
   onClick?: (eventType: string) => void;
   className?: string;
 }
 
 const AccountSlide: React.FC<AccountSlideProps> = ({
+  currency,
+  balance,
   onClick,
   className = '',
 }) => {
@@ -23,8 +27,11 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
     <div className={`w-screen ${className}`}>
       <AccountBalanceDisplay
         className="mb-28 mt-28"
-        currency="HKD"
-        balance={1000.99}
+        currency={currency}
+        balance={balance}
+        onClick={() => {
+          onClick && onClick('accounts');
+        }}
       ></AccountBalanceDisplay>
       <div className="flex flex-row justify-between mx-6">
         {actionBtnVariants.map((variant) => (
