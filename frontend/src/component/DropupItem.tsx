@@ -6,6 +6,7 @@ import {
   PaintBrushIcon,
   UserPlusIcon,
 } from '@heroicons/react/24/solid';
+import useClickEffect from '../hooks/useClickEffect';
 
 export type DropupItemVariant =
   | 'details'
@@ -24,8 +25,10 @@ const iconStyle = 'text-gray-100 size-6';
 
 const DropupItem: React.FC<DropupItemProps> = ({
   variant = 'details',
+  onClick,
   className = '',
 }) => {
+  const { isClicked, handleClick } = useClickEffect(onClick);
   let title: string;
   let icon: React.ReactNode;
   switch (variant) {
@@ -53,9 +56,11 @@ const DropupItem: React.FC<DropupItemProps> = ({
       title = 'Details';
       icon = <Bars3BottomRightIcon className={iconStyle} />;
   }
+  const bgColor = isClicked ? 'bg-indigo-700' : 'bg-indigo-900';
   return (
     <li
-      className={`w-60 h-12 flex justify-between items-center bg-indigo-900 first:rounded-t-xl last:rounded-b-xl ${className}`}
+      onClick={handleClick}
+      className={`w-60 h-12 flex justify-between items-center ${bgColor} first:rounded-t-xl last:rounded-b-xl ${className}`}
     >
       <span className="ml-4 text-gray-100 text-lg select-none">{title}</span>
       <span className="mr-4">{icon}</span>
