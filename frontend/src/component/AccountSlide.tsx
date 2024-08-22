@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import AccountBalanceDisplay from './AccountBalanceDisplay';
 import RoundButtonWithTitle, {
   RoundButtonWithTitleVariant,
@@ -33,6 +33,7 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
   className = '',
 }) => {
   const [isDropupOpen, setIsDropupOpen] = useState(false);
+  const menuRef = useRef<HTMLUListElement>(null);
 
   const handleRoundBtnClick = (variant: string) => {
     if (variant === 'more') {
@@ -46,6 +47,19 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
     setIsDropupOpen(false);
     onClick && onClick({ type: `dropup-${variant}`, accountId });
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsDropupOpen(false);
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [handleClickOutside]);
 
   return (
     <div className={`relative w-screen ${className}`}>
@@ -70,6 +84,7 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
       </div>
       {isDropupOpen && (
         <DropupMenu
+          ref={menuRef}
           className="absolute bottom-16 right-4"
           onClick={handleDropupMenuClick}
         ></DropupMenu>

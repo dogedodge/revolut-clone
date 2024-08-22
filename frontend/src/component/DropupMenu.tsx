@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef, Ref } from 'react';
 import DropupItem, { DropupItemVariant } from './DropupItem';
 
 interface DropupMenuProps {
@@ -14,20 +14,22 @@ const itemVariants: DropupItemVariant[] = [
   'add-new-account',
 ];
 
-const DropupMenu: React.FC<DropupMenuProps> = ({ onClick, className = '' }) => {
-  return (
-    <ul className={`divide-y ${className}`}>
-      {itemVariants.map((variant) => (
-        <DropupItem
-          key={variant}
-          variant={variant}
-          onClick={() => {
-            onClick && onClick(variant);
-          }}
-        ></DropupItem>
-      ))}
-    </ul>
-  );
-};
+const DropupMenu = forwardRef<HTMLUListElement, DropupMenuProps>(
+  ({ onClick, className = '' }, ref: Ref<HTMLUListElement>) => {
+    return (
+      <ul ref={ref} className={`divide-y ${className}`}>
+        {itemVariants.map((variant) => (
+          <DropupItem
+            key={variant}
+            variant={variant}
+            onClick={() => {
+              onClick && onClick(variant);
+            }}
+          ></DropupItem>
+        ))}
+      </ul>
+    );
+  },
+);
 
 export default DropupMenu;
