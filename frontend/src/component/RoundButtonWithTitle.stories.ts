@@ -7,7 +7,7 @@ const meta: Meta<typeof RoundButtonWithTitle> = {
   component: RoundButtonWithTitle,
   tags: ['autodocs'],
   args: { onClick: fn() },
-};
+} satisfies Meta<typeof RoundButtonWithTitle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

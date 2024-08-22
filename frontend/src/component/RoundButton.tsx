@@ -1,13 +1,15 @@
+import React from 'react';
 import {
   ChartBarIcon,
   CreditCardIcon,
   UserIcon,
 } from '@heroicons/react/24/solid';
-// import { useState } from 'react';
 import useClickEffect from '../hooks/useClickEffect';
 
+export type RoundButtonVariant = 'user' | 'chart-bar' | 'credit-card';
+
 interface RoundButtonProps {
-  variant?: 'user' | 'chart-bar' | 'credit-card';
+  variant: RoundButtonVariant;
   onClick?: () => void;
   className?: string;
 }
