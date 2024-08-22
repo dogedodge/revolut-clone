@@ -1,3 +1,4 @@
+import React from 'react';
 import AccountBalanceDisplay from './AccountBalanceDisplay';
 import RoundButtonWithTitle, {
   RoundButtonWithTitleVariant,

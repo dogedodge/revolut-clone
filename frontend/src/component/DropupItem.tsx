@@ -7,8 +7,15 @@ import {
   UserPlusIcon,
 } from '@heroicons/react/24/solid';
 
+export type DropupItemVariant =
+  | 'details'
+  | 'statement'
+  | 'converter'
+  | 'theme'
+  | 'add-new-account';
+
 interface DropupItemProps {
-  variant: 'details' | 'statement' | 'converter' | 'theme' | 'add-new-account';
+  variant: DropupItemVariant;
   onClick?: () => void;
   className?: string;
 }
@@ -48,7 +55,7 @@ const DropupItem: React.FC<DropupItemProps> = ({
   }
   return (
     <li
-      className={`w-60 h-12 flex justify-between items-center bg-indigo-900 rounded-t-xl ${className}`}
+      className={`w-60 h-12 flex justify-between items-center bg-indigo-900 first:rounded-t-xl last:rounded-b-xl ${className}`}
     >
       <span className="ml-4 text-gray-100 text-lg select-none">{title}</span>
       <span className="mr-4">{icon}</span>
