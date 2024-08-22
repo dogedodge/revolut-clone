@@ -2,7 +2,7 @@ import React from 'react';
 import DropupItem, { DropupItemVariant } from './DropupItem';
 
 interface DropupMenuProps {
-  onClick?: () => void;
+  onClick?: (eventType: string) => void;
   className?: string;
 }
 
@@ -14,11 +14,17 @@ const itemVariants: DropupItemVariant[] = [
   'add-new-account',
 ];
 
-const DropupMenu: React.FC<DropupMenuProps> = ({ className = '' }) => {
+const DropupMenu: React.FC<DropupMenuProps> = ({ onClick, className = '' }) => {
   return (
     <ul className={`divide-y ${className}`}>
       {itemVariants.map((variant) => (
-        <DropupItem key={variant} variant={variant}></DropupItem>
+        <DropupItem
+          key={variant}
+          variant={variant}
+          onClick={() => {
+            onClick && onClick(variant);
+          }}
+        ></DropupItem>
       ))}
     </ul>
   );
