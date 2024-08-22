@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AccountBalanceDisplay from './AccountBalanceDisplay';
 import RoundButtonWithTitle, {
   RoundButtonWithTitleVariant,
 } from './RoundButtonWithTitle';
+import DropupMenu from './DropupMenu';
 
 const actionBtnVariants: RoundButtonWithTitleVariant[] = [
   'add-money',
@@ -31,8 +32,23 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
   onClick,
   className = '',
 }) => {
+  const [isDropupOpen, setIsDropupOpen] = useState(false);
+
+  const handleRoundBtnClick = (variant: string) => {
+    if (variant === 'more') {
+      setIsDropupOpen((prev) => !prev);
+    } else {
+      onClick && onClick({ type: variant, accountId });
+    }
+  };
+
+  const handleDropupMenuClick = (variant: string) => {
+    setIsDropupOpen(false);
+    onClick && onClick({ type: `dropup-${variant}`, accountId });
+  };
+
   return (
-    <div className={`w-screen ${className}`}>
+    <div className={`relative w-screen ${className}`}>
       <AccountBalanceDisplay
         className="mb-28 mt-28"
         currency={currency}
@@ -47,11 +63,17 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
             key={variant}
             variant={variant}
             onClick={() => {
-              onClick && onClick({ type: variant, accountId });
+              handleRoundBtnClick(variant);
             }}
           ></RoundButtonWithTitle>
         ))}
       </div>
+      {isDropupOpen && (
+        <DropupMenu
+          className="absolute bottom-16 right-4"
+          onClick={handleDropupMenuClick}
+        ></DropupMenu>
+      )}
     </div>
   );
 };
