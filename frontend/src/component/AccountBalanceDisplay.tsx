@@ -18,7 +18,9 @@ const AccountBalanceDisplay: React.FC<AccountBalanceDisplayProps> = ({
   const { integer, fractional } = decomponseDecimal(balance);
   const currencySymbol = '£'; // todo
   return (
-    <div className={`flex flex-col justify-center items-center ${className}`}>
+    <div
+      className={`flex flex-col justify-center items-center select-none ${className}`}
+    >
       <div className="text-white font-extralight text-lg mb-1">
         Main · {currency}
       </div>
