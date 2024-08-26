@@ -12,12 +12,12 @@ const actionBtnVariants: RoundButtonWithTitleVariant[] = [
   'more',
 ];
 
-type AccountSlideEvent = {
+export type AccountSlideEvent = {
   type: string;
   accountId: number | string;
 };
 
-interface AccountSlideProps {
+export interface AccountSlideProps {
   accountId: number | string;
   currency: string;
   balance: string | number;
@@ -62,7 +62,7 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
   }, [handleClickOutside]);
 
   return (
-    <div className={`relative w-screen ${className}`}>
+    <div className={`relative w-full ${className}`}>
       <AccountBalanceDisplay
         className="mb-28 mt-28"
         currency={currency}
