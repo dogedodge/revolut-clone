@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AccountSlide, {
   AccountSlideEvent,
   AccountSlideProps,
 } from './AccountSlide';
+
+import Slider from 'react-slick';
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
 
 interface AccountHorizontalSliderProps {
   slideData: AccountSlideProps[];
@@ -12,38 +22,13 @@ interface AccountHorizontalSliderProps {
 const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
   slideData,
 }) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [initialX, setInitialX] = useState(0);
-  const [currentX, setCurrentX] = useState(0);
-
-  const handleDragStart = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    const { clientX } = e;
-    setInitialX(clientX - currentX);
-  };
-
-  const handleDragEnd = () => {
-    setIsDragging(false);
-  };
-
-  const handleDragMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    const { clientX } = e;
-    setCurrentX(clientX - initialX);
-  };
-
   return (
-    <div
-      onMouseDown={handleDragStart}
-      onMouseUp={handleDragEnd}
-      onMouseMove={handleDragMove}
-      className={`relative w-[200vw] flex flex-row`}
-      style={{ transform: `translate(${currentX}px, 0)` }}
-    >
+    <Slider {...settings}>
       {slideData.map((data) => (
         <AccountSlide key={data.accountId} {...data}></AccountSlide>
       ))}
-    </div>
+    </Slider>
+    // </div>
   );
 };
 
