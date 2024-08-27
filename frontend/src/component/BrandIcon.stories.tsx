@@ -12,9 +12,23 @@ const meta: Meta<typeof BrandIcon> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Starbucks: Story = {
   args: {
     brand: 'Starbucks',
+    category: 'Restaurants',
+  },
+};
+
+export const General: Story = {
+  args: {
+    brand: 'Whatever',
+    category: 'General',
+  },
+};
+
+export const Shaxian: Story = {
+  args: {
+    brand: 'Shaxian',
     category: 'Restaurants',
   },
 };
