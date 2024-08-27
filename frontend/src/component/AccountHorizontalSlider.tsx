@@ -15,9 +15,12 @@ const CustomDots: React.FC<CustomDotsProps> = ({
   slideCount,
 }) => {
   return (
-    <ul className="flex flex-row">
+    <ul className="flex flex-row space-x-2 items-center">
       {Array.from({ length: slideCount! }).map((_, i) => (
-        <li key={i} className="h-2 w-2 bg-gray-100 rounded-full"></li>
+        <li
+          key={i}
+          className={`${i === currentSlide ? 'h-1.5 w-1.5' : 'h-1 w-1 opacity-70'} bg-gray-100 rounded-full`}
+        ></li>
       ))}
     </ul>
   );
@@ -49,7 +52,7 @@ const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
           <AccountSlide key={data.accountId} {...data}></AccountSlide>
         ))}
       </Slider>
-      <div className="w-screen flex justify-center relative bottom-20">
+      <div className="w-screen flex justify-center relative bottom-28">
         <CustomDots
           slideCount={slideCount}
           currentSlide={currentSlide}
