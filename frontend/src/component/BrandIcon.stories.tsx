@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    brand: 'starbucks',
+    brand: 'Starbucks',
     category: 'Restaurants',
   },
 };

@@ -20,12 +20,13 @@ interface BrandIconProps {
 }
 
 const BrandIcon: React.FC<BrandIconProps> = ({ brand, category }) => {
+  const lowerCaseBrand = brand.toLocaleLowerCase();
   return (
     <div>
-      {validBrands.includes(brand) && (
+      {validBrands.includes(lowerCaseBrand) && (
         <img
           className="h-10 w-10"
-          src={`${import.meta.env.BASE_URL}brands/${brand.toLocaleLowerCase()}.png`}
+          src={`${import.meta.env.BASE_URL}brands/${lowerCaseBrand}.png`}
         ></img>
       )}
     </div>
