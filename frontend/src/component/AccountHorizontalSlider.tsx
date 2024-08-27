@@ -42,6 +42,7 @@ interface AccountHorizontalSliderProps {
 
 const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
   slideData,
+  onClick,
 }) => {
   const slideCount = slideData.length;
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -49,7 +50,13 @@ const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
     <div>
       <Slider {...settings} afterChange={(value) => setCurrentSlide(value)}>
         {slideData.map((data) => (
-          <AccountSlide key={data.accountId} {...data}></AccountSlide>
+          <AccountSlide
+            key={data.accountId}
+            {...data}
+            onClick={(evt) => {
+              onClick && onClick(evt);
+            }}
+          ></AccountSlide>
         ))}
       </Slider>
       <div className="w-screen flex justify-center relative bottom-28">
