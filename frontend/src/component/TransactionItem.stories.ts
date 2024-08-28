@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TransferRecordItem from './TransferRecordItem';
+import TransactionItem from './TransactionItem';
 
-const meta: Meta<typeof TransferRecordItem> = {
-  title: 'Component/TransferRecordItem',
-  component: TransferRecordItem,
+const meta: Meta<typeof TransactionItem> = {
+  title: 'Component/TransactionItem',
+  component: TransactionItem,
   tags: ['autodocs'],
   args: {},
 };
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    transferId: 101,
+    transactionId: 101,
     brand: 'Mcdonalds',
     category: 'Restaurants',
   },

@@ -2,13 +2,13 @@ import React from 'react';
 import { BrandCategory } from './CategoryIcon';
 import BrandIcon from './BrandIcon';
 
-interface TransferRecordItemProps {
-  transferId: number | string;
+interface TransactionItemProps {
+  transactionId: number | string;
   brand: string;
   category: BrandCategory;
 }
 
-const TransferRecordItem: React.FC<TransferRecordItemProps> = ({
+const TransactionItem: React.FC<TransactionItemProps> = ({
   brand,
   category,
 }) => {
@@ -26,4 +26,4 @@ const TransferRecordItem: React.FC<TransferRecordItemProps> = ({
   );
 };
 
-export default TransferRecordItem;
+export default TransactionItem;
