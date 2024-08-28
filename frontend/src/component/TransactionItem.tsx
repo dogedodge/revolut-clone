@@ -4,11 +4,13 @@ import BrandIcon from './BrandIcon';
 
 interface TransactionItemProps {
   transactionId: number | string;
+  transactionDate: string;
   brand: string;
   category: BrandCategory;
 }
 
 const TransactionItem: React.FC<TransactionItemProps> = ({
+  transactionDate,
   brand,
   category,
 }) => {
@@ -20,7 +22,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({
           <span className="text-xl">{brand}</span>
           <span className="text-lg">-$100</span>
         </div>
-        <div className="text-sm text-gray-500">Today, 4:43PM</div>
+        <div className="text-sm text-gray-500">{transactionDate}</div>
       </div>
     </div>
   );

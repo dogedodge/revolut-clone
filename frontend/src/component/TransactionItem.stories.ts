@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     transactionId: 101,
+    transactionDate: 'Today, 4:43PM',
     brand: 'Mcdonalds',
     category: 'Restaurants',
   },
