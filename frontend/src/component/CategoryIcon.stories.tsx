@@ -22,3 +22,51 @@ export const Restaurants: Story = {
     category: 'Restaurants',
   },
 };
+
+export const Groceries: Story = {
+  args: {
+    category: 'Groceries',
+  },
+};
+
+export const Shopping: Story = {
+  args: {
+    category: 'Shopping',
+  },
+};
+
+export const Service: Story = {
+  args: {
+    category: 'Service',
+  },
+};
+
+export const Transport: Story = {
+  args: {
+    category: 'Transport',
+  },
+};
+
+export const Entertainment: Story = {
+  args: {
+    category: 'Entertainment',
+  },
+};
+
+export const Cash: Story = {
+  args: {
+    category: 'Cash',
+  },
+};
+
+export const Travel: Story = {
+  args: {
+    category: 'Travel',
+  },
+};
+
+export const Health: Story = {
+  args: {
+    category: 'Health',
+  },
+};
