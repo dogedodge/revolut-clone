@@ -15,7 +15,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({
   category,
 }) => {
   return (
-    <div className="w-full h-12 px-4 bg-gray-100 flex flex-row items-center first:rounded-t-xl last:rounded-b-xl">
+    <div className="w-full h-16 px-4 bg-gray-100 flex flex-row items-center first:rounded-t-xl last:rounded-b-xl">
       <BrandIcon brand={brand} category={category}></BrandIcon>
       <div className="ml-4 flex flex-col grow">
         <div className="flex flex-row justify-between items-end">
