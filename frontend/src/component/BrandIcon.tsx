@@ -13,7 +13,14 @@ type BrandCategory =
   | 'Health'
   | 'General';
 
-const validBrands: string[] = ['starbucks'];
+const validBrands: string[] = [
+  'mcdonalds',
+  'kfc',
+  'starbucks',
+  'tesco',
+  'sainsburys',
+  'waitrose',
+];
 
 interface BrandIconProps {
   brand: string;
@@ -27,7 +34,7 @@ const BrandIcon: React.FC<BrandIconProps> = ({ brand, category }) => {
     <div>
       {validBrands.includes(lowerCaseBrand) ? (
         <img
-          className="h-10 w-10"
+          className="h-10 w-10 object-contain"
           src={`${import.meta.env.BASE_URL}brands/${lowerCaseBrand}.png`}
         ></img>
       ) : (

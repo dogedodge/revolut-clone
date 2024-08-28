@@ -11,6 +11,20 @@ const meta: Meta<typeof BrandIcon> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const Mcdonalds: Story = {
+  args: {
+    brand: 'Mcdonalds',
+    category: 'Restaurants',
+  },
+};
+
+export const KFC: Story = {
+  args: {
+    brand: 'KFC',
+    category: 'Restaurants',
+  },
+};
+
 export const Starbucks: Story = {
   args: {
     brand: 'Starbucks',
@@ -18,14 +32,28 @@ export const Starbucks: Story = {
   },
 };
 
-export const General: Story = {
+export const Tesco: Story = {
   args: {
-    brand: 'Whatever',
-    category: 'General',
+    brand: 'Tesco',
+    category: 'Groceries',
   },
 };
 
-export const Shaxian: Story = {
+export const Sainsburys: Story = {
+  args: {
+    brand: 'Sainsburys',
+    category: 'Groceries',
+  },
+};
+
+export const Waitrose: Story = {
+  args: {
+    brand: 'Waitrose',
+    category: 'Groceries',
+  },
+};
+
+export const Fallback: Story = {
   args: {
     brand: 'Shaxian',
     category: 'Restaurants',
