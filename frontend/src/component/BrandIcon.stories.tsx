@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-// import { fn } from '@storybook/test';
 import BrandIcon from './BrandIcon';
 
 const meta: Meta<typeof BrandIcon> = {
