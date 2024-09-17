@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import TransactionItem from './TransactionItem';
 
 const meta: Meta<typeof TransactionItem> = {
   title: 'Component/TransactionItem',
   component: TransactionItem,
   tags: ['autodocs'],
-  args: {},
+  args: { onClick: fn() },
 };
 
 export default meta;
