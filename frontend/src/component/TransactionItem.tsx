@@ -2,7 +2,7 @@ import React from 'react';
 import { BrandCategory } from './CategoryIcon';
 import BrandIcon from './BrandIcon';
 
-interface TransactionItemProps {
+export interface TransactionItemProps {
   transactionId: number | string;
   transactionDate: string;
   brand: string;
