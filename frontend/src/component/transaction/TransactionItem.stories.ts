@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import TransactionItem from './TransactionItem';
 
 const meta: Meta<typeof TransactionItem> = {
-  title: 'Component/TransactionItem',
+  title: 'Component/Transaction/TransactionItem',
   component: TransactionItem,
   tags: ['autodocs'],
   args: { onClick: fn() },

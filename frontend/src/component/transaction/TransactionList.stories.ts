@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import TransactionList from './TransactionList';
 
 const meta: Meta<typeof TransactionList> = {
-  title: 'Component/TransactionList',
+  title: 'Component/Transaction/TransactionList',
   component: TransactionList,
   tags: ['autodocs'],
   args: { onTansactionClick: fn(), onSeeAllClick: fn() },

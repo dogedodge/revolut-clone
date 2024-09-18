@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BrandIcon from './BrandIcon';
 
 const meta: Meta<typeof BrandIcon> = {
-  title: 'Component/BrandIcon',
+  title: 'Component/Transaction/BrandIcon',
   component: BrandIcon,
   tags: ['autodocs'],
   args: {},
