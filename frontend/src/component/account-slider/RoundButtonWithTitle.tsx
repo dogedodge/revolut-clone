@@ -5,7 +5,7 @@ import {
   ArrowsRightLeftIcon,
   EllipsisHorizontalIcon,
 } from '@heroicons/react/24/solid';
-import useClickEffect from '../hooks/useClickEffect';
+import useClickEffect from '../../hooks/useClickEffect';
 
 export type RoundButtonWithTitleVariant =
   | 'add-money'

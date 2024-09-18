@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import AccountHorizontalSlider from './AccountHorizontalSlider';
 
 const meta: Meta<typeof AccountHorizontalSlider> = {
-  title: 'Component/AccountHorizontalSlider',
+  title: 'Component/AccountSlider/AccountHorizontalSlider',
   component: AccountHorizontalSlider,
   tags: ['autodocs'],
   args: { onClick: fn() },

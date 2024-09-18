@@ -1,4 +1,4 @@
-import useClickEffect from '../hooks/useClickEffect';
+import useClickEffect from '../../hooks/useClickEffect';
 
 interface AccountBalanceDisplayProps {
   currency: string;

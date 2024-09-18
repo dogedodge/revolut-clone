@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import DropupMenu from './DropupMenu';
 
 const meta: Meta<typeof DropupMenu> = {
-  title: 'Component/DropupMenu',
+  title: 'Component/AccountSlider/DropupMenu',
   component: DropupMenu,
   tags: ['autodocs'],
   args: { onClick: fn() },

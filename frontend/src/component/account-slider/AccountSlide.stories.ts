@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import AccountBalanceDisplay from './AccountBalanceDisplay';
+import AccountSlide from './AccountSlide';
 
-const meta: Meta<typeof AccountBalanceDisplay> = {
-  title: 'Component/AccountBalanceDisplay',
-  component: AccountBalanceDisplay,
+const meta: Meta<typeof AccountSlide> = {
+  title: 'Component/AccountSlider/AccountSlide',
+  component: AccountSlide,
   tags: ['autodocs'],
   args: { onClick: fn() },
 };
@@ -14,8 +14,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    // variant: 'add-money',
+    accountId: 5,
     currency: 'GBP',
-    balance: 105.18,
+    balance: 115.18,
   },
 };

@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import RoundButtonWithTitle from './RoundButtonWithTitle';
 
 const meta: Meta<typeof RoundButtonWithTitle> = {
-  title: 'Component/RoundButtonWithTitle',
+  title: 'Component/AccountSlider/RoundButtonWithTitle',
   component: RoundButtonWithTitle,
   tags: ['autodocs'],
   args: { onClick: fn() },
