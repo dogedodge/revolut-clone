@@ -4,7 +4,7 @@ import {
   CreditCardIcon,
   UserIcon,
 } from '@heroicons/react/24/solid';
-import useClickEffect from '../hooks/useClickEffect';
+import useClickEffect from '../../hooks/useClickEffect';
 
 export type RoundButtonVariant = 'user' | 'chart-bar' | 'credit-card';
 

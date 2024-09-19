@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import RoundButton from './RoundButton';
 
 const meta = {
-  title: 'Component/RoundButton',
+  title: 'Component/Layout/RoundButton',
   component: RoundButton,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
