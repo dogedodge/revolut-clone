@@ -1,27 +1,38 @@
 import SeeAllItem from './SeeAllItem';
 import TransactionItem, { TransactionData } from './TransactionItem';
 
+export type TransactionListEvent = {
+  type: 'item' | 'seeAll';
+  transactionId?: number | string;
+};
+
 interface TransactionListProps {
   data: TransactionData[];
-  onTansactionClick: (transactionId: number | string) => void;
-  onSeeAllClick: () => void;
+  className?: string;
+  onClick: (evt: TransactionListEvent) => void;
 }
 
 const TransactionList = ({
   data,
-  onTansactionClick,
-  onSeeAllClick,
+  className = '',
+  onClick,
 }: TransactionListProps) => {
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col ${className}`}>
       {data.map((item) => (
         <TransactionItem
           key={item.transactionId}
           {...item}
-          onClick={onTansactionClick}
+          onClick={(transactionId) => {
+            onClick({ type: 'item', transactionId });
+          }}
         ></TransactionItem>
       ))}
-      <SeeAllItem onClick={onSeeAllClick}></SeeAllItem>
+      <SeeAllItem
+        onClick={() => {
+          onClick({ type: 'seeAll' });
+        }}
+      ></SeeAllItem>
     </div>
   );
 };
