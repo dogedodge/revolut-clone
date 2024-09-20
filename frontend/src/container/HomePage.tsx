@@ -86,7 +86,7 @@ const HomePage = () => {
           slideData={accountData}
         ></AccountHorizontalSlider>
         <TransactionList
-          className="relative mt-8"
+          className="relative mt-8 ml-4 mr-4"
           data={transactionData as any}
           onClick={onTransactionClick}
         ></TransactionList>
