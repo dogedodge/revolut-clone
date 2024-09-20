@@ -1,12 +1,15 @@
 import RoundButton from './RoundButton';
 
 interface HomeHeaderProps {
+  className?: string;
   onClick: (btnType: string) => void;
 }
 
-const HomeHeader = ({ onClick }: HomeHeaderProps) => {
+const HomeHeader = ({ className = '', onClick }: HomeHeaderProps) => {
   return (
-    <div className="pl-4 pr-4 flex flex-row w-full h-8 justify-between">
+    <div
+      className={`pl-4 pr-4 flex flex-row w-full h-8 justify-between ${className}`}
+    >
       <RoundButton
         variant="user"
         onClick={() => {

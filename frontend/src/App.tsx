@@ -1,14 +1,17 @@
 // import { useState } from 'react';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
-import './App.css';
-import HomePage from './AIHomePage';
+// import './App.css';
+import HomePage from './container/HomePage';
+// import HomePage from './AIHomePage';
 
 function App() {
   // const [count, setCount] = useState(0);
 
   return (
-    <HomePage></HomePage>
+    <div>
+      <HomePage></HomePage>
+    </div>
     // <>
     //   <div>
     //     <a href="https://vitejs.dev" target="_blank">
