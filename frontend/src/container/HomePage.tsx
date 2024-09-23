@@ -73,6 +73,7 @@ const transactionData = [
 
 const HomePage = () => {
   const [headerOpacity, setHeaderOpacity] = useState(0);
+  const [bgMarginTop, setBgMarginTop] = useState(0);
 
   const onHeaderClick = (btnType: string) => {
     console.log(btnType);
@@ -85,17 +86,22 @@ const HomePage = () => {
   const onScroll = (position: number) => {
     // console.log(position);
     setHeaderOpacity(Math.min(position / 80, 1));
+    setBgMarginTop(Math.min(position / 2, 200));
   };
 
   return (
     <div className="absolute top-0 w-full h-full flex flex-col">
-      <img src={bgImage} className="absolute w-full top-0 left-0"></img>
+      <img
+        src={bgImage}
+        className="absolute w-full"
+        style={{ marginTop: `-${bgMarginTop}px` }}
+      ></img>
       <HomeHeader
         bgOpacity={headerOpacity}
         className="z-10"
         onClick={onHeaderClick}
       ></HomeHeader>
-      {/* <div className="relative overflow-scroll flex-grow flex flex-col"> */}
+
       <ScrollerComponent
         className="relative flex-grow flex flex-col"
         onScroll={onScroll}
@@ -103,13 +109,16 @@ const HomePage = () => {
         <AccountHorizontalSlider
           slideData={accountData}
         ></AccountHorizontalSlider>
-        <TransactionList
-          className="relative mt-8 ml-4 mr-4"
-          data={transactionData as any}
-          onClick={onTransactionClick}
-        ></TransactionList>
+
+        <div className="relative mt-8 w-full">
+          <div className="w-full h-full absolute top-4 bg-gray-200"></div>
+          <TransactionList
+            className="relative ml-4 mr-4"
+            data={transactionData as any}
+            onClick={onTransactionClick}
+          ></TransactionList>
+        </div>
       </ScrollerComponent>
-      {/* </div> */}
     </div>
   );
 };
