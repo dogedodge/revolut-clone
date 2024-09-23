@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import AccountBalanceDisplay from './AccountBalanceDisplay';
+import AccountBalanceView from './AccountBalanceView';
 
-const meta: Meta<typeof AccountBalanceDisplay> = {
-  title: 'Component/AccountSlider/AccountBalanceDisplay',
-  component: AccountBalanceDisplay,
+const meta: Meta<typeof AccountBalanceView> = {
+  title: 'Component/AccountSlider/AccountBalanceView',
+  component: AccountBalanceView,
   tags: ['autodocs'],
   args: { onClick: fn() },
 };

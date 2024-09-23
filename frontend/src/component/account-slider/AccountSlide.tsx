@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import AccountBalanceDisplay from './AccountBalanceDisplay';
+import AccountBalanceView from './AccountBalanceView';
 import RoundButtonWithTitle, {
   RoundButtonWithTitleVariant,
 } from './RoundButtonWithTitle';
@@ -63,14 +63,14 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
 
   return (
     <div className={`relative w-full ${className}`}>
-      <AccountBalanceDisplay
+      <AccountBalanceView
         className="mb-28 mt-28"
         currency={currency}
         balance={balance}
         onClick={() => {
           onClick && onClick({ type: 'accounts', accountId });
         }}
-      ></AccountBalanceDisplay>
+      ></AccountBalanceView>
       <div className="flex flex-row justify-between mx-6">
         {actionBtnVariants.map((variant) => (
           <RoundButtonWithTitle

@@ -1,13 +1,13 @@
 import useClickEffect from '../../hooks/useClickEffect';
 
-interface AccountBalanceDisplayProps {
+interface AccountBalanceViewProps {
   currency: string;
   balance: string | number;
   onClick?: () => void;
   className?: string;
 }
 
-const AccountBalanceDisplay: React.FC<AccountBalanceDisplayProps> = ({
+const AccountBalanceView: React.FC<AccountBalanceViewProps> = ({
   currency,
   balance,
   onClick,
@@ -40,7 +40,7 @@ const AccountBalanceDisplay: React.FC<AccountBalanceDisplayProps> = ({
   );
 };
 
-export default AccountBalanceDisplay;
+export default AccountBalanceView;
 
 function decomponseDecimal(decimal: string | number) {
   const nString = typeof decimal === 'number' ? `${decimal}` : decimal;
