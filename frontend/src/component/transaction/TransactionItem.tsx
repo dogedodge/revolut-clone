@@ -1,13 +1,7 @@
 import React from 'react';
-import { BrandCategory } from './CategoryIcon';
 import BrandIcon from './BrandIcon';
-
-export interface TransactionData {
-  transactionId: number | string;
-  transactionDate: string;
-  brand: string;
-  category: BrandCategory;
-}
+import { TransactionData } from '../../interface';
+import formatTransactionAmount from '../../utils/formatTransactionAmount';
 
 export interface TransactionItemProps extends TransactionData {
   onClick: (transactionId: number | string) => void;
@@ -18,6 +12,8 @@ const TransactionItem: React.FC<TransactionItemProps> = ({
   transactionDate,
   brand,
   category,
+  currency,
+  amount,
   onClick,
 }) => {
   return (
@@ -31,7 +27,9 @@ const TransactionItem: React.FC<TransactionItemProps> = ({
       <div className="ml-4 flex flex-col grow">
         <div className="flex flex-row justify-between items-end">
           <span className="text-xl">{brand}</span>
-          <span className="text-lg">-$100</span>
+          <span className="text-lg">
+            {formatTransactionAmount(currency, amount)}
+          </span>
         </div>
         <div className="text-sm text-gray-500">{transactionDate}</div>
       </div>

@@ -1,0 +1,22 @@
+export type BrandCategory =
+  | 'Restaurants'
+  | 'Groceries'
+  | 'Shopping'
+  | 'Service'
+  | 'Transport'
+  | 'Entertainment'
+  | 'Cash'
+  | 'Travel'
+  | 'Health'
+  | 'General';
+
+export type Currency = 'USD' | 'EUR' | 'GBP' | 'CNY' | 'HKD';
+
+export interface TransactionData {
+  transactionId: number | string;
+  transactionDate: string;
+  brand: string;
+  category: BrandCategory;
+  currency: Currency;
+  amount: number | string;
+}

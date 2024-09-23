@@ -10,7 +10,7 @@ import { useState } from 'react';
 const accountData = [
   {
     accountId: 5,
-    currency: 'HKD',
+    currency: 'GBP',
     balance: 215.18,
   },
   {
@@ -26,48 +26,64 @@ const transactionData = [
     transactionDate: 'Today, 4:43PM',
     brand: 'Mcdonalds',
     category: 'Restaurants',
+    currency: 'GBP',
+    amount: -200,
   },
   {
     transactionId: 102,
     transactionDate: 'Today, 5:43PM',
     brand: 'KFC',
     category: 'Restaurants',
+    currency: 'GBP',
+    amount: -200,
   },
   {
     transactionId: 103,
     transactionDate: 'Today, 4:43PM',
     brand: 'Starbucks',
     category: 'Restaurants',
+    currency: 'GBP',
+    amount: -200,
   },
   {
     transactionId: 104,
     transactionDate: 'Today, 5:43PM',
     brand: 'Tesco',
     category: 'Groceries',
+    currency: 'GBP',
+    amount: -200,
   },
   {
     transactionId: 105,
     transactionDate: 'Today, 5:43PM',
     brand: 'Sainsburys',
     category: 'Groceries',
+    currency: 'GBP',
+    amount: -200,
   },
   {
     transactionId: 106,
     transactionDate: 'Today, 4:43PM',
     brand: 'Mcdonalds',
     category: 'Restaurants',
+    currency: 'GBP',
+    amount: -200,
   },
   {
     transactionId: 107,
     transactionDate: 'Today, 5:43PM',
     brand: 'KFC',
     category: 'Restaurants',
+    currency: 'GBP',
+    amount: -200,
   },
   {
     transactionId: 108,
     transactionDate: 'Today, 4:43PM',
     brand: 'Starbucks',
     category: 'Restaurants',
+    currency: 'GBP',
+    amount: -200,
   },
 ];
 

@@ -11,18 +11,7 @@ import {
   GlobeAsiaAustraliaIcon,
   HeartIcon,
 } from '@heroicons/react/24/solid';
-
-export type BrandCategory =
-  | 'Restaurants'
-  | 'Groceries'
-  | 'Shopping'
-  | 'Service'
-  | 'Transport'
-  | 'Entertainment'
-  | 'Cash'
-  | 'Travel'
-  | 'Health'
-  | 'General';
+import { BrandCategory } from '../../interface';
 
 const categoryStyle = 'text-gray-100 size-6';
 

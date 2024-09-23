@@ -1,5 +1,6 @@
+import { TransactionData } from '../../interface';
 import SeeAllItem from './SeeAllItem';
-import TransactionItem, { TransactionData } from './TransactionItem';
+import TransactionItem from './TransactionItem';
 
 export type TransactionListEvent = {
   type: 'item' | 'seeAll';

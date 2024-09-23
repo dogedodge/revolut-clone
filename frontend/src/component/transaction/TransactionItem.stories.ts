@@ -18,5 +18,7 @@ export const Default: Story = {
     transactionDate: 'Today, 4:43PM',
     brand: 'Mcdonalds',
     category: 'Restaurants',
+    currency: 'GBP',
+    amount: -150,
   },
 };
