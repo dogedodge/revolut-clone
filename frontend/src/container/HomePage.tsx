@@ -4,6 +4,8 @@ import bgImage from '../assets/purple-waves.jpg';
 import TransactionList, {
   TransactionListEvent,
 } from '../component/transaction/TransactionList';
+import ScrollerComponent from '../component/ScrollerComponent';
+import { useState } from 'react';
 
 const accountData = [
   {
@@ -70,18 +72,34 @@ const transactionData = [
 ];
 
 const HomePage = () => {
-  const onHeaderClick = (btnType: string) => {};
+  const [headerOpacity, setHeaderOpacity] = useState(0);
 
-  const onTransactionClick = (evt: TransactionListEvent) => {};
+  const onHeaderClick = (btnType: string) => {
+    console.log(btnType);
+  };
+
+  const onTransactionClick = (evt: TransactionListEvent) => {
+    console.log(evt);
+  };
+
+  const onScroll = (position: number) => {
+    // console.log(position);
+    setHeaderOpacity(Math.min(position / 80, 1));
+  };
 
   return (
     <div className="absolute top-0 w-full h-full flex flex-col">
       <img src={bgImage} className="absolute w-full top-0 left-0"></img>
       <HomeHeader
-        className="relative mt-4"
+        bgOpacity={headerOpacity}
+        className="z-10"
         onClick={onHeaderClick}
       ></HomeHeader>
-      <div className="relative overflow-scroll flex-grow flex flex-col">
+      {/* <div className="relative overflow-scroll flex-grow flex flex-col"> */}
+      <ScrollerComponent
+        className="relative flex-grow flex flex-col"
+        onScroll={onScroll}
+      >
         <AccountHorizontalSlider
           slideData={accountData}
         ></AccountHorizontalSlider>
@@ -90,7 +108,8 @@ const HomePage = () => {
           data={transactionData as any}
           onClick={onTransactionClick}
         ></TransactionList>
-      </div>
+      </ScrollerComponent>
+      {/* </div> */}
     </div>
   );
 };
