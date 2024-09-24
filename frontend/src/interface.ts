@@ -20,3 +20,8 @@ export interface TransactionData {
   currency: Currency;
   amount: number | string;
 }
+
+export interface TransactionDetail extends TransactionData {
+  status: string;
+  card: string;
+}
