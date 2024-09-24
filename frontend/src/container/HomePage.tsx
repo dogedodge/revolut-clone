@@ -97,6 +97,9 @@ const HomePage = () => {
 
   const onTransactionClick = (evt: TransactionListEvent) => {
     console.log(evt);
+    if (evt.type === 'item') {
+      window.location.hash = `modal/transaction/${evt.transactionId}`;
+    }
   };
 
   const onScroll = (position: number) => {

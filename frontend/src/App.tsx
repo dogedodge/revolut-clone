@@ -2,16 +2,32 @@
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 // import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './container/HomePage';
+import RootContainer from './container/RootContainer';
 // import HomePage from './AIHomePage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootContainer></RootContainer>,
+    children: [
+      {
+        path: '/',
+        element: <HomePage></HomePage>,
+      },
+    ],
+  },
+]);
 
 function App() {
   // const [count, setCount] = useState(0);
 
   return (
-    <div>
-      <HomePage></HomePage>
-    </div>
+    <RouterProvider router={router} />
+    // <div>
+    //   <HomePage></HomePage>
+    // </div>
     // <>
     //   <div>
     //     <a href="https://vitejs.dev" target="_blank">

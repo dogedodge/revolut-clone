@@ -4,7 +4,7 @@ import BrandIcon from '../transaction/BrandIcon';
 import TransactionDetailItem from './TransactionDetailItem';
 import { XMarkIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
-type TransactionDetailEvent = {
+export type TransactionDetailEvent = {
   type: 'dismiss' | 'seeAll';
   payload?: string;
 };
