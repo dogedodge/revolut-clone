@@ -2,15 +2,19 @@ import { TransactionDetail } from '../../interface';
 import formatTransactionAmount from '../../utils/formatTransactionAmount';
 import BrandIcon from '../transaction/BrandIcon';
 import TransactionDetailItem from './TransactionDetailItem';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { XMarkIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 interface TransactionDetailViewProps {
   data: TransactionDetail;
+  className?: string;
 }
 
-const TransactionDetailView = ({ data }: TransactionDetailViewProps) => {
+const TransactionDetailView = ({
+  data,
+  className = '',
+}: TransactionDetailViewProps) => {
   return (
-    <div className="bg-gray-100 w-full h-full rounded-xl p-4">
+    <div className={`bg-gray-100 w-full h-screen rounded-xl p-4 ${className}`}>
       <div>
         <XMarkIcon className="size-6"></XMarkIcon>
       </div>
@@ -38,6 +42,18 @@ const TransactionDetailView = ({ data }: TransactionDetailViewProps) => {
         </TransactionDetailItem>
         <TransactionDetailItem title="Category" highlight>
           <div>{data.category}</div>
+        </TransactionDetailItem>
+      </div>
+
+      <div className="mt-4">
+        <TransactionDetailItem title={`Spent at ${data.brand}`}>
+          <div>{formatTransactionAmount('GBP', '1600')}</div>
+        </TransactionDetailItem>
+        <TransactionDetailItem title="Number of transaction">
+          <div>16</div>
+        </TransactionDetailItem>
+        <TransactionDetailItem title="See all" solidTitle>
+          <ChevronRightIcon className="size-6 text-gray-400"></ChevronRightIcon>
         </TransactionDetailItem>
       </div>
     </div>

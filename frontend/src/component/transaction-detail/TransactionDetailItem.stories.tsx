@@ -27,3 +27,11 @@ export const Highlight: Story = {
     children: <div>Hello world!</div>,
   },
 };
+
+export const SolidTitle: Story = {
+  args: {
+    title: 'Test',
+    solidTitle: true,
+    children: <div>Hello world!</div>,
+  },
+};
