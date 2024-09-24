@@ -4,22 +4,36 @@ import BrandIcon from '../transaction/BrandIcon';
 import TransactionDetailItem from './TransactionDetailItem';
 import { XMarkIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
+type TransactionDetailEvent = {
+  type: 'dismiss' | 'seeAll';
+  payload?: string;
+};
+
 interface TransactionDetailViewProps {
   data: TransactionDetail;
   className?: string;
+  onClick?: (evt: TransactionDetailEvent) => void;
 }
 
 const TransactionDetailView = ({
   data,
   className = '',
+  onClick,
 }: TransactionDetailViewProps) => {
   return (
     <div className={`bg-gray-100 w-full h-screen rounded-xl p-4 ${className}`}>
       <div>
-        <XMarkIcon className="size-6"></XMarkIcon>
+        <div
+          className="size-12"
+          onClick={() => {
+            onClick && onClick({ type: 'dismiss' });
+          }}
+        >
+          <XMarkIcon className="size-6"></XMarkIcon>
+        </div>
       </div>
 
-      <div className="mt-6 flex flex-row justify-between">
+      <div className="flex flex-row justify-between">
         <div>
           <div className="text-3xl font-bold">
             {formatTransactionAmount(data.currency, data.amount)}
@@ -52,7 +66,13 @@ const TransactionDetailView = ({
         <TransactionDetailItem title="Number of transaction">
           <div>16</div>
         </TransactionDetailItem>
-        <TransactionDetailItem title="See all" solidTitle>
+        <TransactionDetailItem
+          title="See all"
+          solidTitle
+          onClick={() => {
+            onClick && onClick({ type: 'seeAll', payload: data.brand });
+          }}
+        >
           <ChevronRightIcon className="size-6 text-gray-400"></ChevronRightIcon>
         </TransactionDetailItem>
       </div>
