@@ -24,4 +24,6 @@ export interface TransactionData {
 export interface TransactionDetail extends TransactionData {
   status: string;
   card: string;
+  totalSpentAtBrand: number;
+  numberOfTransAtBrand: number;
 }

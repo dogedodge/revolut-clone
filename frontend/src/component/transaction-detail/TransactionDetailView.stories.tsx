@@ -23,6 +23,8 @@ export const Primary: Story = {
       amount: -150,
       status: 'Completed',
       card: 'Visa ..6789',
+      totalSpentAtBrand: 2000,
+      numberOfTransAtBrand: 16,
     },
   },
 };

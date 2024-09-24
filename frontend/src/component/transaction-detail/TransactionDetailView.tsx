@@ -61,10 +61,12 @@ const TransactionDetailView = ({
 
       <div className="mt-4">
         <TransactionDetailItem title={`Spent at ${data.brand}`}>
-          <div>{formatTransactionAmount('GBP', '1600')}</div>
+          <div>
+            {formatTransactionAmount(data.currency, data.totalSpentAtBrand)}
+          </div>
         </TransactionDetailItem>
-        <TransactionDetailItem title="Number of transaction">
-          <div>16</div>
+        <TransactionDetailItem title="Number of transactions">
+          <div>{data.numberOfTransAtBrand}</div>
         </TransactionDetailItem>
         <TransactionDetailItem
           title="See all"
