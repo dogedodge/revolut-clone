@@ -6,6 +6,7 @@ import TransactionList, {
 } from '../component/transaction/TransactionList';
 import ScrollerComponent from '../component/ScrollerComponent';
 import { useState } from 'react';
+import mockTransactions from '../mock/mockTransactions';
 
 const accountData = [
   {
@@ -17,73 +18,6 @@ const accountData = [
     accountId: 6,
     currency: 'GBP',
     balance: 115.18,
-  },
-];
-
-const transactionData = [
-  {
-    transactionId: 101,
-    transactionDate: '2024-09-25 07:37:50', // UTC time
-    brand: 'Mcdonalds',
-    category: 'Restaurants',
-    currency: 'GBP',
-    amount: -200,
-  },
-  {
-    transactionId: 102,
-    transactionDate: '2024-09-25 07:38:50',
-    brand: 'KFC',
-    category: 'Restaurants',
-    currency: 'GBP',
-    amount: -200,
-  },
-  {
-    transactionId: 103,
-    transactionDate: '2024-09-25 08:37:50',
-    brand: 'Starbucks',
-    category: 'Restaurants',
-    currency: 'GBP',
-    amount: -200,
-  },
-  {
-    transactionId: 104,
-    transactionDate: '2024-09-25 09:37:50',
-    brand: 'Tesco',
-    category: 'Groceries',
-    currency: 'GBP',
-    amount: -200,
-  },
-  {
-    transactionId: 105,
-    transactionDate: '2024-09-25 10:37:50',
-    brand: 'Sainsburys',
-    category: 'Groceries',
-    currency: 'GBP',
-    amount: -200,
-  },
-  {
-    transactionId: 106,
-    transactionDate: '2024-09-25 13:37:50',
-    brand: 'Mcdonalds',
-    category: 'Restaurants',
-    currency: 'GBP',
-    amount: -200,
-  },
-  {
-    transactionId: 107,
-    transactionDate: '2024-09-25 15:37:50',
-    brand: 'KFC',
-    category: 'Restaurants',
-    currency: 'GBP',
-    amount: -200,
-  },
-  {
-    transactionId: 108,
-    transactionDate: '2024-09-25 17:37:50',
-    brand: 'Starbucks',
-    category: 'Restaurants',
-    currency: 'GBP',
-    amount: -200,
   },
 ];
 
@@ -133,7 +67,7 @@ const HomePage = () => {
           <div className="w-full h-full absolute top-4 bg-gray-200"></div>
           <TransactionList
             className="relative ml-4 mr-4"
-            data={transactionData as any}
+            data={mockTransactions as any}
             onClick={onTransactionClick}
           ></TransactionList>
         </div>
