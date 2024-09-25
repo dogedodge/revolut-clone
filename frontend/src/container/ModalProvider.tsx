@@ -37,6 +37,8 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
   const [currentModalName, setCurrentModalName] = useState<ModalName>('none');
   const [currentId, setCurrentId] = useState<string>('');
 
+  const [shouldScalePage, setShouldScalePage] = useState(false);
+
   const [modalClassName, setModalClassName] = useState('translate-y-full');
 
   const isModalDisplay = currentModalName !== 'none';
@@ -64,12 +66,14 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
     if (isModalDisplay) {
       setTimeout(() => {
         setModalClassName('');
+        setShouldScalePage(true);
       }, 50);
     }
-  }, [isModalDisplay]);
+  }, [isModalDisplay, setShouldScalePage]);
 
   const dismissModal = useCallback(() => {
     setModalClassName('translate-y-full');
+    setShouldScalePage(false);
     setTimeout(() => {
       window.location.hash = '';
     }, 300);
@@ -86,9 +90,9 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
       }}
     >
       <div
-        className={`absolute w-screen h-screen overflow-hidden transition-all duration-300 ${isModalDisplay ? 'mt-1 rounded-xl' : ''}`}
+        className={`absolute w-screen h-screen overflow-hidden transition-all duration-300 ${shouldScalePage ? 'mt-1 rounded-xl' : ''}`}
         style={
-          !isModalDisplay
+          !shouldScalePage
             ? {}
             : { transformOrigin: 'top center', transform: 'scale(0.95)' }
         }
