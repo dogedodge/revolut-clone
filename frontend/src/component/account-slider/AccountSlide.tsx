@@ -34,6 +34,7 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
 }) => {
   const [isDropupOpen, setIsDropupOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement>(null);
+  const moreBtn = useRef<HTMLDivElement>(null);
 
   const handleRoundBtnClick = (variant: string) => {
     if (variant === 'more') {
@@ -49,7 +50,12 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+    if (
+      menuRef.current &&
+      moreBtn.current &&
+      !menuRef.current.contains(event.target as Node) &&
+      !moreBtn.current.contains(event.target as Node)
+    ) {
       setIsDropupOpen(false);
     }
   };
@@ -72,7 +78,7 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
         }}
       ></AccountBalanceView>
       <div className="flex flex-row justify-between mx-6">
-        {actionBtnVariants.map((variant) => (
+        {actionBtnVariants.slice(0, 3).map((variant) => (
           <RoundButtonWithTitle
             key={variant}
             variant={variant}
@@ -81,6 +87,15 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
             }}
           ></RoundButtonWithTitle>
         ))}
+        <div ref={moreBtn}>
+          <RoundButtonWithTitle
+            key={'more'}
+            variant={'more'}
+            onClick={() => {
+              handleRoundBtnClick('more');
+            }}
+          ></RoundButtonWithTitle>
+        </div>
       </div>
       {isDropupOpen && (
         <DropupMenu
