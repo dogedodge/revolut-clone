@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import AccountBalanceView from './AccountBalanceView';
 import RoundButtonWithTitle, {
   RoundButtonWithTitleVariant,
@@ -25,27 +25,41 @@ export interface AccountSlideProps {
   className?: string;
 }
 
-const AccountSlide: React.FC<AccountSlideProps> = ({
+const AccountSlide = ({
   accountId,
   currency,
   balance,
   onClick,
   className = '',
-}) => {
+}: AccountSlideProps) => {
   const [isDropupOpen, setIsDropupOpen] = useState(false);
+  const [isDropupScaled, setIsDropupScaled] = useState(true);
   const menuRef = useRef<HTMLUListElement>(null);
   const moreBtn = useRef<HTMLDivElement>(null);
 
+  const dismissDropup = useCallback(() => {
+    setIsDropupScaled(true);
+    window.setTimeout(() => {
+      setIsDropupOpen(false);
+    }, 300);
+  }, []);
+
   const handleRoundBtnClick = (variant: string) => {
     if (variant === 'more') {
-      setIsDropupOpen((prev) => !prev);
+      // setIsDropupOpen((prev) => !prev);
+      if (isDropupOpen) {
+        dismissDropup();
+      } else {
+        setIsDropupOpen(true);
+      }
     } else {
       onClick && onClick({ type: variant, accountId });
     }
   };
 
   const handleDropupMenuClick = (variant: string) => {
-    setIsDropupOpen(false);
+    // setIsDropupOpen(false);
+    dismissDropup();
     onClick && onClick({ type: `dropup-${variant}`, accountId });
   };
 
@@ -56,16 +70,30 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
       !menuRef.current.contains(event.target as Node) &&
       !moreBtn.current.contains(event.target as Node)
     ) {
-      setIsDropupOpen(false);
+      // setIsDropupOpen(false);
+      dismissDropup();
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [handleClickOutside]);
+
+  useEffect(() => {
+    let timeout: number;
+    if (isDropupOpen) {
+      timeout = window.setTimeout(() => {
+        setIsDropupScaled(false);
+      }, 50);
+    }
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, [isDropupOpen]);
 
   return (
     <div className={`relative w-full ${className}`}>
@@ -100,7 +128,7 @@ const AccountSlide: React.FC<AccountSlideProps> = ({
       {isDropupOpen && (
         <DropupMenu
           ref={menuRef}
-          className="absolute bottom-16 right-4"
+          className={`absolute bottom-16 right-4 transition-transform duration-300 origin-bottom-right ${isDropupScaled ? 'scale-0' : ''}`}
           onClick={handleDropupMenuClick}
         ></DropupMenu>
       )}

@@ -63,13 +63,17 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
   }, [hash]);
 
   useEffect(() => {
+    let timeout: number;
     if (isModalDisplay) {
-      setTimeout(() => {
+      timeout = window.setTimeout(() => {
         setModalClassName('');
         setShouldScalePage(true);
       }, 50);
     }
-  }, [isModalDisplay, setShouldScalePage]);
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, [isModalDisplay]);
 
   const dismissModal = useCallback(() => {
     setModalClassName('translate-y-full');
@@ -77,7 +81,7 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
     setTimeout(() => {
       window.location.hash = '';
     }, 300);
-  }, [setModalClassName]);
+  }, []);
 
   return (
     <ModalContext.Provider
