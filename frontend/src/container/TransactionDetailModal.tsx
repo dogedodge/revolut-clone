@@ -26,7 +26,7 @@ const TransactionDetailModal = () => {
   return (
     <TransactionDetailView
       data={transactionDetail}
-      className="absolute mt-8 z-20"
+      className="absolute mt-4 z-20"
       onClick={handleClick}
     ></TransactionDetailView>
   );

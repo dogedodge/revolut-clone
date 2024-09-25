@@ -3,9 +3,11 @@ import ModalProvider from './ModalProvider';
 
 const RootContainer = () => {
   return (
-    <ModalProvider>
-      <Outlet></Outlet>
-    </ModalProvider>
+    <div className="bg-black w-screen h-screen">
+      <ModalProvider>
+        <Outlet></Outlet>
+      </ModalProvider>
+    </div>
   );
 };
 

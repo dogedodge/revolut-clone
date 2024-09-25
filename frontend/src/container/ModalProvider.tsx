@@ -35,6 +35,8 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
   const [currentModalName, setCurrentModalName] = useState<ModalName>('none');
   const [currentId, setCurrentId] = useState<string>('');
 
+  const isModalDisplay = currentModalName !== 'none';
+
   const { hash } = useLocation();
 
   useEffect(() => {
@@ -55,24 +57,31 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
   }, [hash]);
 
   return (
-    <div>
-      <ModalContext.Provider
-        value={{
-          currentModalName,
-          setCurrentModalName,
-          currentId,
-          setCurrentId,
-        }}
+    <ModalContext.Provider
+      value={{
+        currentModalName,
+        setCurrentModalName,
+        currentId,
+        setCurrentId,
+      }}
+    >
+      <div
+        className={`absolute w-screen h-screen overflow-hidden ${isModalDisplay ? 'mt-1 rounded-xl' : ''}`}
+        style={
+          !isModalDisplay
+            ? {}
+            : { transformOrigin: 'top center', transform: 'scale(0.95)' }
+        }
       >
         {children}
-        {currentModalName !== 'none' && (
-          <div className="bg-gray-600 bg-opacity-50 absolute w-screen h-screen z-20"></div>
-        )}
-        {currentModalName === 'transaction' && (
-          <TransactionDetailModal></TransactionDetailModal>
-        )}
-      </ModalContext.Provider>
-    </div>
+      </div>
+      {isModalDisplay && (
+        <div className="bg-gray-600 bg-opacity-50 absolute w-screen h-screen z-20"></div>
+      )}
+      {currentModalName === 'transaction' && (
+        <TransactionDetailModal></TransactionDetailModal>
+      )}
+    </ModalContext.Provider>
   );
 };
 
