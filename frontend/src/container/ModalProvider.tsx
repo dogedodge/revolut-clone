@@ -90,12 +90,7 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
       }}
     >
       <div
-        className={`absolute w-screen h-screen overflow-hidden transition-all duration-300 ${shouldScalePage ? 'mt-1 rounded-xl' : ''}`}
-        style={
-          !shouldScalePage
-            ? {}
-            : { transformOrigin: 'top center', transform: 'scale(0.95)' }
-        }
+        className={`absolute w-screen h-screen overflow-hidden origin-top transition-all duration-300 ${shouldScalePage ? 'mt-1 rounded-xl scale-95' : ''}`}
       >
         {children}
       </div>
