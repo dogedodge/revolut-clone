@@ -60,7 +60,7 @@ const DropupItem: React.FC<DropupItemProps> = ({
   return (
     <li
       onClick={handleClick}
-      className={`w-60 h-12 flex justify-between items-center ${bgColor} first:rounded-t-xl last:rounded-b-xl ${className}`}
+      className={`relative w-60 h-12 flex justify-between items-center ${bgColor} bg-opacity-95 first:rounded-t-xl last:rounded-b-xl ${className}`}
     >
       <span className="ml-4 text-gray-100 text-lg select-none">{title}</span>
       <span className="mr-4">{icon}</span>
