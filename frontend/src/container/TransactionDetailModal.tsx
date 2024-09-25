@@ -2,6 +2,7 @@ import TransactionDetailView, {
   TransactionDetailEvent,
 } from '../component/transaction-detail/TransactionDetailView';
 import { TransactionDetail } from '../interface';
+import { useModal } from './ModalProvider';
 
 const transactionDetail: TransactionDetail = {
   transactionId: 101,
@@ -23,9 +24,12 @@ interface TransactionDetailModalProps {
 const TransactionDetailModal = ({
   className = '',
 }: TransactionDetailModalProps) => {
+  const { dismissModal } = useModal();
+
   const handleClick = (evt: TransactionDetailEvent) => {
     if (evt.type === 'dismiss') {
-      window.location.hash = '';
+      // window.location.hash = '';
+      dismissModal();
     }
   };
 

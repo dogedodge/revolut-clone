@@ -1,6 +1,7 @@
 import {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -15,6 +16,7 @@ interface ModalContextType {
   setCurrentModalName: (name: ModalName) => void;
   currentId: string;
   setCurrentId: (id: string) => void;
+  dismissModal: () => void;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -62,13 +64,16 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
     if (isModalDisplay) {
       setTimeout(() => {
         setModalClassName('');
-      }, 100);
-    } else {
-      setTimeout(() => {
-        setModalClassName('translate-y-full');
-      }, 100);
+      }, 50);
     }
   }, [isModalDisplay]);
+
+  const dismissModal = useCallback(() => {
+    setModalClassName('translate-y-full');
+    setTimeout(() => {
+      window.location.hash = '';
+    }, 300);
+  }, [setModalClassName]);
 
   return (
     <ModalContext.Provider
@@ -77,6 +82,7 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
         setCurrentModalName,
         currentId,
         setCurrentId,
+        dismissModal,
       }}
     >
       <div
