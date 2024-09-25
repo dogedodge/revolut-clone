@@ -35,6 +35,8 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
   const [currentModalName, setCurrentModalName] = useState<ModalName>('none');
   const [currentId, setCurrentId] = useState<string>('');
 
+  const [modalClassName, setModalClassName] = useState('translate-y-full');
+
   const isModalDisplay = currentModalName !== 'none';
 
   const { hash } = useLocation();
@@ -56,6 +58,18 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
     }
   }, [hash]);
 
+  useEffect(() => {
+    if (isModalDisplay) {
+      setTimeout(() => {
+        setModalClassName('');
+      }, 100);
+    } else {
+      setTimeout(() => {
+        setModalClassName('translate-y-full');
+      }, 100);
+    }
+  }, [isModalDisplay]);
+
   return (
     <ModalContext.Provider
       value={{
@@ -66,7 +80,7 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
       }}
     >
       <div
-        className={`absolute w-screen h-screen overflow-hidden ${isModalDisplay ? 'mt-1 rounded-xl' : ''}`}
+        className={`absolute w-screen h-screen overflow-hidden transition-all duration-300 ${isModalDisplay ? 'mt-1 rounded-xl' : ''}`}
         style={
           !isModalDisplay
             ? {}
@@ -75,11 +89,13 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
       >
         {children}
       </div>
-      {isModalDisplay && (
+      {/* {isModalDisplay && (
         <div className="bg-gray-600 bg-opacity-50 absolute w-screen h-screen z-20"></div>
-      )}
+      )} */}
       {currentModalName === 'transaction' && (
-        <TransactionDetailModal></TransactionDetailModal>
+        <TransactionDetailModal
+          className={`absolute mt-4 z-20 transition-transform duration-300 ${modalClassName}`}
+        ></TransactionDetailModal>
       )}
     </ModalContext.Provider>
   );

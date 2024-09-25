@@ -16,7 +16,13 @@ const transactionDetail: TransactionDetail = {
   numberOfTransAtBrand: 16,
 };
 
-const TransactionDetailModal = () => {
+interface TransactionDetailModalProps {
+  className?: string;
+}
+
+const TransactionDetailModal = ({
+  className = '',
+}: TransactionDetailModalProps) => {
   const handleClick = (evt: TransactionDetailEvent) => {
     if (evt.type === 'dismiss') {
       window.location.hash = '';
@@ -26,7 +32,7 @@ const TransactionDetailModal = () => {
   return (
     <TransactionDetailView
       data={transactionDetail}
-      className="absolute mt-4 z-20"
+      className={`${className}`}
       onClick={handleClick}
     ></TransactionDetailView>
   );
