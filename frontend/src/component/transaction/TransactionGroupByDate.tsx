@@ -1,4 +1,5 @@
 import { TransactionData } from '../../interface';
+import formatTransactionAmount from '../../utils/formatTransactionAmount';
 import formatUTCtoLocal from '../../utils/formatUTCtoLocal';
 import TransactionList, { TransactionListEvent } from './TransactionList';
 
@@ -11,11 +12,22 @@ const TransactionGroupByDate = ({
   transactions,
   onClick,
 }: TransactionGroupByDateProps) => {
-  const groupDate = formatUTCtoLocal(transactions[0].transactionDate, 'date');
+  const { transactionDate, currency } = transactions[0];
+  const groupDate = formatUTCtoLocal(transactionDate, 'date');
+  const totalSpent = transactions
+    .map((data) => Number(data.amount))
+    .reduce((total, current) => {
+      return total + current;
+    }, 0);
 
   return (
     <div>
-      <div className="text-xl">{groupDate}</div>
+      <div className="flex flex-row justify-between items-end">
+        <div className="text-xl">{groupDate}</div>
+        <div className="text-gray-600">
+          {formatTransactionAmount(currency, totalSpent)}
+        </div>
+      </div>
       <TransactionList
         className="mt-2"
         variant="group-section"
