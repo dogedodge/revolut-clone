@@ -14,11 +14,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    transactionId: 101,
-    transactionDate: '2024-09-25 07:37:50', // UTC time
-    brand: 'Mcdonalds',
-    category: 'Restaurants',
-    currency: 'GBP',
-    amount: -150,
+    data: {
+      transactionId: 101,
+      transactionDate: '2024-09-25 07:37:50', // UTC time
+      brand: 'Mcdonalds',
+      category: 'Restaurants',
+      currency: 'GBP',
+      amount: -150,
+    },
   },
 };

@@ -23,7 +23,7 @@ const TransactionList = ({
       {data.map((item) => (
         <TransactionItem
           key={item.transactionId}
-          {...item}
+          data={item}
           onClick={(transactionId) => {
             onClick({ type: 'item', transactionId });
           }}
