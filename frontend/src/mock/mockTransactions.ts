@@ -7,7 +7,7 @@ const mockTransactions: TransactionData[] = [
     brand: 'Mcdonalds',
     category: 'Restaurants',
     currency: 'GBP',
-    amount: -200,
+    amount: -20,
   },
   {
     transactionId: 102,
@@ -15,7 +15,7 @@ const mockTransactions: TransactionData[] = [
     brand: 'KFC',
     category: 'Restaurants',
     currency: 'GBP',
-    amount: -200,
+    amount: -21,
   },
   {
     transactionId: 103,
@@ -23,7 +23,7 @@ const mockTransactions: TransactionData[] = [
     brand: 'Starbucks',
     category: 'Restaurants',
     currency: 'GBP',
-    amount: -200,
+    amount: -22,
   },
   {
     transactionId: 104,
@@ -31,7 +31,7 @@ const mockTransactions: TransactionData[] = [
     brand: 'Tesco',
     category: 'Groceries',
     currency: 'GBP',
-    amount: -200,
+    amount: -30,
   },
   {
     transactionId: 105,
@@ -39,7 +39,7 @@ const mockTransactions: TransactionData[] = [
     brand: 'Sainsburys',
     category: 'Groceries',
     currency: 'GBP',
-    amount: -200,
+    amount: -35,
   },
   {
     transactionId: 106,
@@ -47,7 +47,7 @@ const mockTransactions: TransactionData[] = [
     brand: 'Mcdonalds',
     category: 'Restaurants',
     currency: 'GBP',
-    amount: -200,
+    amount: -60,
   },
   {
     transactionId: 107,
@@ -55,7 +55,7 @@ const mockTransactions: TransactionData[] = [
     brand: 'KFC',
     category: 'Restaurants',
     currency: 'GBP',
-    amount: -200,
+    amount: -70,
   },
   {
     transactionId: 108,
@@ -63,7 +63,7 @@ const mockTransactions: TransactionData[] = [
     brand: 'Starbucks',
     category: 'Restaurants',
     currency: 'GBP',
-    amount: -200,
+    amount: -80,
   },
 ];
 

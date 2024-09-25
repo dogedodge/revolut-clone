@@ -1,15 +1,20 @@
-import React from 'react';
 import BrandIcon from './BrandIcon';
 import { TransactionData } from '../../interface';
 import formatTransactionAmount from '../../utils/formatTransactionAmount';
 import formatUTCtoLocal from '../../utils/formatUTCtoLocal';
 
+export type TimeDisplayType = 'datetime' | 'time';
 export interface TransactionItemProps {
   data: TransactionData;
   onClick: (transactionId: number | string) => void;
+  timeDisplayType?: TimeDisplayType;
 }
 
-const TransactionItem: React.FC<TransactionItemProps> = ({ data, onClick }) => {
+const TransactionItem = ({
+  data,
+  onClick,
+  timeDisplayType = 'datetime',
+}: TransactionItemProps) => {
   return (
     <div
       onClick={() => {
@@ -26,7 +31,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ data, onClick }) => {
           </span>
         </div>
         <div className="text-sm text-gray-500">
-          {formatUTCtoLocal(data.transactionDate)}
+          {formatUTCtoLocal(data.transactionDate, timeDisplayType)}
         </div>
       </div>
     </div>

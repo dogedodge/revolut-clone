@@ -67,7 +67,7 @@ const HomePage = () => {
           <div className="w-full h-full absolute top-4 bg-gray-200"></div>
           <TransactionList
             className="relative ml-4 mr-4"
-            data={mockTransactions as any}
+            transactions={mockTransactions as any}
             onClick={onTransactionClick}
           ></TransactionList>
         </div>

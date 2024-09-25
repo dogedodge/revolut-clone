@@ -1,6 +1,6 @@
 import { TransactionData } from '../../interface';
 import SeeAllItem from './SeeAllItem';
-import TransactionItem from './TransactionItem';
+import TransactionItem, { TimeDisplayType } from './TransactionItem';
 
 export type TransactionListEvent = {
   type: 'item' | 'seeAll';
@@ -8,32 +8,46 @@ export type TransactionListEvent = {
 };
 
 interface TransactionListProps {
-  data: TransactionData[];
+  transactions: TransactionData[];
   className?: string;
   onClick: (evt: TransactionListEvent) => void;
+  variant?: 'primary' | 'group-section';
 }
 
 const TransactionList = ({
-  data,
+  transactions,
   className = '',
   onClick,
+  variant = 'primary',
 }: TransactionListProps) => {
+  let timeDisplayType: TimeDisplayType;
+  switch (variant) {
+    case 'group-section':
+      timeDisplayType = 'time';
+      break;
+    default:
+      timeDisplayType = 'datetime';
+  }
+
   return (
     <div className={`flex flex-col ${className}`}>
-      {data.map((item) => (
+      {transactions.map((item) => (
         <TransactionItem
           key={item.transactionId}
           data={item}
           onClick={(transactionId) => {
             onClick({ type: 'item', transactionId });
           }}
+          timeDisplayType={timeDisplayType}
         ></TransactionItem>
       ))}
-      <SeeAllItem
-        onClick={() => {
-          onClick({ type: 'seeAll' });
-        }}
-      ></SeeAllItem>
+      {variant === 'primary' && (
+        <SeeAllItem
+          onClick={() => {
+            onClick({ type: 'seeAll' });
+          }}
+        ></SeeAllItem>
+      )}
     </div>
   );
 };
