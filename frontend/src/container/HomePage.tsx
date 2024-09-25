@@ -23,7 +23,7 @@ const accountData = [
 const transactionData = [
   {
     transactionId: 101,
-    transactionDate: 'Today, 4:43PM',
+    transactionDate: '2024-09-25 07:37:50', // UTC time
     brand: 'Mcdonalds',
     category: 'Restaurants',
     currency: 'GBP',

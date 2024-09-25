@@ -6,7 +6,7 @@ const meta: Meta<typeof TransactionList> = {
   title: 'Component/Transaction/TransactionList',
   component: TransactionList,
   tags: ['autodocs'],
-  args: { onTansactionClick: fn(), onSeeAllClick: fn() },
+  args: { onClick: fn() },
 };
 
 export default meta;
@@ -20,12 +20,16 @@ export const Default: Story = {
         transactionDate: 'Today, 4:43PM',
         brand: 'Mcdonalds',
         category: 'Restaurants',
+        currency: 'GBP',
+        amount: -150,
       },
       {
         transactionId: 102,
         transactionDate: 'Today, 5:43PM',
         brand: 'KFC',
         category: 'Restaurants',
+        currency: 'GBP',
+        amount: -150,
       },
     ],
   },

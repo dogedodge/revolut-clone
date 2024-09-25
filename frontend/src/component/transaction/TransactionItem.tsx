@@ -2,6 +2,7 @@ import React from 'react';
 import BrandIcon from './BrandIcon';
 import { TransactionData } from '../../interface';
 import formatTransactionAmount from '../../utils/formatTransactionAmount';
+import formatUTCtoLocal from '../../utils/formatUTCtoLocal';
 
 export interface TransactionItemProps extends TransactionData {
   onClick: (transactionId: number | string) => void;
@@ -31,7 +32,9 @@ const TransactionItem: React.FC<TransactionItemProps> = ({
             {formatTransactionAmount(currency, amount)}
           </span>
         </div>
-        <div className="text-sm text-gray-500">{transactionDate}</div>
+        <div className="text-sm text-gray-500">
+          {formatUTCtoLocal(transactionDate)}
+        </div>
       </div>
     </div>
   );
