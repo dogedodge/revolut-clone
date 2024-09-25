@@ -13,7 +13,8 @@ const formatUTCtoLocal = (timeStr: string) => {
   });
   console.log(localStr);
   const [datePart, timePart] = localStr.split(', ');
-  return `${datePart}, ${timePart}`;
+  const [month, day] = datePart.split(' ');
+  return `${day} ${month}, ${timePart}`;
 };
 
 export default formatUTCtoLocal;

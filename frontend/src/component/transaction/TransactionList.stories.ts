@@ -17,7 +17,7 @@ export const Default: Story = {
     data: [
       {
         transactionId: 101,
-        transactionDate: 'Today, 4:43PM',
+        transactionDate: '2024-09-25 07:37:50',
         brand: 'Mcdonalds',
         category: 'Restaurants',
         currency: 'GBP',
@@ -25,7 +25,7 @@ export const Default: Story = {
       },
       {
         transactionId: 102,
-        transactionDate: 'Today, 5:43PM',
+        transactionDate: '2024-09-25 07:37:50',
         brand: 'KFC',
         category: 'Restaurants',
         currency: 'GBP',

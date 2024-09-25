@@ -31,7 +31,7 @@ const transactionData = [
   },
   {
     transactionId: 102,
-    transactionDate: 'Today, 5:43PM',
+    transactionDate: '2024-09-25 07:38:50',
     brand: 'KFC',
     category: 'Restaurants',
     currency: 'GBP',
@@ -39,7 +39,7 @@ const transactionData = [
   },
   {
     transactionId: 103,
-    transactionDate: 'Today, 4:43PM',
+    transactionDate: '2024-09-25 08:37:50',
     brand: 'Starbucks',
     category: 'Restaurants',
     currency: 'GBP',
@@ -47,7 +47,7 @@ const transactionData = [
   },
   {
     transactionId: 104,
-    transactionDate: 'Today, 5:43PM',
+    transactionDate: '2024-09-25 09:37:50',
     brand: 'Tesco',
     category: 'Groceries',
     currency: 'GBP',
@@ -55,7 +55,7 @@ const transactionData = [
   },
   {
     transactionId: 105,
-    transactionDate: 'Today, 5:43PM',
+    transactionDate: '2024-09-25 10:37:50',
     brand: 'Sainsburys',
     category: 'Groceries',
     currency: 'GBP',
@@ -63,7 +63,7 @@ const transactionData = [
   },
   {
     transactionId: 106,
-    transactionDate: 'Today, 4:43PM',
+    transactionDate: '2024-09-25 13:37:50',
     brand: 'Mcdonalds',
     category: 'Restaurants',
     currency: 'GBP',
@@ -71,7 +71,7 @@ const transactionData = [
   },
   {
     transactionId: 107,
-    transactionDate: 'Today, 5:43PM',
+    transactionDate: '2024-09-25 15:37:50',
     brand: 'KFC',
     category: 'Restaurants',
     currency: 'GBP',
@@ -79,7 +79,7 @@ const transactionData = [
   },
   {
     transactionId: 108,
-    transactionDate: 'Today, 4:43PM',
+    transactionDate: '2024-09-25 17:37:50',
     brand: 'Starbucks',
     category: 'Restaurants',
     currency: 'GBP',
