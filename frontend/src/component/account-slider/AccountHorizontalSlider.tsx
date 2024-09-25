@@ -47,7 +47,14 @@ const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
   const slideCount = slideData.length;
   const [currentSlide, setCurrentSlide] = useState(0);
   return (
-    <div>
+    <div className="relative">
+      <div className="w-screen flex justify-center absolute bottom-28">
+        <CustomDots
+          slideCount={slideCount}
+          currentSlide={currentSlide}
+        ></CustomDots>
+      </div>
+
       <Slider {...settings} afterChange={(value) => setCurrentSlide(value)}>
         {slideData.map((data) => (
           <AccountSlide
@@ -59,12 +66,6 @@ const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
           ></AccountSlide>
         ))}
       </Slider>
-      <div className="w-screen flex justify-center relative bottom-28">
-        <CustomDots
-          slideCount={slideCount}
-          currentSlide={currentSlide}
-        ></CustomDots>
-      </div>
     </div>
   );
 };
