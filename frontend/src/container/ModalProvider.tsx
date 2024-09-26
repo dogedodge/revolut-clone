@@ -103,7 +103,7 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
       )} */}
       {currentModalName === 'transaction' && (
         <TransactionDetailModal
-          className={`absolute mt-4 z-20 transition-transform duration-300 ${modalClassName}`}
+          className={`flex-1 mt-4 z-20 transition-transform duration-300 ${modalClassName}`}
         ></TransactionDetailModal>
       )}
     </ModalContext.Provider>
