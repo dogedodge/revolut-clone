@@ -5,6 +5,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './container/HomePage';
 import RootContainer from './container/RootContainer';
+import TransactionListPage from './container/TransactionListPage';
 // import HomePage from './AIHomePage';
 
 const router = createBrowserRouter([
@@ -15,6 +16,12 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage></HomePage>,
+        children: [
+          {
+            path: 'transaction-list',
+            element: <TransactionListPage></TransactionListPage>,
+          },
+        ],
       },
     ],
   },

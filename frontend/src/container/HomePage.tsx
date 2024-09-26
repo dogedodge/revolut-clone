@@ -7,6 +7,7 @@ import TransactionList, {
 import ScrollerComponent from '../component/ScrollerComponent';
 import { useState } from 'react';
 import mockTransactions from '../mock/mockTransactions';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const accountData = [
   {
@@ -24,6 +25,7 @@ const accountData = [
 const HomePage = () => {
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [bgMarginTop, setBgMarginTop] = useState(0);
+  const navigate = useNavigate();
 
   const onHeaderClick = (btnType: string) => {
     console.log(btnType);
@@ -33,6 +35,8 @@ const HomePage = () => {
     console.log(evt);
     if (evt.type === 'item') {
       window.location.hash = `modal/transaction/${evt.transactionId}`;
+    } else if (evt.type === 'seeAll') {
+      navigate('/transaction-list');
     }
   };
 
@@ -72,6 +76,8 @@ const HomePage = () => {
           ></TransactionList>
         </div>
       </ScrollerComponent>
+
+      <Outlet></Outlet>
     </div>
   );
 };
