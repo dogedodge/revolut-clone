@@ -37,6 +37,7 @@ const TransactionGroupList = ({
           key={group[0].transactionId}
           transactions={group}
           onClick={onClick}
+          className="mt-6"
         ></TransactionGroupByDate>
       ))}
     </div>

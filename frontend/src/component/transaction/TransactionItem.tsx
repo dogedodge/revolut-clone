@@ -20,7 +20,7 @@ const TransactionItem = ({
       onClick={() => {
         onClick(data.transactionId);
       }}
-      className="w-full h-16 px-4 bg-gray-100 flex flex-row items-center first:rounded-t-xl last:rounded-b-xl"
+      className="w-full h-16 px-4 bg-gray-50 flex flex-row items-center first:rounded-t-xl last:rounded-b-xl"
     >
       <BrandIcon brand={data.brand} category={data.category}></BrandIcon>
       <div className="ml-4 flex flex-col grow">
