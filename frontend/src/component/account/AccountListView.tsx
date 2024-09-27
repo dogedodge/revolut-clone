@@ -1,7 +1,8 @@
-import { AccountData } from '../../interface';
+import { AccountData, Currency } from '../../interface';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import AccountItem from './AccountItem';
 import { useState } from 'react';
+import TotalItem from './TotalItem';
 
 export type AccountListEvent = {
   type: 'dismiss' | 'item-selected-change';
@@ -10,6 +11,8 @@ export type AccountListEvent = {
 
 interface AccountListViewProps {
   accounts: AccountData[];
+  totalCurrency: Currency;
+  total: number | string;
   className?: string;
   selectedIndex?: number;
   onChange: (evt: AccountListEvent) => void;
@@ -17,6 +20,8 @@ interface AccountListViewProps {
 
 const AccountListView = ({
   accounts,
+  totalCurrency,
+  total,
   className = '',
   selectedIndex: _selectedIndex = 0,
   onChange,
@@ -56,6 +61,7 @@ const AccountListView = ({
             }}
           ></AccountItem>
         ))}
+        <TotalItem currency={totalCurrency} amount={total}></TotalItem>
       </div>
     </div>
   );

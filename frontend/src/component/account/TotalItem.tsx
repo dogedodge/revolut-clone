@@ -4,7 +4,7 @@ import formatTransactionAmount from '../../utils/formatTransactionAmount';
 
 interface TotalItemProps {
   currency: Currency;
-  amount: number;
+  amount: number | string;
 }
 
 const TotalItem = ({ currency, amount }: TotalItemProps) => {
