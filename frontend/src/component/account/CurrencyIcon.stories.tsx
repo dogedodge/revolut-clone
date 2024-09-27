@@ -18,17 +18,17 @@ export const USD: Story = {
   },
 };
 
-export const Small: Story = {
+export const Selected: Story = {
   args: {
     currency: 'USD',
-    size: 'small',
+    variant: 'selected',
   },
 };
 
-export const Tick: Story = {
+export const Mini: Story = {
   args: {
     currency: 'USD',
-    tick: true,
+    variant: 'mini',
   },
 };
 
