@@ -24,7 +24,7 @@ const CurrencyIcon = ({
       ></img>
       {tick && (
         <div className="bg-white size-5 absolute -right-1 -bottom-1 rounded-full">
-          <CheckCircleIcon className="size-full"></CheckCircleIcon>
+          <CheckCircleIcon className="size-full text-black"></CheckCircleIcon>
         </div>
       )}
     </div>

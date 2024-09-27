@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-// import { fn } from '@storybook/test';
+import { fn } from '@storybook/test';
 import AccountItem from './AccountItem';
 
 const meta = {
   title: 'Component/Account/AccountItem',
   component: AccountItem,
   tags: ['autodocs'],
-  args: {},
+  args: { onClick: fn() },
 } satisfies Meta<typeof AccountItem>;
 
 export default meta;
@@ -19,5 +19,16 @@ export const Primary: Story = {
       currency: 'USD',
       amount: 2000,
     },
+  },
+};
+
+export const Selected: Story = {
+  args: {
+    data: {
+      id: 201,
+      currency: 'USD',
+      amount: 2000,
+    },
+    selected: true,
   },
 };
