@@ -37,7 +37,7 @@ const AccountListView = ({
 
   return (
     <div
-      className={`bg-gray-600 bg-opacity-70 w-full h-screen rounded-xl p-4 ${className}`}
+      className={`bg-gray-600 bg-opacity-95 w-full h-screen rounded-xl p-4 ${className}`}
     >
       <div
         className="size-12"

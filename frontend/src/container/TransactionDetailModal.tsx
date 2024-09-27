@@ -28,7 +28,6 @@ const TransactionDetailModal = ({
 
   const handleClick = (evt: TransactionDetailEvent) => {
     if (evt.type === 'dismiss') {
-      // window.location.hash = '';
       dismissModal();
     }
   };

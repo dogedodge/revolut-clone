@@ -8,6 +8,7 @@ import ScrollerComponent from '../component/ScrollerComponent';
 import { useState } from 'react';
 import mockTransactions from '../mock/mockTransactions';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { AccountSlideEvent } from '../component/account-slider/AccountSlide';
 
 const accountData = [
   {
@@ -40,6 +41,13 @@ const HomePage = () => {
     }
   };
 
+  const onAccountSlideClick = (evt: AccountSlideEvent) => {
+    console.log(evt);
+    if (evt.type === 'accounts') {
+      window.location.hash = `modal/accounts/${evt.accountId}`;
+    }
+  };
+
   const onScroll = (position: number) => {
     // console.log(position);
     setHeaderOpacity(Math.min(position / 80, 1));
@@ -65,6 +73,7 @@ const HomePage = () => {
       >
         <AccountHorizontalSlider
           slideData={accountData}
+          onClick={onAccountSlideClick}
         ></AccountHorizontalSlider>
 
         <div className="relative mt-8 w-full">

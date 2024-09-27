@@ -8,8 +8,9 @@ import {
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import TransactionDetailModal from './TransactionDetailModal';
+import AccountListModal from './AccountListModal';
 
-type ModalName = 'none' | 'transaction';
+type ModalName = 'none' | 'transaction' | 'accounts';
 
 interface ModalContextType {
   currentModalName: ModalName;
@@ -105,6 +106,12 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
         <TransactionDetailModal
           className={`flex-1 mt-4 z-20 transition-transform duration-300 ${modalClassName}`}
         ></TransactionDetailModal>
+      )}
+
+      {currentModalName === 'accounts' && (
+        <AccountListModal
+          className={`flex-1 mt-4 z-20 transition-transform duration-300 ${modalClassName}`}
+        ></AccountListModal>
       )}
     </ModalContext.Provider>
   );
