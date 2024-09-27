@@ -27,3 +27,9 @@ export interface TransactionDetail extends TransactionData {
   totalSpentAtBrand: number;
   numberOfTransAtBrand: number;
 }
+
+export interface AccountData {
+  id: number | string;
+  currency: Currency;
+  amount: number | string;
+}
