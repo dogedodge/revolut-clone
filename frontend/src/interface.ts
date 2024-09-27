@@ -13,8 +13,8 @@ export type BrandCategory =
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CNY' | 'HKD';
 
 export interface TransactionData {
-  transactionId: number | string;
-  transactionDate: string;
+  id: number | string;
+  date: string;
   brand: string;
   category: BrandCategory;
   currency: Currency;

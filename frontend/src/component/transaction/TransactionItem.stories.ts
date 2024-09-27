@@ -15,8 +15,8 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     data: {
-      transactionId: 101,
-      transactionDate: '2024-09-25 07:37:50', // UTC time
+      id: 101,
+      date: '2024-09-25 07:37:50', // UTC time
       brand: 'Mcdonalds',
       category: 'Restaurants',
       currency: 'GBP',

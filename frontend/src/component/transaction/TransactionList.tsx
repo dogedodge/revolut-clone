@@ -33,7 +33,7 @@ const TransactionList = ({
     <div className={`flex flex-col ${className}`}>
       {transactions.map((item) => (
         <TransactionItem
-          key={item.transactionId}
+          key={item.id}
           data={item}
           onClick={(transactionId) => {
             onClick({ type: 'item', transactionId });

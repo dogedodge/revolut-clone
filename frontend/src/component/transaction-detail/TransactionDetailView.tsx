@@ -40,7 +40,7 @@ const TransactionDetailView = ({
           </div>
           <div className="text-indigo-700 text-xl mt-1">{data.brand}</div>
           <div className="text-gray-500 text-lg font-light mt-1">
-            {data.transactionDate}
+            {data.date}
           </div>
         </div>
 

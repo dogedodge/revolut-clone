@@ -5,8 +5,8 @@ import { TransactionDetail } from '../interface';
 import { useModal } from './ModalProvider';
 
 const transactionDetail: TransactionDetail = {
-  transactionId: 101,
-  transactionDate: 'Today, 4:43PM',
+  id: 101,
+  date: 'Today, 4:43PM',
   brand: 'Mcdonalds',
   category: 'Restaurants',
   currency: 'GBP',

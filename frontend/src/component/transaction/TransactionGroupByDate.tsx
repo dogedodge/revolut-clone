@@ -14,7 +14,7 @@ const TransactionGroupByDate = ({
   onClick,
   className = '',
 }: TransactionGroupByDateProps) => {
-  const { transactionDate, currency } = transactions[0];
+  const { date: transactionDate, currency } = transactions[0];
   const groupDate = formatUTCtoLocal(transactionDate, 'date');
   const totalSpent = transactions
     .map((data) => Number(data.amount))
