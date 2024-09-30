@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-// import { fn } from '@storybook/test';
+import { fn } from '@storybook/test';
 import AccountInputItem from './AccountInputItem';
 
 const meta = {
   title: 'Component/Transfer/AccountInputItem',
   component: AccountInputItem,
   tags: ['autodocs'],
-  args: {},
+  args: { onChange: fn() },
 } satisfies Meta<typeof AccountInputItem>;
 
 export default meta;
