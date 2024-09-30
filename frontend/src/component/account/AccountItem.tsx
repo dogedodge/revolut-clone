@@ -1,6 +1,6 @@
 import { CurrencyFullName } from '../../constants';
 import { AccountData } from '../../interface';
-import formatTransactionAmount from '../../utils/formatTransactionAmount';
+import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
 import CurrencyIcon from './CurrencyIcon';
 
 interface AccountItemProps {
@@ -25,7 +25,7 @@ const AccountItem = ({ data, selected = false, onClick }: AccountItemProps) => {
       </div>
 
       <div className="text-lg font-light">
-        {formatTransactionAmount(data.currency, data.amount)}
+        {formatAmountWithCurrency(data.currency, data.amount)}
       </div>
     </div>
   );

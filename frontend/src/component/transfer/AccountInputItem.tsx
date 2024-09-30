@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { AccountData } from '../../interface';
-import formatTransactionAmount from '../../utils/formatTransactionAmount';
+import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
 import CurrencyIcon from '../account/CurrencyIcon';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { CurrencySymbol } from '../../constants';
 
 interface AccountInputItemProps {
   account: AccountData;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (currentAmount: number) => void;
 }
 
 const AccountInputItem = ({ account, onChange }: AccountInputItemProps) => {
-  const minAmount = formatTransactionAmount(account.currency, 10);
-  const [inputValue, setInputValue] = useState(minAmount);
+  const minAmountText = formatAmountWithCurrency(account.currency, 10);
+  const [inputValue, setInputValue] = useState(minAmountText);
   const currentAmount = Number(inputValue.replace(/\D/g, ''));
   // console.log(`currentAmount: ${currentAmount}`);
   const showMinHint = currentAmount < 10;
@@ -23,8 +23,10 @@ const AccountInputItem = ({ account, onChange }: AccountInputItemProps) => {
     const nextValue = evt.currentTarget.value;
     if (regex.test(nextValue) || nextValue === '') {
       setInputValue(nextValue);
+      onChange(currentAmount);
     } else if (/^\d*$/.test(nextValue)) {
       setInputValue(`${currencySymbol}${nextValue}`);
+      onChange(currentAmount);
     }
   };
 
@@ -41,7 +43,7 @@ const AccountInputItem = ({ account, onChange }: AccountInputItemProps) => {
         </div>
         <input
           type="text"
-          placeholder={formatTransactionAmount(account.currency, 0)}
+          placeholder={formatAmountWithCurrency(account.currency, 0)}
           value={inputValue}
           onChange={handleInputChange}
           className="text-xl font-semibold bg-transparent text-right focus:outline-none"
@@ -49,9 +51,9 @@ const AccountInputItem = ({ account, onChange }: AccountInputItemProps) => {
       </div>
       <div className="flex flex-row justify-between text-gray-500 text-base font-light">
         <div>
-          Balance: {formatTransactionAmount(account.currency, account.amount)}
+          Balance: {formatAmountWithCurrency(account.currency, account.amount)}
         </div>
-        {showMinHint && <div>Minimum amount is {minAmount}</div>}
+        {showMinHint && <div>Minimum amount is {minAmountText}</div>}
       </div>
     </div>
   );

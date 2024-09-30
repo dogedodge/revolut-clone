@@ -1,5 +1,5 @@
 import { TransactionData } from '../../interface';
-import formatTransactionAmount from '../../utils/formatTransactionAmount';
+import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
 import formatUTCtoLocal from '../../utils/formatUTCtoLocal';
 import TransactionList, { TransactionListEvent } from './TransactionList';
 
@@ -27,7 +27,7 @@ const TransactionGroupByDate = ({
       <div className={`flex flex-row justify-between items-end ${className}`}>
         <div className="text-xl">{groupDate}</div>
         <div className="text-gray-600">
-          {formatTransactionAmount(currency, totalSpent)}
+          {formatAmountWithCurrency(currency, totalSpent)}
         </div>
       </div>
       <TransactionList

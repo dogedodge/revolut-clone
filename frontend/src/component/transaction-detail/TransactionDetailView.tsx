@@ -1,5 +1,5 @@
 import { TransactionDetail } from '../../interface';
-import formatTransactionAmount from '../../utils/formatTransactionAmount';
+import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
 import BrandIcon from '../transaction/BrandIcon';
 import TransactionDetailItem from './TransactionDetailItem';
 import { XMarkIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
@@ -36,7 +36,7 @@ const TransactionDetailView = ({
       <div className="flex flex-row justify-between">
         <div>
           <div className="text-3xl font-bold">
-            {formatTransactionAmount(data.currency, data.amount)}
+            {formatAmountWithCurrency(data.currency, data.amount)}
           </div>
           <div className="text-indigo-700 text-xl mt-1">{data.brand}</div>
           <div className="text-gray-500 text-lg font-light mt-1">
@@ -62,7 +62,7 @@ const TransactionDetailView = ({
       <div className="mt-4">
         <TransactionDetailItem title={`Spent at ${data.brand}`}>
           <div>
-            {formatTransactionAmount(data.currency, data.totalSpentAtBrand)}
+            {formatAmountWithCurrency(data.currency, data.totalSpentAtBrand)}
           </div>
         </TransactionDetailItem>
         <TransactionDetailItem title="Number of transactions">

@@ -1,6 +1,6 @@
 import BrandIcon from './BrandIcon';
 import { TransactionData } from '../../interface';
-import formatTransactionAmount from '../../utils/formatTransactionAmount';
+import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
 import formatUTCtoLocal from '../../utils/formatUTCtoLocal';
 
 export type TimeDisplayType = 'datetime' | 'time';
@@ -27,7 +27,7 @@ const TransactionItem = ({
         <div className="flex flex-row justify-between items-end">
           <span className="text-xl">{data.brand}</span>
           <span className="text-lg">
-            {formatTransactionAmount(data.currency, data.amount)}
+            {formatAmountWithCurrency(data.currency, data.amount)}
           </span>
         </div>
         <div className="text-sm text-gray-500">

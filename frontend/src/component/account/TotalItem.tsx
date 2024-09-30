@@ -1,6 +1,6 @@
 import { Currency } from '../../interface';
 import { CircleStackIcon } from '@heroicons/react/24/solid';
-import formatTransactionAmount from '../../utils/formatTransactionAmount';
+import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
 
 interface TotalItemProps {
   currency: Currency;
@@ -18,7 +18,7 @@ const TotalItem = ({ currency, amount }: TotalItemProps) => {
       </div>
 
       <div className="text-lg font-light">
-        {formatTransactionAmount(currency, amount)}
+        {formatAmountWithCurrency(currency, amount)}
       </div>
     </div>
   );
