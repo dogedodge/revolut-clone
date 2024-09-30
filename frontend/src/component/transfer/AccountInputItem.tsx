@@ -4,6 +4,7 @@ import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
 import CurrencyIcon from '../account/CurrencyIcon';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { CurrencySymbol } from '../../constants';
+import parseAmountWithCurrency from '../../utils/parseAmountWithCurrency';
 
 interface AccountInputItemProps {
   account: AccountData;
@@ -13,20 +14,21 @@ interface AccountInputItemProps {
 const AccountInputItem = ({ account, onChange }: AccountInputItemProps) => {
   const minAmountText = formatAmountWithCurrency(account.currency, 10);
   const [inputValue, setInputValue] = useState(minAmountText);
-  const currentAmount = Number(inputValue.replace(/\D/g, ''));
+  const currentAmount = parseAmountWithCurrency(inputValue);
   // console.log(`currentAmount: ${currentAmount}`);
   const showMinHint = currentAmount < 10;
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const currencySymbol = CurrencySymbol[account.currency];
     const regex = new RegExp(`^${currencySymbol}\\d*$`);
-    const nextValue = evt.currentTarget.value;
+    let nextValue = evt.currentTarget.value;
     if (regex.test(nextValue) || nextValue === '') {
       setInputValue(nextValue);
-      onChange(currentAmount);
+      onChange(parseAmountWithCurrency(nextValue));
     } else if (/^\d*$/.test(nextValue)) {
-      setInputValue(`${currencySymbol}${nextValue}`);
-      onChange(currentAmount);
+      nextValue = `${currencySymbol}${nextValue}`;
+      setInputValue(nextValue);
+      onChange(parseAmountWithCurrency(nextValue));
     }
   };
 
