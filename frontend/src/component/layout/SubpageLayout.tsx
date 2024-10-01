@@ -50,7 +50,7 @@ const SubpageLayout = ({ title, children, onDismiss }: SubpageLayoutProps) => {
       ></SubpageHeader>
       <ScrollerComponent
         onScroll={handleScroll}
-        className="w-full flex-grow overflow-scroll pl-4 pr-4"
+        className="relative w-full flex-grow overflow-scroll pl-4 pr-4"
       >
         <div className="text-4xl font-semibold mt-4">{title}</div>
 
