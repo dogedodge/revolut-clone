@@ -46,6 +46,14 @@ const HomePage = () => {
     if (evt.type === 'accounts') {
       window.location.hash = `modal/accounts/${evt.accountId}`;
     }
+    switch (evt.type) {
+      case 'accounts':
+        window.location.hash = `modal/accounts/${evt.accountId}`;
+        break;
+      case 'add-money':
+        navigate('/add-money');
+        break;
+    }
   };
 
   const onScroll = (position: number) => {

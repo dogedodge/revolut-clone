@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './container/HomePage';
 import RootContainer from './container/RootContainer';
 import TransactionListPage from './container/TransactionListPage';
+import AddMoneyPage from './container/AddMoneyPage';
 // import HomePage from './AIHomePage';
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
           {
             path: 'transaction-list',
             element: <TransactionListPage></TransactionListPage>,
+          },
+          {
+            path: 'add-money',
+            element: <AddMoneyPage></AddMoneyPage>,
           },
         ],
       },
