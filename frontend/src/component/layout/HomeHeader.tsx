@@ -27,6 +27,7 @@ const HomeHeader = ({
           onClick={() => {
             onClick('user');
           }}
+          blackWhiteMode={whiteBg}
         ></RoundButton>
         <div className="flex flex-row">
           <RoundButton
@@ -34,6 +35,7 @@ const HomeHeader = ({
             onClick={() => {
               onClick('chart-bar');
             }}
+            blackWhiteMode={whiteBg}
           ></RoundButton>
           <RoundButton
             className="ml-2"
@@ -41,6 +43,7 @@ const HomeHeader = ({
             onClick={() => {
               onClick('credit-card');
             }}
+            blackWhiteMode={whiteBg}
           ></RoundButton>
         </div>
       </div>

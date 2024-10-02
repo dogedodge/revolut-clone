@@ -12,16 +12,20 @@ interface RoundButtonProps {
   variant: RoundButtonVariant;
   onClick?: () => void;
   className?: string;
+  blackWhiteMode?: boolean;
 }
 
-const iconStyle = 'text-gray-100 size-6';
+// const iconStyle = 'text-gray-100 size-6';
 
 const RoundButton: React.FC<RoundButtonProps> = ({
   variant = 'chart-bar',
   onClick,
   className = '',
+  blackWhiteMode = false,
 }) => {
   const { isClicked, handleClick } = useClickEffect(onClick);
+
+  const iconStyle = `${blackWhiteMode ? 'text-black' : 'text-gray-100'} size-6`;
 
   let icon: React.ReactNode;
   switch (variant) {
@@ -41,7 +45,7 @@ const RoundButton: React.FC<RoundButtonProps> = ({
   return (
     <div
       onClick={handleClick}
-      className={`h-8 w-8 bg-indigo-400 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-200 ${
+      className={`h-8 w-8 ${blackWhiteMode ? 'bg-gray-200' : 'bg-indigo-400'} rounded-full flex items-center justify-center cursor-pointer transition-transform duration-200 ${
         isClicked ? 'scale-95' : ''
       } ${className}`}
     >
