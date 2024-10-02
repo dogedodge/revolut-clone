@@ -24,6 +24,7 @@ const TransactionListPage = () => {
         transactions={mockTransactions}
         onClick={onTransactionClick}
       ></TransactionGroupList>
+      <div className="h-[20vh]"></div>
     </SubpageLayout>
   );
 };

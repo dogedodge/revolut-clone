@@ -91,6 +91,7 @@ const HomePage = () => {
             transactions={mockTransactions as any}
             onClick={onTransactionClick}
           ></TransactionList>
+          <div className="h-[20vh]"></div>
         </div>
       </ScrollerComponent>
 
