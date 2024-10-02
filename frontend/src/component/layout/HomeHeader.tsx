@@ -4,17 +4,19 @@ interface HomeHeaderProps {
   bgOpacity?: number;
   className?: string;
   onClick: (btnType: string) => void;
+  whiteBg?: boolean;
 }
 
 const HomeHeader = ({
   className = '',
   bgOpacity = 1,
   onClick,
+  whiteBg = false,
 }: HomeHeaderProps) => {
   return (
     <div className={`relative w-full ${className}`}>
       <div
-        className="absolute w-full h-14 bg-indigo-900"
+        className={`absolute w-full h-14 ${whiteBg ? 'bg-white' : 'bg-indigo-900'}`}
         style={{ opacity: bgOpacity }}
       ></div>
       <div

@@ -25,6 +25,7 @@ const accountData = [
 
 const HomePage = () => {
   const [headerOpacity, setHeaderOpacity] = useState(0);
+  const [headerWhiteBg, setHeaderWhiteBg] = useState(false);
   const [bgMarginTop, setBgMarginTop] = useState(0);
   const navigate = useNavigate();
 
@@ -57,9 +58,14 @@ const HomePage = () => {
   };
 
   const onScroll = (position: number) => {
-    // console.log(position);
+    console.log(position);
     setHeaderOpacity(Math.min(position / 80, 1));
     setBgMarginTop(Math.min(position / 2, 200));
+    if (position >= 448 && !headerWhiteBg) {
+      setHeaderWhiteBg(true);
+    } else if (position < 448 && headerWhiteBg) {
+      setHeaderWhiteBg(false);
+    }
   };
 
   return (
@@ -73,6 +79,7 @@ const HomePage = () => {
         bgOpacity={headerOpacity}
         className="z-10"
         onClick={onHeaderClick}
+        whiteBg={headerWhiteBg}
       ></HomeHeader>
 
       <ScrollerComponent
@@ -91,7 +98,7 @@ const HomePage = () => {
             transactions={mockTransactions as any}
             onClick={onTransactionClick}
           ></TransactionList>
-          <div className="h-[20vh]"></div>
+          <div className="h-[40vh]"></div>
         </div>
       </ScrollerComponent>
 
