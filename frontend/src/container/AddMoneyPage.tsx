@@ -19,7 +19,9 @@ const AddMoneyPage = () => {
     navigate('/');
   };
 
-  const handleInputChange = (inputAmount: number) => {};
+  const handleInputChange = (inputAmount: number) => {
+    console.log(`inputAmount: ${inputAmount}`);
+  };
 
   const handleSubmit = () => {
     console.log('add money submit');
