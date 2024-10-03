@@ -15,7 +15,7 @@ IF user_id IS NULL THEN
     -- SELECT error_code AS error; 
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid email or password';
 ELSE
-    UPDATE users SET session_token = UUID() WHERE id = user_id;
+    UPDATE users SET sessionToken = UUID() WHERE id = user_id;
     SELECT * FROM users WHERE id = user_id;
 END IF;
 

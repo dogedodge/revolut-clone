@@ -51,7 +51,7 @@ BEGIN
             WHERE id = receiver_account_id;
         ELSE
             -- If receiver's account does not exist, create a new account for the receiver
-            INSERT INTO accounts (user_id, currency_code, balance, account_number, status, created_at, updated_at)
+            INSERT INTO accounts (user_id, currency_code, balance, account_number, status, createdAt, updateAt)
             VALUES (receiver_id, currency, amount, CONCAT(receiver_id, LPAD(FLOOR(RAND() * 1000000000), 10, '0')), 'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
         END IF;
 

@@ -24,7 +24,7 @@ describe('userLogin', () => {
       sha256Hash('John'),
     );
 
-    expect(user.first_name).toEqual('John');
+    expect(user.firstName).toEqual('John');
     expect(user.email).toEqual('john.doe@example.com');
   });
 

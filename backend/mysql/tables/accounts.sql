@@ -6,8 +6,8 @@ CREATE TABLE IF NOT EXISTS accounts (
     user_id INT NOT NULL,                      -- Foreign key to users table
     currency_code VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
     balance DECIMAL(15, 2) DEFAULT 0.00,       -- Account balance
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp of last update
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp of last update
     account_number VARCHAR(20) NOT NULL UNIQUE, -- Unique account number
     status ENUM('active', 'inactive', 'closed') DEFAULT 'active' -- Account status
 

@@ -2,17 +2,17 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(50) NOT NULL,
-  last_name VARCHAR(50) NOT NULL,
+  firstName VARCHAR(50) NOT NULL,
+  lastName VARCHAR(50) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
   password CHAR(64) NOT NULL,
-  phone_number VARCHAR(15),
-  session_token CHAR(36),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp of last update
+  phoneNumber VARCHAR(15),
+  sessionToken CHAR(36),
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
+  updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp of last update
 );
 
-INSERT INTO users (first_name, last_name, email, password, phone_number) VALUES
+INSERT INTO users (firstName, lastName, email, password, phoneNumber) VALUES
 ('John', 'Doe', 'john.doe@example.com', SHA2('John', 256), '555-1234'),
 ('Jane', 'Smith', 'jane.smith@example.com', SHA2('Jane', 256), '555-5678'),
 ('Michael', 'Johnson', 'michael.johnson@example.com', SHA2('Michael', 256), '555-8765'),

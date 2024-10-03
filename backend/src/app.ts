@@ -44,7 +44,7 @@ app.post(
     try {
       const user = await userLogin(getDBContext(req), email, password);
       res.cookie('user_id', user.id, { httpOnly: true });
-      res.cookie('session_token', user.session_token, {
+      res.cookie('sessionToken', user.sessionToken, {
         httpOnly: true,
         secure: isProduction,
       });

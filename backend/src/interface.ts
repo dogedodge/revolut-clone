@@ -1,23 +1,23 @@
 type Cookies = {
   user_id: string;
-  session_token: string;
+  sessionToken: string;
 };
 
 type User = {
   id: number;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone_number?: string;
-  session_token?: string;
+  phoneNumber?: string;
+  sessionToken?: string;
 };
 
 type Account = {
   id: number;
   currency_code: string;
   balance: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updateAt: string;
 };
 
 type TransferRecord = {

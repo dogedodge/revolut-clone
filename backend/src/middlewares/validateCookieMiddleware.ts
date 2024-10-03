@@ -13,7 +13,7 @@ export const validateCookieMiddleware = (
         .withMessage('User ID is required')
         .isInt()
         .withMessage('User ID must be an integer'),
-      cookie('session_token')
+      cookie('sessionToken')
         .notEmpty()
         .withMessage('Session token is required')
         .isLength({ min: 36, max: 36 })
