@@ -92,12 +92,12 @@ app.get(
 
 app.post(
   '/api/transfers',
-  body('sender_id')
+  body('senderId')
     .notEmpty()
     .withMessage('Sender ID is required')
     .isInt()
     .withMessage('Sender ID must be an integer'),
-  body('receiver_id')
+  body('receiverId')
     .notEmpty()
     .withMessage('Receiver ID is required')
     .isInt()
@@ -114,12 +114,12 @@ app.post(
     .withMessage('Amount must be a decimal with up to 2 decimal places'),
   reportBadRequestMiddleware,
   async (req, res, next) => {
-    const { sender_id, receiver_id, currency, amount } = req.body;
+    const { senderId, receiverId, currency, amount } = req.body;
 
     try {
       const transfer = await tranferCredits(getDBContext(req), {
-        sender_id,
-        receiver_id,
+        senderId,
+        receiverId,
         currency,
         amount,
       });

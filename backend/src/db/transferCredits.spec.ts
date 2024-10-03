@@ -15,8 +15,8 @@ describe('transferCreadits', () => {
   it('throw error if not enough balance', async () => {
     await expect(
       tranferCredits(ctx, {
-        sender_id: 1,
-        receiver_id: 2,
+        senderId: 1,
+        receiverId: 2,
         currency: 'GBP',
         amount: 2000,
       }),
@@ -26,8 +26,8 @@ describe('transferCreadits', () => {
   it('throw error if wrong currency', async () => {
     await expect(
       tranferCredits(ctx, {
-        sender_id: 1,
-        receiver_id: 2,
+        senderId: 1,
+        receiverId: 2,
         currency: 'HKD', // user 1 has no HKD account
         amount: 2000,
       }),
@@ -36,12 +36,12 @@ describe('transferCreadits', () => {
 
   it('success', async () => {
     const record = await tranferCredits(ctx, {
-      sender_id: 1,
-      receiver_id: 2,
+      senderId: 1,
+      receiverId: 2,
       currency: 'GBP', // user 1 has no HKD account
-      amount: 10,
+      amount: 1099,
     });
 
-    expect(record.amount).toEqual('10.00');
+    expect(record.amount).toEqual('1099.00');
   });
 });

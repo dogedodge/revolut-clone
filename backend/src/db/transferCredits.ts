@@ -1,8 +1,8 @@
 import { DBContext } from './DBContext';
 
 type TransferCreditsRequest = {
-  sender_id: number;
-  receiver_id: number;
+  senderId: number;
+  receiverId: number;
   currency: string;
   amount: number;
 };
@@ -12,8 +12,8 @@ export async function tranferCredits(
   req: TransferCreditsRequest,
 ) {
   const [result] = await ctx.pool.execute(`CALL transferCredits(?,?,?,?)`, [
-    req.sender_id,
-    req.receiver_id,
+    req.senderId,
+    req.receiverId,
     req.currency,
     req.amount,
   ]);
