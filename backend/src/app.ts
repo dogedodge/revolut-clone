@@ -1,6 +1,5 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import cors from 'cors';
 import { body, param } from 'express-validator';
 import { userLogin } from './db/userLogin';
 import { getUserAccounts } from './db/getUserAccounts';
@@ -17,7 +16,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(validateCookieMiddleware);

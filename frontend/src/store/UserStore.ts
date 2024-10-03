@@ -13,7 +13,7 @@ class UserStore {
     const hashPwd = await sha256Encode(password);
     try {
       const resp = await axios.post(
-        'http://localhost:3030/api/login',
+        '/api/login',
         { email, password: hashPwd },
         {
           headers: {
@@ -37,7 +37,18 @@ class UserStore {
     }
   }
 
-  public async fetchAccounts() {}
+  public async fetchAccounts() {
+    try {
+      const resp = await axios.get('/api/accounts', { withCredentials: true });
+      console.log(resp.data);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.error('Error message:', err);
+      } else {
+        console.error('Unexpected error:', err);
+      }
+    }
+  }
 }
 
 export default UserStore;

@@ -39,7 +39,9 @@ const userStore = new UserStore();
 function App() {
   // const [count, setCount] = useState(0);
   useEffect(() => {
-    userStore.login('john.doe@example.com', 'John');
+    userStore.login('john.doe@example.com', 'John').then(() => {
+      userStore.fetchAccounts();
+    });
   }, []);
 
   return (
