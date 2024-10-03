@@ -1,6 +1,6 @@
-DROP PROCEDURE IF EXISTS transfer_credits;
+DROP PROCEDURE IF EXISTS transferCredits;
 
-CREATE PROCEDURE transfer_credits(
+CREATE PROCEDURE transferCredits(
     IN sender_id INT,
     IN receiver_id INT,
     IN currency VARCHAR(3),

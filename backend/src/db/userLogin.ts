@@ -5,7 +5,7 @@ export async function userLogin(
   email: string,
   password: string,
 ) {
-  const [result] = await ctx.pool.execute(`CALL user_login(?,?)`, [
+  const [result] = await ctx.pool.execute(`CALL userLogin(?,?)`, [
     email,
     password,
   ]);

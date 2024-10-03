@@ -36,16 +36,16 @@ async function resetDB() {
     /**
      * update procedures
      */
-    await runSqlFile(pool, 'procedures/user_login');
+    await runSqlFile(pool, 'procedures/userLogin');
     console.log('Users login procedure created!');
 
-    await runSqlFile(pool, 'procedures/get_user_accounts');
+    await runSqlFile(pool, 'procedures/getUserAccounts');
     console.log('Get user accounts procedure created!');
 
-    await runSqlFile(pool, 'procedures/get_account_records');
+    await runSqlFile(pool, 'procedures/getTransferRecords');
     console.log('Get account records procedure created!');
 
-    await runSqlFile(pool, 'procedures/transfer_credits');
+    await runSqlFile(pool, 'procedures/transferCredits');
     console.log('Transfer credits procedure created!');
   } catch (err) {
     console.error(err);

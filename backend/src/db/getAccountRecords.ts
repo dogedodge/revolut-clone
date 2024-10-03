@@ -4,7 +4,7 @@ export async function getAccountRecords(
   ctx: DBContext,
   account_id: number | string,
 ) {
-  const [result] = await ctx.pool.execute(`CALL get_account_records(?)`, [
+  const [result] = await ctx.pool.execute(`CALL getTransferRecords(?)`, [
     account_id,
   ]);
   // console.log(result);

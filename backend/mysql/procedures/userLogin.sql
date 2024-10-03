@@ -1,6 +1,6 @@
-DROP PROCEDURE IF EXISTS user_login;
+DROP PROCEDURE IF EXISTS userLogin;
 
-CREATE PROCEDURE user_login(
+CREATE PROCEDURE userLogin(
     IN _email VARCHAR(100),
     IN _password CHAR(64)
 )

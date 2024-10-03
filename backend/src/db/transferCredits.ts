@@ -11,7 +11,7 @@ export async function tranferCredits(
   ctx: DBContext,
   req: TransferCreditsRequest,
 ) {
-  const [result] = await ctx.pool.execute(`CALL transfer_credits(?,?,?,?)`, [
+  const [result] = await ctx.pool.execute(`CALL transferCredits(?,?,?,?)`, [
     req.sender_id,
     req.receiver_id,
     req.currency,

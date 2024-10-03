@@ -1,6 +1,6 @@
-DROP PROCEDURE IF EXISTS get_account_records;
+DROP PROCEDURE IF EXISTS getTransferRecords;
 
-CREATE PROCEDURE get_account_records(
+CREATE PROCEDURE getTransferRecords(
     IN _account_id INT
 )
 BEGIN

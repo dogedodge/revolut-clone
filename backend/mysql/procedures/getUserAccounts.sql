@@ -1,6 +1,6 @@
-DROP PROCEDURE IF EXISTS get_user_accounts;
+DROP PROCEDURE IF EXISTS getUserAccounts;
 
-CREATE PROCEDURE get_user_accounts(
+CREATE PROCEDURE getUserAccounts(
     IN _userId INT
 )
 BEGIN
