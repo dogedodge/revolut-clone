@@ -12,7 +12,7 @@ describe('getUserAccounts', () => {
   it('success', async () => {
     const ctx: DBContext = {
       pool,
-      user_id: 1,
+      userId: 1,
     };
 
     const accounts = await getUserAccounts(ctx);
@@ -25,7 +25,7 @@ describe('getUserAccounts', () => {
   it('invalid user id return empty', async () => {
     const ctx: DBContext = {
       pool,
-      user_id: -1,
+      userId: -1,
     };
     const accounts = await getUserAccounts(ctx);
     expect(accounts.length).toEqual(0);

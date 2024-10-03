@@ -6,17 +6,17 @@ CREATE PROCEDURE user_login(
 )
 BEGIN
 
-DECLARE user_id INT;
+DECLARE userId INT;
 
-SELECT id INTO user_id
+SELECT id INTO userId
     FROM users WHERE email = _email AND password = _password;
 
-IF user_id IS NULL THEN
+IF userId IS NULL THEN
     -- SELECT error_code AS error; 
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid email or password';
 ELSE
-    UPDATE users SET sessionToken = UUID() WHERE id = user_id;
-    SELECT * FROM users WHERE id = user_id;
+    UPDATE users SET sessionToken = UUID() WHERE id = userId;
+    SELECT * FROM users WHERE id = userId;
 END IF;
 
 END;

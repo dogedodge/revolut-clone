@@ -2,7 +2,7 @@ import { DBContext } from './DBContext';
 
 export async function getUserAccounts(ctx: DBContext) {
   const [result] = await ctx.pool.execute(`CALL get_user_accounts(?)`, [
-    ctx.user_id,
+    ctx.userId,
   ]);
   // console.log(result);
 

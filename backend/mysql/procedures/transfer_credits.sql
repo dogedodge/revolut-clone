@@ -18,7 +18,7 @@ BEGIN
     -- Check if sender has sufficient balance
     SELECT balance INTO sender_balance
     FROM accounts
-    WHERE user_id = sender_id AND currencyCode = currency
+    WHERE userId = sender_id AND currencyCode = currency
     FOR UPDATE;
 
     IF sender_balance IS NULL THEN
@@ -34,12 +34,12 @@ BEGIN
         -- Deduct amount from sender's account
         UPDATE accounts
         SET balance = balance - amount
-        WHERE user_id = sender_id AND currencyCode = currency;
+        WHERE userId = sender_id AND currencyCode = currency;
 
         -- Check if receiver has an account with the specified currency
         SELECT id INTO receiver_account_id
         FROM accounts
-        WHERE user_id = receiver_id AND currencyCode = currency
+        WHERE userId = receiver_id AND currencyCode = currency
         LIMIT 1;
 
         SET receiver_exists = FOUND_ROWS() > 0;
@@ -51,15 +51,15 @@ BEGIN
             WHERE id = receiver_account_id;
         ELSE
             -- If receiver's account does not exist, create a new account for the receiver
-            INSERT INTO accounts (user_id, currencyCode, balance, account_number, status, createdAt, updateAt)
+            INSERT INTO accounts (userId, currencyCode, balance, accountNumber, status, createdAt, updateAt)
             VALUES (receiver_id, currency, amount, CONCAT(receiver_id, LPAD(FLOOR(RAND() * 1000000000), 10, '0')), 'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
         END IF;
 
         -- Insert a transfer record
         INSERT INTO transferRecords (accountFrom, accountTo, currencyCode, amount)
         VALUES (
-            (SELECT id FROM accounts WHERE user_id = sender_id AND currencyCode = currency),
-            (SELECT id FROM accounts WHERE user_id = receiver_id AND currencyCode = currency),
+            (SELECT id FROM accounts WHERE userId = sender_id AND currencyCode = currency),
+            (SELECT id FROM accounts WHERE userId = receiver_id AND currencyCode = currency),
             currency,
             amount
         );

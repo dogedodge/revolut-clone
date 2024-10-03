@@ -1,10 +1,10 @@
 DROP PROCEDURE IF EXISTS get_user_accounts;
 
 CREATE PROCEDURE get_user_accounts(
-    IN _user_id INT
+    IN _userId INT
 )
 BEGIN
 
-SELECT * FROM accounts WHERE user_id = _user_id;
+SELECT * FROM accounts WHERE userId = _userId;
 
 END;

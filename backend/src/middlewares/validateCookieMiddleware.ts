@@ -8,7 +8,7 @@ export const validateCookieMiddleware = (
 ) => {
   if (req.path !== '/api/login') {
     const validators = [
-      cookie('user_id')
+      cookie('userId')
         .notEmpty()
         .withMessage('User ID is required')
         .isInt()

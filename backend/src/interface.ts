@@ -1,5 +1,5 @@
 type Cookies = {
-  user_id: string;
+  userId: string;
   sessionToken: string;
 };
 

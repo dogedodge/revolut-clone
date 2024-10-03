@@ -3,23 +3,23 @@ DROP TABLE IF EXISTS accounts;
 -- Create the accounts table
 CREATE TABLE IF NOT EXISTS accounts (
     id INT AUTO_INCREMENT PRIMARY KEY, -- Unique account ID
-    user_id INT NOT NULL,                      -- Foreign key to users table
+    userId INT NOT NULL,                      -- Foreign key to users table
     currencyCode VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
     balance DECIMAL(15, 2) DEFAULT 0.00,       -- Account balance
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp of last update
-    account_number VARCHAR(20) NOT NULL UNIQUE, -- Unique account number
+    accountNumber VARCHAR(20) NOT NULL UNIQUE, -- Unique account number
     status ENUM('active', 'inactive', 'closed') DEFAULT 'active' -- Account status
 
     -- Foreign key constraint
-    -- CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id)
+    -- CONSTRAINT fk_userId FOREIGN KEY (userId) REFERENCES users(id)
 );
 
--- Create an index on the user_id column to improve query performance
-CREATE INDEX idx_user_id ON accounts(user_id);
+-- Create an index on the userId column to improve query performance
+CREATE INDEX idx_userId ON accounts(userId);
 
 -- Insert mock data into the accounts table
-INSERT INTO accounts (user_id, currencyCode, balance, account_number, status)
+INSERT INTO accounts (userId, currencyCode, balance, accountNumber, status)
 VALUES
     (1, 'USD', 1000.50, '1234567890', 'active'),
     (2, 'GBP', 1500.75, '2345678901', 'active'),
