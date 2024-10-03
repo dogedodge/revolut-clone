@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS accounts (
     id INT AUTO_INCREMENT PRIMARY KEY, -- Unique account ID
     user_id INT NOT NULL,                      -- Foreign key to users table
-    currency_code VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
+    currencyCode VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
     balance DECIMAL(15, 2) DEFAULT 0.00,       -- Account balance
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp of last update
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS accounts (
 CREATE INDEX idx_user_id ON accounts(user_id);
 
 -- Insert mock data into the accounts table
-INSERT INTO accounts (user_id, currency_code, balance, account_number, status)
+INSERT INTO accounts (user_id, currencyCode, balance, account_number, status)
 VALUES
     (1, 'USD', 1000.50, '1234567890', 'active'),
     (2, 'GBP', 1500.75, '2345678901', 'active'),

@@ -15,9 +15,9 @@ describe('getAccountRecords', () => {
   it('success', async () => {
     const records = await getAccountRecords(ctx, 6);
     expect(records.length).toEqual(3);
-    expect(records[0].account_from).toEqual(2);
-    expect(records[0].account_to).toEqual(6);
-    expect(records[0].currency_code).toEqual('GBP');
+    expect(records[0].accountFrom).toEqual(2);
+    expect(records[0].accountTo).toEqual(6);
+    expect(records[0].currencyCode).toEqual('GBP');
     expect(records[0].amount).toEqual('50.00');
   });
 

@@ -1,17 +1,17 @@
-DROP TABLE IF EXISTS transfer_records;
+DROP TABLE IF EXISTS transferRecords;
 
-CREATE TABLE transfer_records (
+CREATE TABLE transferRecords (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    account_from INT NOT NULL, -- accounts(id)
-    account_to INT NOT NULL, -- accounts(id)
-    currency_code VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
+    accountFrom INT NOT NULL, -- accounts(id)
+    accountTo INT NOT NULL, -- accounts(id)
+    currencyCode VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
     amount DECIMAL(15,2) NOT NULL,
-    transfer_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    createAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     description VARCHAR(255),
     status ENUM('Pending', 'Completed', 'Failed') NOT NULL DEFAULT 'Pending'
 );
 
-INSERT INTO transfer_records (account_from, account_to, currency_code, amount, description, status)
+INSERT INTO transferRecords (accountFrom, accountTo, currencyCode, amount, description, status)
 VALUES
   (1, 9, 'USD', 100.00, 'Monthly payment', 'Completed'),
   (2, 6, 'GBP', 50.00, 'Reimbursement', 'Completed'),

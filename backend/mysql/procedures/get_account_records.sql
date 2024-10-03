@@ -6,7 +6,7 @@ CREATE PROCEDURE get_account_records(
 BEGIN
 
 -- SELECT * from accounts WHERE user_id = _user_id;
-SELECT * FROM transfer_records WHERE account_from = _account_id OR account_to = _account_id;
+SELECT * FROM transferRecords WHERE accountFrom = _account_id OR accountTo = _account_id;
 
 END;
 

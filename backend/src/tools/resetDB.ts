@@ -30,8 +30,8 @@ async function resetDB() {
     await runSqlFile(pool, 'tables/accounts');
     console.log('Table account created!');
 
-    await runSqlFile(pool, 'tables/transfer_records');
-    console.log('Table transfer_records created!');
+    await runSqlFile(pool, 'tables/transferRecords');
+    console.log('Table transferRecords created!');
 
     /**
      * update procedures

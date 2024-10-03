@@ -18,8 +18,8 @@ describe('getUserAccounts', () => {
     const accounts = await getUserAccounts(ctx);
     // expect(true).toBeTruthy();
     expect(accounts.length).toEqual(2);
-    expect(accounts[0].currency_code).toEqual('USD');
-    expect(accounts[1].currency_code).toEqual('GBP');
+    expect(accounts[0].currencyCode).toEqual('USD');
+    expect(accounts[1].currencyCode).toEqual('GBP');
   });
 
   it('invalid user id return empty', async () => {
