@@ -7,6 +7,8 @@ import HomePage from './container/HomePage';
 import RootContainer from './container/RootContainer';
 import TransactionListPage from './container/TransactionListPage';
 import AddMoneyPage from './container/AddMoneyPage';
+import { useEffect } from 'react';
+import UserStore from './store/UserStore';
 // import HomePage from './AIHomePage';
 
 const router = createBrowserRouter([
@@ -32,8 +34,13 @@ const router = createBrowserRouter([
   },
 ]);
 
+const userStore = new UserStore();
+
 function App() {
   // const [count, setCount] = useState(0);
+  useEffect(() => {
+    userStore.login('john.doe@example.com', 'John');
+  }, []);
 
   return (
     <RouterProvider router={router} />
