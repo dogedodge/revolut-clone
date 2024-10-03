@@ -25,13 +25,19 @@ class UserStore {
       return resp.data;
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        console.error('Error message:', err.message);
+        if (err.status === 401) {
+          console.log(err.response?.data.message);
+        } else {
+          console.error('Error message:', err);
+        }
       } else {
         console.error('Unexpected error:', err);
       }
       throw err;
     }
   }
+
+  public async fetchAccounts() {}
 }
 
 export default UserStore;
