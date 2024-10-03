@@ -22,4 +22,4 @@ VALUES
   (6, 2, 'GBP', 150.00, 'Salary', 'Completed'),
   (9, 1, 'USD', 400.75, 'Refund', 'Completed'),
   (8, 4, 'CNY', 600.00, 'Loan repayment', 'Completed'),
-  (5, 10, 'JPY', 12000.00, 'Commission', 'Completed');
+  (5, 10, 'EUR', 12000.00, 'Commission', 'Completed');
