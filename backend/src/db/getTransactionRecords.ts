@@ -6,10 +6,13 @@ export async function getTransactionRecords(
   page: number | string,
   limit: number | string, // records number per page
 ) {
-  const [result] = await ctx.pool.execute(`CALL getTransferRecords(?)`, [
+  const [result] = await ctx.pool.execute(`CALL getTransactionTotal(?,?)`, [
+    ctx.userId,
     accountId,
   ]);
-  // console.log(result);
+  const totalCount = (result as any)[0][0]['count(id)'];
 
-  return (result as TransferRecord[][])[0];
+  return {
+    totalCount,
+  };
 }

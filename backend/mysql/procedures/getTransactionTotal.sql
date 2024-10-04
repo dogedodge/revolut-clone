@@ -6,6 +6,6 @@ CREATE PROCEDURE getTransactionTotal(
 )
 BEGIN
 
-SELECT count(*) FROM transactionRecords WHERE userId = _userId AND accountId = _accountId;
+SELECT count(id) FROM transactionRecords WHERE userId = _userId AND accountId = _accountId;
 
 END;
