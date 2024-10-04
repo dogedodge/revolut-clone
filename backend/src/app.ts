@@ -11,6 +11,7 @@ import { validateCookieMiddleware } from './middlewares/validateCookieMiddleware
 import { VALID_CURRENCIES } from './constants';
 import { reportBadRequestMiddleware } from './middlewares/reportBadRequestMiddleware';
 import { getDBContext } from './utils/getDBContext';
+import accountRouter from './routes/accounts';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -137,6 +138,8 @@ app.post(
     }
   },
 );
+
+app.use('/api', accountRouter);
 
 /** caught all unhandled exception here */
 app.use(unhandledExeptionMiddleware);
