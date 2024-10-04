@@ -45,6 +45,7 @@ async function resetDB() {
       'getUserAccounts',
       'getTransferRecords',
       'transferCredits',
+      'getTransactionTotal',
     ];
 
     for (let i in procedures) {
