@@ -12,7 +12,7 @@ class UserStore {
   }
 
   public async login(email: string, password: string) {
-    const hashPwd = await sha256Encode(password);
+    const hashPwd = sha256Encode(password);
     try {
       const resp = await axios.post(
         '/api/login',
