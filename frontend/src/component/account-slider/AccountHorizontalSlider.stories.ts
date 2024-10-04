@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    slideData: [
+    accounts: [
       {
         accountId: 5,
         currency: 'HKD',

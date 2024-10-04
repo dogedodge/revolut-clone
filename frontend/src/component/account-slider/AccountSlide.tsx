@@ -4,6 +4,7 @@ import RoundButtonWithTitle, {
   RoundButtonWithTitleVariant,
 } from './RoundButtonWithTitle';
 import DropupMenu from './DropupMenu';
+import { AccountData } from '../../interface';
 
 const actionBtnVariants: RoundButtonWithTitleVariant[] = [
   'add-money',
@@ -18,17 +19,16 @@ export type AccountSlideEvent = {
 };
 
 export interface AccountSlideProps {
-  accountId: number | string;
-  currency: string;
-  balance: string | number;
+  // accountId: number | string;
+  // currency: string;
+  // balance: string | number;
+  account: AccountData;
   onClick?: (event: AccountSlideEvent) => void;
   className?: string;
 }
 
 const AccountSlide = ({
-  accountId,
-  currency,
-  balance,
+  account,
   onClick,
   className = '',
 }: AccountSlideProps) => {
@@ -53,14 +53,14 @@ const AccountSlide = ({
         setIsDropupOpen(true);
       }
     } else {
-      onClick && onClick({ type: variant, accountId });
+      onClick && onClick({ type: variant, accountId: account.id });
     }
   };
 
   const handleDropupMenuClick = (variant: string) => {
     // setIsDropupOpen(false);
     dismissDropup();
-    onClick && onClick({ type: `dropup-${variant}`, accountId });
+    onClick && onClick({ type: `dropup-${variant}`, accountId: account.id });
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -99,10 +99,10 @@ const AccountSlide = ({
     <div className={`relative w-full ${className}`}>
       <AccountBalanceView
         className="mb-28 mt-28"
-        currency={currency}
-        balance={balance}
+        currency={account.currency}
+        balance={account.balance}
         onClick={() => {
-          onClick && onClick({ type: 'accounts', accountId });
+          onClick && onClick({ type: 'accounts', accountId: account.id });
         }}
       ></AccountBalanceView>
       <div className="flex flex-row justify-between mx-6">

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import AccountSlide, {
-  AccountSlideEvent,
-  AccountSlideProps,
-} from './AccountSlide';
+import AccountSlide, { AccountSlideEvent } from './AccountSlide';
 
 import Slider, { Settings } from 'react-slick';
+import { AccountData } from '../../interface';
 
 interface CustomDotsProps {
   currentSlide: number;
@@ -36,15 +34,15 @@ const settings: Settings = {
 };
 
 interface AccountHorizontalSliderProps {
-  slideData: AccountSlideProps[];
+  accounts: AccountData[];
   onClick?: (event: AccountSlideEvent) => void;
 }
 
 const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
-  slideData,
+  accounts,
   onClick,
 }) => {
-  const slideCount = slideData.length;
+  const slideCount = accounts.length;
   const [currentSlide, setCurrentSlide] = useState(0);
   return (
     <div className="relative">
@@ -56,10 +54,10 @@ const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
       </div>
 
       <Slider {...settings} afterChange={(value) => setCurrentSlide(value)}>
-        {slideData.map((data) => (
+        {accounts.map((data) => (
           <AccountSlide
-            key={data.accountId}
-            {...data}
+            key={data.id}
+            account={data}
             onClick={(evt) => {
               onClick && onClick(evt);
             }}

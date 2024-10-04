@@ -9,21 +9,24 @@ import { useState } from 'react';
 import mockTransactions from '../mock/mockTransactions';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AccountSlideEvent } from '../component/account-slider/AccountSlide';
+import { observer } from 'mobx-react-lite';
+import { useStore } from './provider/StoreProvider';
 
-const accountData = [
-  {
-    accountId: 5,
-    currency: 'GBP',
-    balance: 215.18,
-  },
-  {
-    accountId: 6,
-    currency: 'GBP',
-    balance: 115.18,
-  },
-];
+// const accountData = [
+//   {
+//     accountId: 5,
+//     currency: 'GBP',
+//     balance: 215.18,
+//   },
+//   {
+//     accountId: 6,
+//     currency: 'GBP',
+//     balance: 115.18,
+//   },
+// ];
 
-const HomePage = () => {
+const HomePage = observer(() => {
+  const { userStore } = useStore();
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [headerWhiteBg, setHeaderWhiteBg] = useState(false);
   const [bgMarginTop, setBgMarginTop] = useState(0);
@@ -87,7 +90,7 @@ const HomePage = () => {
         onScroll={onScroll}
       >
         <AccountHorizontalSlider
-          slideData={accountData}
+          accounts={userStore.accounts}
           onClick={onAccountSlideClick}
         ></AccountHorizontalSlider>
 
@@ -105,6 +108,6 @@ const HomePage = () => {
       <Outlet></Outlet>
     </div>
   );
-};
+});
 
 export default HomePage;
