@@ -15,7 +15,7 @@ export async function getTransactionRecords(
   ]);
   const totalCount = (count as any)[0][0]['count(id)'];
 
-  const queryOffset = page * limit; // page start from 0
+  const queryOffset = (page - 1) * limit; // page start from 1
 
   const [result] = await ctx.pool.execute(
     `CALL getTransactionRecords(?,?,?,?)`,

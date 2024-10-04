@@ -14,7 +14,7 @@ describe('getTransactionRecords', () => {
   });
 
   it('success', async () => {
-    const result = await getTransactionRecords(ctx, 1, 1, 4);
+    const result = await getTransactionRecords(ctx, 1, 2, 4);
     // expect(result).toBeDefined();
     expect(result.totalCount).toEqual(15);
     expect(result.transactions.length).toEqual(4);
