@@ -1,12 +1,8 @@
-/**
- *
- * @param timeStr default format from mysql is like '2024-09-25 07:37:50' in UTC
- */
 const formatUTCtoLocal = (
   timeStr: string,
   mode: 'datetime' | 'date' | 'time' = 'datetime',
 ) => {
-  const utcDate = new Date(timeStr + 'Z');
+  const utcDate = new Date(timeStr);
   const localStr = utcDate.toLocaleString('en-US', {
     day: 'numeric',
     month: 'short',

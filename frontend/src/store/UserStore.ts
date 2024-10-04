@@ -1,11 +1,12 @@
 import { action, makeAutoObservable } from 'mobx';
 import axios from 'axios';
 import sha256Encode from '../utils/sha256Encode';
-import { AccountData } from '../interface';
+import { AccountData, TransactionData } from '../interface';
 
 class UserStore {
   public authenticated: boolean = false;
   public accounts: AccountData[] = [];
+  public transactions: TransactionData[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -55,6 +56,28 @@ class UserStore {
       } else {
         console.error('Unexpected error:', err);
       }
+      throw err;
+    }
+  }
+
+  private updateTransactions = action((transactions: TransactionData[]) => {
+    this.transactions = transactions;
+  });
+
+  public async fetchTransactions() {
+    try {
+      const resp = await axios.get(
+        `/api/accounts/${this.accounts[0].id}/transactions?page=1&limit=20`,
+      );
+      console.log(resp);
+      this.updateTransactions(resp.data.transactions);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.error('Error message:', err);
+      } else {
+        console.error('Unexpected error:', err);
+      }
+      throw err;
     }
   }
 }

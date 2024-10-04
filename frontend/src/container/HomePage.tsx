@@ -6,7 +6,7 @@ import TransactionList, {
 } from '../component/transaction/TransactionList';
 import ScrollerComponent from '../component/ScrollerComponent';
 import { useState } from 'react';
-import mockTransactions from '../mock/mockTransactions';
+// import mockTransactions from '../mock/mockTransactions';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AccountSlideEvent } from '../component/account-slider/AccountSlide';
 import { observer } from 'mobx-react-lite';
@@ -98,7 +98,7 @@ const HomePage = observer(() => {
           <div className="w-full h-full absolute top-4 bg-gray-200"></div>
           <TransactionList
             className="relative ml-4 mr-4"
-            transactions={mockTransactions as any}
+            transactions={userStore.transactions}
             onClick={onTransactionClick}
           ></TransactionList>
           <div className="h-[40vh]"></div>
