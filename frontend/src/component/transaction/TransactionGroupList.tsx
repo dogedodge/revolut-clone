@@ -15,10 +15,10 @@ const TransactionGroupList = ({
 }: TransactionGroupListProps) => {
   const transactionGroups: TransactionData[][] = useMemo(() => {
     const groups: TransactionData[][] = [];
-    let lastDate = formatUTCtoLocal(transactions[0].date, 'date');
+    let lastDate = formatUTCtoLocal(transactions[0].createAt, 'date');
     let currentGroup: TransactionData[] = [];
     transactions.forEach((item) => {
-      if (formatUTCtoLocal(item.date, 'date') === lastDate) {
+      if (formatUTCtoLocal(item.createAt, 'date') === lastDate) {
         currentGroup.push(item);
       } else {
         groups.push(currentGroup);

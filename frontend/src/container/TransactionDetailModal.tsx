@@ -6,8 +6,8 @@ import { useModal } from './provider/ModalProvider';
 
 const transactionDetail: TransactionDetail = {
   id: 101,
-  date: 'Today, 4:43PM',
-  brand: 'Mcdonalds',
+  createAt: 'Today, 4:43PM',
+  recipient: 'Mcdonalds',
   category: 'Restaurants',
   currency: 'GBP',
   amount: -150,

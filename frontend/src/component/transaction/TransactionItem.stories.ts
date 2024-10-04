@@ -16,8 +16,8 @@ export const Primary: Story = {
   args: {
     data: {
       id: 101,
-      date: '2024-09-25 07:37:50', // UTC time
-      brand: 'Mcdonalds',
+      createAt: '2024-09-25 07:37:50', // UTC time
+      recipient: 'Mcdonalds',
       category: 'Restaurants',
       currency: 'GBP',
       amount: -150,

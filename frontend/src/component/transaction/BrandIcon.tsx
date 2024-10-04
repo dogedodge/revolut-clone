@@ -1,17 +1,6 @@
 import React from 'react';
 import CategoryIcon from './CategoryIcon';
-
-type BrandCategory =
-  | 'Restaurants'
-  | 'Groceries'
-  | 'Shopping'
-  | 'Service'
-  | 'Transport'
-  | 'Entertainment'
-  | 'Cash'
-  | 'Travel'
-  | 'Health'
-  | 'General';
+import { TransactionCategory } from '../../interface';
 
 const validBrands: string[] = [
   'mcdonalds',
@@ -24,7 +13,7 @@ const validBrands: string[] = [
 
 interface BrandIconProps {
   brand: string;
-  category: BrandCategory;
+  category: TransactionCategory;
 }
 
 const BrandIcon: React.FC<BrandIconProps> = ({ brand, category }) => {

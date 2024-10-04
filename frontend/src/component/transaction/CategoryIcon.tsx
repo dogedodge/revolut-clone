@@ -11,12 +11,12 @@ import {
   GlobeAsiaAustraliaIcon,
   HeartIcon,
 } from '@heroicons/react/24/solid';
-import { BrandCategory } from '../../interface';
+import { TransactionCategory } from '../../interface';
 
 const categoryStyle = 'text-gray-100 size-6';
 
 interface CategoryIconProps {
-  category: BrandCategory;
+  category: TransactionCategory;
 }
 const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
   let icon: React.ReactNode;

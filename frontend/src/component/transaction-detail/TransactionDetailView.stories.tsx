@@ -16,8 +16,8 @@ export const Primary: Story = {
   args: {
     data: {
       id: 101,
-      date: 'Today, 4:43PM',
-      brand: 'Mcdonalds',
+      createAt: 'Today, 4:43PM',
+      recipient: 'Mcdonalds',
       category: 'Restaurants',
       currency: 'GBP',
       amount: -150,

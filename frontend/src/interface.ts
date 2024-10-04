@@ -1,4 +1,4 @@
-export type BrandCategory =
+export type TransactionCategory =
   | 'Restaurants'
   | 'Groceries'
   | 'Shopping'
@@ -9,14 +9,15 @@ export type BrandCategory =
   | 'Travel'
   | 'Health'
   | 'General';
+// Transfer
 
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'CNY' | 'HKD';
 
 export interface TransactionData {
   id: number | string;
-  date: string;
-  brand: string;
-  category: BrandCategory;
+  createAt: string;
+  recipient: string;
+  category: TransactionCategory;
   currency: Currency;
   amount: number | string;
 }

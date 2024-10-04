@@ -38,13 +38,13 @@ const TransactionDetailView = ({
           <div className="text-3xl font-bold">
             {formatAmountWithCurrency(data.currency, data.amount)}
           </div>
-          <div className="text-indigo-700 text-xl mt-1">{data.brand}</div>
+          <div className="text-indigo-700 text-xl mt-1">{data.recipient}</div>
           <div className="text-gray-500 text-lg font-light mt-1">
-            {data.date}
+            {data.createAt}
           </div>
         </div>
 
-        <BrandIcon brand={data.brand} category={data.category}></BrandIcon>
+        <BrandIcon brand={data.recipient} category={data.category}></BrandIcon>
       </div>
 
       <div className="mt-6">
@@ -60,7 +60,7 @@ const TransactionDetailView = ({
       </div>
 
       <div className="mt-4">
-        <TransactionDetailItem title={`Spent at ${data.brand}`}>
+        <TransactionDetailItem title={`Spent at ${data.recipient}`}>
           <div>
             {formatAmountWithCurrency(data.currency, data.totalSpentAtBrand)}
           </div>
@@ -72,7 +72,7 @@ const TransactionDetailView = ({
           title="See all"
           solidTitle
           onClick={() => {
-            onClick && onClick({ type: 'seeAll', payload: data.brand });
+            onClick && onClick({ type: 'seeAll', payload: data.recipient });
           }}
         >
           <ChevronRightIcon className="size-6 text-gray-400"></ChevronRightIcon>
