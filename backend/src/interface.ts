@@ -28,3 +28,19 @@ type TransferRecord = {
   amount: string;
   createAt: string;
 };
+
+interface TransactionRecord {
+  id: number | string;
+  recipient: string;
+  category: string;
+  currency: string;
+  amount: number | string;
+  createAt: string;
+}
+
+interface TransactionDetail extends TransactionRecord {
+  status: string;
+  card: string;
+  totalSpentAtBrand: number;
+  numberOfTransAtBrand: number;
+}

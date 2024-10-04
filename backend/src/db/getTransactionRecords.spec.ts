@@ -17,5 +17,8 @@ describe('getTransactionRecords', () => {
     const result = await getTransactionRecords(ctx, 1, 1, 4);
     // expect(result).toBeDefined();
     expect(result.totalCount).toEqual(15);
+    expect(result.transactions.length).toEqual(4);
+    expect(result.transactions[0].id).toEqual(11);
+    expect(result.transactions[0].recipient).toEqual('sainsburys');
   });
 });
