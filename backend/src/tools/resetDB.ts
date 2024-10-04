@@ -24,32 +24,34 @@ async function resetDB() {
     /**
      * reset tables
      */
-    await runSqlFile(pool, `tables/users`);
-    console.log('Table users created!');
+    const tables = [
+      'users',
+      'accounts',
+      'transferRecords',
+      'transactionRecords',
+    ];
 
-    await runSqlFile(pool, 'tables/accounts');
-    console.log('Table account created!');
-
-    await runSqlFile(pool, 'tables/transferRecords');
-    console.log('Table transferRecords created!');
-
-    await runSqlFile(pool, 'tables/transactionRecords');
-    console.log('Table transferRecords created!');
+    for (let i in tables) {
+      const table = tables[i];
+      await runSqlFile(pool, `tables/${table}`);
+      console.log(`Table ${table} created!`);
+    }
 
     /**
      * update procedures
      */
-    await runSqlFile(pool, 'procedures/userLogin');
-    console.log('Users login procedure created!');
+    const procedures = [
+      'userLogin',
+      'getUserAccounts',
+      'getTransferRecords',
+      'transferCredits',
+    ];
 
-    await runSqlFile(pool, 'procedures/getUserAccounts');
-    console.log('Get user accounts procedure created!');
-
-    await runSqlFile(pool, 'procedures/getTransferRecords');
-    console.log('Get account records procedure created!');
-
-    await runSqlFile(pool, 'procedures/transferCredits');
-    console.log('Transfer credits procedure created!');
+    for (let i in procedures) {
+      const procedure = procedures[i];
+      await runSqlFile(pool, `procedures/${procedure}`);
+      console.log(`Procedure ${procedure} created!`);
+    }
   } catch (err) {
     console.error(err);
   }
