@@ -1,8 +1,8 @@
 import { createConnectionPool } from './createConnectionPool';
 import { DBContext } from './DBContext';
-import { getAccountRecords } from './getAccountRecords';
+import { getTransferRecords } from './getTransferRecords';
 
-describe('getAccountRecords', () => {
+describe('getTransferRecords', () => {
   const pool = createConnectionPool();
   const ctx: DBContext = {
     pool,
@@ -13,7 +13,7 @@ describe('getAccountRecords', () => {
   });
 
   it('success', async () => {
-    const records = await getAccountRecords(ctx, 4);
+    const records = await getTransferRecords(ctx, 4);
     expect(records.length).toEqual(2);
     expect(records[0].accountFrom).toEqual(4);
     expect(records[0].accountTo).toEqual(8);
@@ -22,7 +22,7 @@ describe('getAccountRecords', () => {
   });
 
   it('return empty if account id invalid', async () => {
-    const records = await getAccountRecords(ctx, -1);
+    const records = await getTransferRecords(ctx, -1);
     expect(records.length).toEqual(0);
   });
 });

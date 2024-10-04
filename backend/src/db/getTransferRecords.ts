@@ -1,11 +1,11 @@
 import { DBContext } from './DBContext';
 
-export async function getAccountRecords(
+export async function getTransferRecords(
   ctx: DBContext,
-  account_id: number | string,
+  accountId: number | string,
 ) {
   const [result] = await ctx.pool.execute(`CALL getTransferRecords(?)`, [
-    account_id,
+    accountId,
   ]);
   // console.log(result);
 

@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import { body, param } from 'express-validator';
 import { userLogin } from './db/userLogin';
 import { getUserAccounts } from './db/getUserAccounts';
-import { getAccountRecords } from './db/getAccountRecords';
+import { getTransferRecords } from './db/getTransferRecords';
 import { tranferCredits } from './db/transferCredits';
 import { unhandledExeptionMiddleware } from './middlewares/unhandledExeptionMiddleware';
 import { createDBContextMiddleware } from './middlewares/createDBContextMiddleware';
@@ -83,7 +83,7 @@ app.get(
     const { accountId } = req.params || {};
 
     try {
-      const transfers = await getAccountRecords(getDBContext(req), accountId);
+      const transfers = await getTransferRecords(getDBContext(req), accountId);
       return res.json({ code: 0, transfers });
     } catch (err) {
       return next(err);
