@@ -2,7 +2,7 @@ import AccountListView, {
   AccountListEvent,
 } from '../component/account/AccountListView';
 import mockAccounts from '../mock/mockAccouts';
-import { useModal } from './ModalProvider';
+import { useModal } from './provider/ModalProvider';
 
 interface AccountListModalProps {
   className?: string;

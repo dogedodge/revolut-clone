@@ -7,12 +7,12 @@ import {
   useState,
 } from 'react';
 import { useLocation } from 'react-router-dom';
-import TransactionDetailModal from './TransactionDetailModal';
-import AccountListModal from './AccountListModal';
+import TransactionDetailModal from '../TransactionDetailModal';
+import AccountListModal from '../AccountListModal';
 
 type ModalName = 'none' | 'transaction' | 'accounts';
 
-interface ModalContextType {
+interface IModalContext {
   currentModalName: ModalName;
   setCurrentModalName: (name: ModalName) => void;
   currentId: string;
@@ -20,7 +20,7 @@ interface ModalContextType {
   dismissModal: () => void;
 }
 
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
+const ModalContext = createContext<IModalContext | undefined>(undefined);
 
 export const useModal = () => {
   const ctx = useContext(ModalContext);

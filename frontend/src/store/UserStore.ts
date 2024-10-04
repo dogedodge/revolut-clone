@@ -1,9 +1,11 @@
 import { makeAutoObservable } from 'mobx';
 import axios from 'axios';
 import sha256Encode from '../utils/sha256Encode';
+import { AccountData } from '../interface';
 
 class UserStore {
   public authenticated: boolean = false;
+  public accounts: AccountData[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -41,6 +43,7 @@ class UserStore {
     try {
       const resp = await axios.get('/api/accounts', { withCredentials: true });
       console.log(resp.data);
+      this.accounts = resp.data.accounts;
     } catch (err) {
       if (axios.isAxiosError(err)) {
         console.error('Error message:', err);

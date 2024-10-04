@@ -2,7 +2,7 @@ import TransactionDetailView, {
   TransactionDetailEvent,
 } from '../component/transaction-detail/TransactionDetailView';
 import { TransactionDetail } from '../interface';
-import { useModal } from './ModalProvider';
+import { useModal } from './provider/ModalProvider';
 
 const transactionDetail: TransactionDetail = {
   id: 101,
