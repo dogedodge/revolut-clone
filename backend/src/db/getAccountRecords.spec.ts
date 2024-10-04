@@ -17,7 +17,7 @@ describe('getAccountRecords', () => {
     expect(records.length).toEqual(2);
     expect(records[0].accountFrom).toEqual(4);
     expect(records[0].accountTo).toEqual(8);
-    expect(records[0].currencyCode).toEqual('CNY');
+    expect(records[0].currency).toEqual('CNY');
     expect(records[0].amount).toEqual('300.50');
   });
 

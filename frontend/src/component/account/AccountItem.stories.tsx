@@ -17,7 +17,7 @@ export const Primary: Story = {
     data: {
       id: 201,
       currency: 'USD',
-      amount: 2000,
+      balance: 2000,
     },
   },
 };
@@ -27,7 +27,7 @@ export const Selected: Story = {
     data: {
       id: 201,
       currency: 'USD',
-      amount: 2000,
+      balance: 2000,
     },
     selected: true,
   },

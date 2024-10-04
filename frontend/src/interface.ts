@@ -31,5 +31,5 @@ export interface TransactionDetail extends TransactionData {
 export interface AccountData {
   id: number | string;
   currency: Currency;
-  amount: number | string;
+  balance: number | string;
 }

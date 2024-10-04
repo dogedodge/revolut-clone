@@ -53,7 +53,7 @@ const AccountInputItem = ({ account, onChange }: AccountInputItemProps) => {
       </div>
       <div className="flex flex-row justify-between text-gray-500 text-base font-light">
         <div>
-          Balance: {formatAmountWithCurrency(account.currency, account.amount)}
+          Balance: {formatAmountWithCurrency(account.currency, account.balance)}
         </div>
         {showMinHint && <div>Minimum amount is {minAmountText}</div>}
       </div>

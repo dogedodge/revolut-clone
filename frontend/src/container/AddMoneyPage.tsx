@@ -9,7 +9,7 @@ import ApplePayButton from '../component/transfer/ApplePayButton';
 const account: AccountData = {
   id: 201,
   currency: 'GBP',
-  amount: 2000,
+  balance: 2000,
 };
 
 const AddMoneyPage = () => {

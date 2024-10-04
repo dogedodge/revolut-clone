@@ -17,7 +17,7 @@ export const Primary: Story = {
     account: {
       id: 201,
       currency: 'GBP',
-      amount: 1000,
+      balance: 1000,
     },
   },
 };

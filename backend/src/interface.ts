@@ -14,7 +14,7 @@ type User = {
 
 type Account = {
   id: number;
-  currencyCode: string;
+  currency: string;
   balance: string;
   createdAt: string;
   updateAt: string;
@@ -24,7 +24,7 @@ type TransferRecord = {
   id: number;
   accountFrom: number;
   accountTo: number;
-  currencyCode: string;
+  currency: string;
   amount: string;
   createAt: string;
 };

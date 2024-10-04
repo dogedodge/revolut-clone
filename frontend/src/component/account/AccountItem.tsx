@@ -25,7 +25,7 @@ const AccountItem = ({ data, selected = false, onClick }: AccountItemProps) => {
       </div>
 
       <div className="text-lg font-light">
-        {formatAmountWithCurrency(data.currency, data.amount)}
+        {formatAmountWithCurrency(data.currency, data.balance)}
       </div>
     </div>
   );

@@ -4,14 +4,14 @@ CREATE TABLE transferRecords (
     id INT AUTO_INCREMENT PRIMARY KEY,
     accountFrom INT NOT NULL, -- accounts(id)
     accountTo INT NOT NULL, -- accounts(id)
-    currencyCode VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
+    currency VARCHAR(3) NOT NULL,         -- Currency code (e.g., USD, GBP, etc.)
     amount DECIMAL(15,2) NOT NULL,
     createAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     description VARCHAR(255),
     status ENUM('Pending', 'Completed', 'Failed') NOT NULL DEFAULT 'Pending'
 );
 
-INSERT INTO transferRecords (accountFrom, accountTo, currencyCode, amount, description, status)
+INSERT INTO transferRecords (accountFrom, accountTo, currency, amount, description, status)
 VALUES
   (1, 9, 'USD', 100.00, 'Monthly payment', 'Completed'),
   (2, 6, 'GBP', 50.00, 'Reimbursement', 'Completed'),
