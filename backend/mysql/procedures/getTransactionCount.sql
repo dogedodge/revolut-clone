@@ -1,6 +1,6 @@
-DROP PROCEDURE IF EXISTS getTransactionTotal;
+DROP PROCEDURE IF EXISTS getTransactionCount;
 
-CREATE PROCEDURE getTransactionTotal(
+CREATE PROCEDURE getTransactionCount(
     IN _userId INT,
     IN _accountId INT
 )

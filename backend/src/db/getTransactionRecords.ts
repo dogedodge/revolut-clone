@@ -9,7 +9,7 @@ export async function getTransactionRecords(
   page = Number(page);
   limit = Number(limit);
 
-  const [count] = await ctx.pool.execute(`CALL getTransactionTotal(?,?)`, [
+  const [count] = await ctx.pool.execute(`CALL getTransactionCount(?,?)`, [
     ctx.userId,
     accountId,
   ]);
@@ -23,7 +23,7 @@ export async function getTransactionRecords(
   );
 
   const transactions: TransactionRecord[] = (result as any)[0];
-  console.log(result);
+  // console.log(result);
 
   return {
     totalCount,

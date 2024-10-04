@@ -45,7 +45,7 @@ async function resetDB() {
       'getUserAccounts',
       'getTransferRecords',
       'transferCredits',
-      'getTransactionTotal',
+      'getTransactionCount',
       'getTransactionRecords',
     ];
 
