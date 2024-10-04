@@ -15,11 +15,11 @@ export type Currency = 'USD' | 'EUR' | 'GBP' | 'CNY' | 'HKD';
 
 export interface TransactionData {
   id: number | string;
-  createAt: string;
   recipient: string;
   category: TransactionCategory;
   currency: Currency;
   amount: number | string;
+  createAt: string;
 }
 
 export interface TransactionDetail extends TransactionData {
