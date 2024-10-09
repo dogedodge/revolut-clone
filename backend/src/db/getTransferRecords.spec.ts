@@ -12,7 +12,7 @@ describe('getTransferRecords', () => {
     await pool.end();
   });
 
-  it('success', async () => {
+  it('works', async () => {
     const records = await getTransferRecords(ctx, 4);
     expect(records.length).toEqual(2);
     expect(records[0].accountFrom).toEqual(4);

@@ -9,7 +9,7 @@ describe('getUserAccounts', () => {
     await pool.end();
   });
 
-  it('success', async () => {
+  it('works', async () => {
     const ctx: DBContext = {
       pool,
       userId: 1,

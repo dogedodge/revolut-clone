@@ -34,7 +34,7 @@ describe('transferCreadits', () => {
     ).rejects.toThrow('Wrong currency');
   });
 
-  it('success', async () => {
+  it('works', async () => {
     const record = await tranferCredits(ctx, {
       senderId: 1,
       receiverId: 2,

@@ -13,7 +13,7 @@ describe('getTransactionRecords', () => {
     await pool.end();
   });
 
-  it('success', async () => {
+  it('works', async () => {
     const result = await getTransactionRecords(ctx, 1, 2, 4);
     // expect(result).toBeDefined();
     expect(result.totalCount).toEqual(15);
