@@ -1,5 +1,6 @@
 import { TransactionDetail } from '../../interface';
 import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
+import formatUTCtoLocal from '../../utils/formatUTCtoLocal';
 import BrandIcon from '../transaction/BrandIcon';
 import TransactionDetailItem from './TransactionDetailItem';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
@@ -29,7 +30,7 @@ const TransactionDetailView = ({
           </div>
           <div className="text-indigo-700 text-xl mt-1">{data.recipient}</div>
           <div className="text-gray-500 text-lg font-light mt-1">
-            {data.createAt}
+            {formatUTCtoLocal(data.createAt)}
           </div>
         </div>
 
