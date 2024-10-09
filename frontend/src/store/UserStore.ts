@@ -6,7 +6,7 @@ import { AccountData, TransactionData } from '../interface';
 class UserStore {
   public authenticated: boolean = false;
   public accounts: AccountData[] = [];
-  public transactions: TransactionData[] = [];
+  public recentTransactions: TransactionData[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -68,17 +68,19 @@ class UserStore {
     }
   }
 
-  private updateTransactions = action((transactions: TransactionData[]) => {
-    this.transactions = transactions;
-  });
+  private updateRecentTransactions = action(
+    (transactions: TransactionData[]) => {
+      this.recentTransactions = transactions;
+    },
+  );
 
-  public async fetchTransactions() {
+  public async fetchRecentTransactions() {
     try {
       const resp = await axios.get(
-        `/api/accounts/${this.accounts[0].id}/transactions?page=1&limit=20`,
+        `/api/accounts/${this.accounts[0].id}/transactions?page=1&limit=3`,
       );
       console.log(resp);
-      this.updateTransactions(resp.data.transactions);
+      this.updateRecentTransactions(resp.data.transactions);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         console.error('Error message:', err);

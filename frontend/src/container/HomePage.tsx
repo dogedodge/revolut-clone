@@ -35,7 +35,7 @@ const HomePage = observer(() => {
   useEffect(() => {
     if (userStore.authenticated) {
       userStore.fetchAccounts().then(() => {
-        userStore.fetchTransactions();
+        userStore.fetchRecentTransactions();
       });
     }
   }, [userStore.authenticated]);
@@ -106,7 +106,7 @@ const HomePage = observer(() => {
           <div className="w-full h-full absolute top-4 bg-gray-200"></div>
           <TransactionList
             className="relative ml-4 mr-4"
-            transactions={userStore.transactions}
+            transactions={userStore.recentTransactions}
             onClick={onTransactionClick}
           ></TransactionList>
           <div className="h-[40vh]"></div>
