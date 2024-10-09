@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import ModalProvider from './provider/ModalProvider';
-import { useStore } from './provider/StoreProvider';
+import { useStoreContext } from './provider/StoreProvider';
 import { useEffect } from 'react';
 
 const RootContainer = () => {
-  const { userStore } = useStore();
+  const { userStore } = useStoreContext();
 
   useEffect(() => {
     userStore

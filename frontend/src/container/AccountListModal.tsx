@@ -4,7 +4,7 @@ import AccountListView, {
 } from '../component/account/AccountListView';
 // import mockAccounts from '../mock/mockAccouts';
 import { useModal } from './provider/ModalProvider';
-import { useStore } from './provider/StoreProvider';
+import { useStoreContext } from './provider/StoreProvider';
 
 interface AccountListModalProps {
   className?: string;
@@ -13,7 +13,7 @@ interface AccountListModalProps {
 const AccountListModal = observer(
   ({ className = '' }: AccountListModalProps) => {
     const { dismissModal } = useModal();
-    const { userStore } = useStore();
+    const { userStore } = useStoreContext();
 
     const handleChange = (evt: AccountListEvent) => {
       if (evt.type === 'dismiss') {

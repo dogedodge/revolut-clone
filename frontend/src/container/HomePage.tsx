@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AccountSlideEvent } from '../component/account-slider/AccountSlide';
 import { observer } from 'mobx-react-lite';
-import { useStore } from './provider/StoreProvider';
+import { useStoreContext } from './provider/StoreProvider';
 
 // const accountData = [
 //   {
@@ -26,7 +26,7 @@ import { useStore } from './provider/StoreProvider';
 // ];
 
 const HomePage = observer(() => {
-  const { userStore } = useStore();
+  const { userStore } = useStoreContext();
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [headerWhiteBg, setHeaderWhiteBg] = useState(false);
   const [bgMarginTop, setBgMarginTop] = useState(0);

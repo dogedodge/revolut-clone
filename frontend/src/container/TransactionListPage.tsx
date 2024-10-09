@@ -1,11 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import TransactionGroupList from '../component/transaction/TransactionGroupList';
-import mockTransactions from '../mock/mockTransactions';
 import { TransactionListEvent } from '../component/transaction/TransactionList';
 import SubpageLayout from '../component/layout/SubpageLayout';
+import { useStoreContext } from './provider/StoreProvider';
+import { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 
-const TransactionListPage = () => {
+const TransactionListPage = observer(() => {
   const navigate = useNavigate();
+  const { transactionStore } = useStoreContext();
+
+  useEffect(() => {
+    transactionStore.fetchTransactions();
+  }, []);
 
   const handleDismiss = () => {
     navigate('/');
@@ -20,13 +27,15 @@ const TransactionListPage = () => {
 
   return (
     <SubpageLayout title="Transactions" onDismiss={handleDismiss}>
-      <TransactionGroupList
-        transactions={mockTransactions}
-        onClick={onTransactionClick}
-      ></TransactionGroupList>
+      {transactionStore.transactions.length > 0 && (
+        <TransactionGroupList
+          transactions={transactionStore.transactions}
+          onClick={onTransactionClick}
+        ></TransactionGroupList>
+      )}
       <div className="h-[40vh]"></div>
     </SubpageLayout>
   );
-};
+});
 
 export default TransactionListPage;
