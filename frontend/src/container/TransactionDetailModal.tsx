@@ -6,6 +6,7 @@ import TransactionDetailView, {
 import { useModal } from './provider/ModalProvider';
 import { useStoreContext } from './provider/StoreProvider';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import { observer } from 'mobx-react-lite';
 
 // const transactionDetail: TransactionDetail = {
 //   id: 101,
@@ -24,45 +25,47 @@ interface TransactionDetailModalProps {
   className?: string;
 }
 
-const TransactionDetailModal = ({
-  className = '',
-}: TransactionDetailModalProps) => {
-  const { dismissModal, currentId } = useModal();
-  const { transactionStore } = useStoreContext();
+const TransactionDetailModal = observer(
+  ({ className = '' }: TransactionDetailModalProps) => {
+    const { dismissModal, currentId } = useModal();
+    const { transactionStore } = useStoreContext();
 
-  useEffect(() => {
-    if (currentId) {
-      transactionStore.fetchDetail(currentId);
-    }
-  }, [currentId]);
+    useEffect(() => {
+      if (currentId) {
+        transactionStore.fetchDetail(currentId);
+      }
+    }, [currentId]);
 
-  const handleClick = (evt: TransactionDetailEvent) => {
-    // if (evt.type === 'dismiss') {
-    //   dismissModal();
-    // }
-  };
+    const handleClick = (evt: TransactionDetailEvent) => {
+      // if (evt.type === 'dismiss') {
+      //   dismissModal();
+      // }
+    };
 
-  return (
-    <div className={`bg-gray-100 w-full h-screen rounded-xl p-4 ${className}`}>
-      <div>
-        <div
-          className="size-12"
-          onClick={() => {
-            dismissModal();
-          }}
-        >
-          <XMarkIcon className="size-6"></XMarkIcon>
+    return (
+      <div
+        className={`bg-gray-100 w-full h-screen rounded-xl p-4 ${className}`}
+      >
+        <div>
+          <div
+            className="size-12"
+            onClick={() => {
+              dismissModal();
+            }}
+          >
+            <XMarkIcon className="size-6"></XMarkIcon>
+          </div>
         </div>
+        {!!transactionStore.transactionDetail && (
+          <TransactionDetailView
+            data={transactionStore.transactionDetail}
+            // className={`${className}`}
+            onClick={handleClick}
+          ></TransactionDetailView>
+        )}
       </div>
-      {!!transactionStore.transactionDetail && (
-        <TransactionDetailView
-          data={transactionStore.transactionDetail}
-          // className={`${className}`}
-          onClick={handleClick}
-        ></TransactionDetailView>
-      )}
-    </div>
-  );
-};
+    );
+  },
+);
 
 export default TransactionDetailModal;
