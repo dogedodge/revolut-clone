@@ -2,7 +2,7 @@ import { TransactionDetail } from '../../interface';
 import formatAmountWithCurrency from '../../utils/formatAmountWithCurrency';
 import BrandIcon from '../transaction/BrandIcon';
 import TransactionDetailItem from './TransactionDetailItem';
-import { XMarkIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
+import { ChevronRightIcon } from '@heroicons/react/24/solid';
 
 export type TransactionDetailEvent = {
   type: 'dismiss' | 'seeAll';
@@ -21,18 +21,7 @@ const TransactionDetailView = ({
   onClick,
 }: TransactionDetailViewProps) => {
   return (
-    <div className={`bg-gray-100 w-full h-screen rounded-xl p-4 ${className}`}>
-      <div>
-        <div
-          className="size-12"
-          onClick={() => {
-            onClick && onClick({ type: 'dismiss' });
-          }}
-        >
-          <XMarkIcon className="size-6"></XMarkIcon>
-        </div>
-      </div>
-
+    <div className={`bg-gray-100 ${className}`}>
       <div className="flex flex-row justify-between">
         <div>
           <div className="text-3xl font-bold">
