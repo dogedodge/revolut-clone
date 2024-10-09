@@ -24,7 +24,7 @@ export async function getTransactionDetail(
 
   return {
     ...detail,
-    totalSpentAtBrand: numOfTrans,
-    numberOfTransAtBrand: totalSpent,
+    totalSpentAtBrand: totalSpent,
+    numberOfTransAtBrand: numOfTrans,
   };
 }
