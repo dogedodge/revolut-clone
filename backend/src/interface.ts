@@ -31,6 +31,8 @@ type TransferRecord = {
 
 interface TransactionRecord {
   id: number | string;
+  userId: number | string;
+  accountId: number | string;
   recipient: string;
   category: string;
   currency: string;
@@ -41,6 +43,6 @@ interface TransactionRecord {
 interface TransactionDetail extends TransactionRecord {
   status: string;
   card: string;
-  totalSpentAtBrand: number;
+  totalSpentAtBrand: number | string;
   numberOfTransAtBrand: number;
 }

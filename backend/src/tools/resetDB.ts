@@ -48,6 +48,7 @@ async function resetDB() {
       'getTransactionCount',
       'getTransactionRecords',
       'getTransactionDetail',
+      'getTransactionRecipientStats',
     ];
 
     for (let i in procedures) {

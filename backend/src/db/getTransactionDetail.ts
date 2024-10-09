@@ -11,7 +11,20 @@ export async function getTransactionDetail(
 
   // console.log(result);
   const detail: TransactionDetail = (result as any)[0][0];
-  // console.log(result);
 
-  return detail;
+  const [_stats] = await ctx.pool.execute(
+    'CALL getTransactionRecipientStats(?,?,?)',
+    [ctx.userId, detail.accountId, detail.recipient],
+  );
+  console.log(_stats);
+  const { numOfTrans, totalSpent } = (_stats as any)[0][0] as {
+    numOfTrans: number;
+    totalSpent: string;
+  };
+
+  return {
+    ...detail,
+    totalSpentAtBrand: numOfTrans,
+    numberOfTransAtBrand: totalSpent,
+  };
 }
