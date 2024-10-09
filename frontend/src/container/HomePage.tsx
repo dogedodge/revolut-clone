@@ -5,7 +5,7 @@ import TransactionList, {
   TransactionListEvent,
 } from '../component/transaction/TransactionList';
 import ScrollerComponent from '../component/ScrollerComponent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import mockTransactions from '../mock/mockTransactions';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AccountSlideEvent } from '../component/account-slider/AccountSlide';
@@ -31,6 +31,14 @@ const HomePage = observer(() => {
   const [headerWhiteBg, setHeaderWhiteBg] = useState(false);
   const [bgMarginTop, setBgMarginTop] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userStore.authenticated) {
+      userStore.fetchAccounts().then(() => {
+        userStore.fetchTransactions();
+      });
+    }
+  }, [userStore.authenticated]);
 
   const onHeaderClick = (btnType: string) => {
     console.log(btnType);

@@ -7,14 +7,13 @@ const RootContainer = () => {
   const { userStore } = useStoreContext();
 
   useEffect(() => {
-    userStore
-      .login('john.doe@example.com', 'John')
-      .then(() => {
-        return userStore.fetchAccounts();
-      })
-      .then(() => {
-        return userStore.fetchTransactions();
-      });
+    userStore.login('john.doe@example.com', 'John');
+    // .then(() => {
+    //   return userStore.fetchAccounts();
+    // })
+    // .then(() => {
+    //   return userStore.fetchTransactions();
+    // });
   }, []);
 
   return (

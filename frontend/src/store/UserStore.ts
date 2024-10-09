@@ -12,6 +12,10 @@ class UserStore {
     makeAutoObservable(this);
   }
 
+  private updateAuthenticated = action((authenticated: boolean) => {
+    this.authenticated = authenticated;
+  });
+
   public async login(email: string, password: string) {
     const hashPwd = sha256Encode(password);
     try {
@@ -24,8 +28,12 @@ class UserStore {
           },
         },
       );
+      const { code } = resp.data as { code: number };
       console.log(resp.data);
-      return resp.data;
+      if (code === 0) {
+        // this.authenticated = true;
+        this.updateAuthenticated(true);
+      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         if (err.status === 401) {

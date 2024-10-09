@@ -8,11 +8,13 @@ import { observer } from 'mobx-react-lite';
 
 const TransactionListPage = observer(() => {
   const navigate = useNavigate();
-  const { transactionStore } = useStoreContext();
+  const { userStore, transactionStore } = useStoreContext();
 
   useEffect(() => {
-    transactionStore.fetchTransactions();
-  }, []);
+    if (userStore.authenticated && userStore.accounts.length > 0) {
+      transactionStore.fetchTransactions();
+    }
+  }, [userStore.authenticated, userStore.accounts.length]);
 
   const handleDismiss = () => {
     navigate('/');
