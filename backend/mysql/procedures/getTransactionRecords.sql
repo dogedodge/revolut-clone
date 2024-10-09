@@ -8,7 +8,7 @@ CREATE PROCEDURE getTransactionRecords(
 )
 BEGIN
 
-SELECT * FROM transactionRecords WHERE userId = _userId
+SELECT id, userId, recipient, category, currency, amount, status, createAt  FROM transactionRecords WHERE userId = _userId
   AND accountId = _accountId
   ORDER BY id DESC
   LIMIT queryLimit OFFSET queryOffset;
