@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import TransactionDetailView, {
   TransactionDetailEvent,
 } from '../component/transaction-detail/TransactionDetailView';
 import { TransactionDetail } from '../interface';
 import { useModal } from './provider/ModalProvider';
+import { useStoreContext } from './provider/StoreProvider';
 
 const transactionDetail: TransactionDetail = {
   id: 101,
@@ -24,7 +26,14 @@ interface TransactionDetailModalProps {
 const TransactionDetailModal = ({
   className = '',
 }: TransactionDetailModalProps) => {
-  const { dismissModal } = useModal();
+  const { dismissModal, currentId } = useModal();
+  const { transactionStore } = useStoreContext();
+
+  useEffect(() => {
+    if (currentId) {
+      transactionStore.fetchDetail(currentId);
+    }
+  }, [currentId]);
 
   const handleClick = (evt: TransactionDetailEvent) => {
     if (evt.type === 'dismiss') {
@@ -34,7 +43,7 @@ const TransactionDetailModal = ({
 
   return (
     <TransactionDetailView
-      data={transactionDetail}
+      data={transactionStore.transactionDetail ?? transactionDetail}
       className={`${className}`}
       onClick={handleClick}
     ></TransactionDetailView>
