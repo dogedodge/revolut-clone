@@ -12,6 +12,7 @@ import { VALID_CURRENCIES } from './constants';
 import { reportBadRequestMiddleware } from './middlewares/reportBadRequestMiddleware';
 import { getDBContext } from './utils/getDBContext';
 import accountRouter from './routes/accounts';
+import transactionRouter from './routes/transactions';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -140,6 +141,7 @@ app.post(
 );
 
 app.use('/api', accountRouter);
+app.use('/api', transactionRouter);
 
 /** caught all unhandled exception here */
 app.use(unhandledExeptionMiddleware);
