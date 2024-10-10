@@ -3,6 +3,7 @@ import { getTransactionDetail } from '../db/getTransactionDetail';
 import { getDBContext } from '../utils/getDBContext';
 
 const router = Router();
+
 router.get('/transactions/:transactionId', async (req, res, next) => {
   const { transactionId } = req.params;
   try {
