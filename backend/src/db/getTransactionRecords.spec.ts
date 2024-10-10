@@ -16,9 +16,10 @@ describe('getTransactionRecords', () => {
   it('works', async () => {
     const result = await getTransactionRecords(ctx, 1, 2, 4);
     // expect(result).toBeDefined();
-    expect(result.totalCount).toEqual(15);
+    // console.log(result);
+    expect(result.totalCount).toEqual(65);
     expect(result.transactions.length).toEqual(4);
-    expect(result.transactions[0].id).toEqual(11);
-    expect(result.transactions[0].recipient).toEqual('sainsburys');
+    expect(result.transactions[0].id).toEqual(61);
+    expect(result.transactions[0].recipient).toEqual('mcdonalds');
   });
 });

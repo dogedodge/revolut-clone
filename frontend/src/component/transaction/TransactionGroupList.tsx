@@ -18,11 +18,13 @@ const TransactionGroupList = ({
     let lastDate = formatUTCtoLocal(transactions[0].createAt, 'date');
     let currentGroup: TransactionData[] = [];
     transactions.forEach((item) => {
-      if (formatUTCtoLocal(item.createAt, 'date') === lastDate) {
+      const currentDate = formatUTCtoLocal(item.createAt, 'date');
+      if (currentDate === lastDate) {
         currentGroup.push(item);
       } else {
         groups.push(currentGroup);
         currentGroup = [item];
+        lastDate = currentDate;
       }
     });
     groups.push(currentGroup);

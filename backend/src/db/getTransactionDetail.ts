@@ -16,7 +16,7 @@ export async function getTransactionDetail(
     'CALL getTransactionRecipientStats(?,?,?)',
     [ctx.userId, detail.accountId, detail.recipient],
   );
-  console.log(_stats);
+  // console.log(_stats);
   const { numOfTrans, totalSpent } = (_stats as any)[0][0] as {
     numOfTrans: number;
     totalSpent: string;
