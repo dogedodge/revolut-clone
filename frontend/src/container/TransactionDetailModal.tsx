@@ -37,9 +37,8 @@ const TransactionDetailModal = observer(
     }, [currentId]);
 
     const handleClick = (evt: TransactionDetailEvent) => {
-      // if (evt.type === 'dismiss') {
-      //   dismissModal();
-      // }
+      if (evt.type === 'seeAll') {
+      }
     };
 
     return (
