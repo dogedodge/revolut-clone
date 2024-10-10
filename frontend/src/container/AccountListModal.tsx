@@ -18,6 +18,8 @@ const AccountListModal = observer(
     const handleChange = (evt: AccountListEvent) => {
       if (evt.type === 'dismiss') {
         dismissModal();
+      } else if (evt.type === 'item-selected-change') {
+        userStore.setCurrentAccountIndex(evt.payload as number);
       }
     };
 
@@ -28,6 +30,7 @@ const AccountListModal = observer(
         total={3000}
         onChange={handleChange}
         className={className}
+        selectedIndex={userStore.currentAccountIndex}
       ></AccountListView>
     );
   },
