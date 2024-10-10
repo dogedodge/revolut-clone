@@ -1,9 +1,6 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import { body, param } from 'express-validator';
-import { userLogin } from './db/userLogin';
-import { getUserAccounts } from './db/getUserAccounts';
-import { getTransferRecords } from './db/getTransferRecords';
+import { body } from 'express-validator';
 import { tranferCredits } from './db/transferCredits';
 import { unhandledExeptionMiddleware } from './middlewares/unhandledExeptionMiddleware';
 import { createDBContextMiddleware } from './middlewares/createDBContextMiddleware';
@@ -11,10 +8,9 @@ import { validateCookieMiddleware } from './middlewares/validateCookieMiddleware
 import { VALID_CURRENCIES } from './constants';
 import { reportBadRequestMiddleware } from './middlewares/reportBadRequestMiddleware';
 import { getDBContext } from './utils/getDBContext';
+import loginRouter from './routes/login';
 import accountRouter from './routes/accounts';
 import transactionRouter from './routes/transactions';
-
-const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
 
@@ -22,46 +18,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(validateCookieMiddleware);
 app.use(createDBContextMiddleware());
-
-app.post(
-  '/api/login',
-  body('email')
-    .notEmpty()
-    .withMessage('Email is required')
-    .isEmail()
-    .withMessage('Invalid email format'),
-  body('password')
-    .notEmpty()
-    .withMessage('Password is required')
-    .custom((value) => {
-      // Validate password as a SHA256 hash
-      if (!/^[a-f0-9]{64}$/.test(value)) {
-        throw new Error('Invalid password format');
-      }
-      return true;
-    }),
-  reportBadRequestMiddleware,
-  async (req, res, next) => {
-    const { email, password } = req.body;
-    try {
-      const user = await userLogin(getDBContext(req), email, password);
-      res.cookie('userId', user.id, { httpOnly: true });
-      res.cookie('sessionToken', user.sessionToken, {
-        httpOnly: true,
-        secure: isProduction,
-      });
-      return res.json({ code: 0, user });
-    } catch (err) {
-      const { message } = err as Error;
-      switch (message) {
-        case 'Invalid email or password':
-          return res.status(401).json({ code: 1, message });
-        default:
-          return next(err);
-      }
-    }
-  },
-);
 
 app.post(
   '/api/transfers',
@@ -111,6 +67,7 @@ app.post(
   },
 );
 
+app.use('/api', loginRouter);
 app.use('/api', accountRouter);
 app.use('/api', transactionRouter);
 
