@@ -6,6 +6,7 @@ import { AccountData, TransactionData } from '../interface';
 class UserStore {
   public authenticated: boolean = false;
   public accounts: AccountData[] = [];
+  public currentAccountIndex: number = 0;
   public recentTransactions: TransactionData[] = [];
 
   constructor() {
@@ -47,6 +48,10 @@ class UserStore {
       throw err;
     }
   }
+
+  public setCurrentAccountIndex = action((index: number) => {
+    this.currentAccountIndex = index;
+  });
 
   private updateAccounts = action((accounts: AccountData[]) => {
     this.accounts = accounts;

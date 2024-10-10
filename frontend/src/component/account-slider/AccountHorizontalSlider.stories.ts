@@ -6,7 +6,7 @@ const meta: Meta<typeof AccountHorizontalSlider> = {
   title: 'Component/AccountSlider/AccountHorizontalSlider',
   component: AccountHorizontalSlider,
   tags: ['autodocs'],
-  args: { onClick: fn() },
+  args: { onClick: fn(), onSlideChange: fn() },
 };
 
 export default meta;
@@ -16,12 +16,12 @@ export const Primary: Story = {
   args: {
     accounts: [
       {
-        accountId: 5,
+        id: 5,
         currency: 'HKD',
         balance: 215.18,
       },
       {
-        accountId: 6,
+        id: 6,
         currency: 'GBP',
         balance: 115.18,
       },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AccountSlide, { AccountSlideEvent } from './AccountSlide';
 
 import Slider, { Settings } from 'react-slick';
@@ -35,25 +35,42 @@ const settings: Settings = {
 
 interface AccountHorizontalSliderProps {
   accounts: AccountData[];
-  onClick?: (event: AccountSlideEvent) => void;
+  onClick: (event: AccountSlideEvent) => void;
+  currentSlide?: number;
+  onSlideChange: (slideIndex: number) => void;
 }
 
-const AccountHorizontalSlider: React.FC<AccountHorizontalSliderProps> = ({
+const AccountHorizontalSlider = ({
   accounts,
   onClick,
-}) => {
+  currentSlide = 0,
+  onSlideChange,
+}: AccountHorizontalSliderProps) => {
   const slideCount = accounts.length;
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const ref = useRef<Slider>(null);
+  const [dotIndex, setDotIndex] = useState(currentSlide); // used to controll CustomDots
+
+  const handleSliderChange = (slideIndex: number) => {
+    setDotIndex(slideIndex);
+    onSlideChange(slideIndex);
+  };
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.slickGoTo(currentSlide);
+    }
+  }, [currentSlide]);
+
   return (
     <div className="relative">
       <div className="w-screen flex justify-center absolute bottom-28">
         <CustomDots
           slideCount={slideCount}
-          currentSlide={currentSlide}
+          currentSlide={dotIndex}
         ></CustomDots>
       </div>
 
-      <Slider {...settings} afterChange={(value) => setCurrentSlide(value)}>
+      <Slider ref={ref} {...settings} afterChange={handleSliderChange}>
         {accounts.map((data) => (
           <AccountSlide
             key={data.id}

@@ -68,6 +68,10 @@ const HomePage = observer(() => {
     }
   };
 
+  const onAccountSlideChange = (slideIndex: number) => {
+    userStore.setCurrentAccountIndex(slideIndex);
+  };
+
   const onScroll = (position: number) => {
     console.log(position);
     setHeaderOpacity(Math.min(position / 80, 1));
@@ -100,6 +104,8 @@ const HomePage = observer(() => {
         <AccountHorizontalSlider
           accounts={userStore.accounts}
           onClick={onAccountSlideClick}
+          currentSlide={userStore.currentAccountIndex}
+          onSlideChange={onAccountSlideChange}
         ></AccountHorizontalSlider>
 
         <div className="relative mt-8 w-full">
