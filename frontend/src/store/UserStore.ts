@@ -53,6 +53,14 @@ class UserStore {
     this.currentAccountIndex = index;
   });
 
+  public get currentAccount() {
+    if (this.accounts.length > this.currentAccountIndex) {
+      return this.accounts[this.currentAccountIndex];
+    } else {
+      return null;
+    }
+  }
+
   private updateAccounts = action((accounts: AccountData[]) => {
     this.accounts = accounts;
   });
@@ -82,7 +90,7 @@ class UserStore {
   public async fetchRecentTransactions() {
     try {
       const resp = await axios.get(
-        `/api/accounts/${this.accounts[0].id}/transactions?page=1&limit=3`,
+        `/api/accounts/${this.currentAccount!.id}/transactions?page=1&limit=3`,
       );
       console.log(resp);
       this.updateRecentTransactions(resp.data.transactions);

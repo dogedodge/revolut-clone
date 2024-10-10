@@ -38,7 +38,7 @@ const HomePage = observer(() => {
         userStore.fetchRecentTransactions();
       });
     }
-  }, [userStore.authenticated]);
+  }, [userStore.authenticated, userStore.currentAccountIndex]);
 
   const onHeaderClick = (btnType: string) => {
     console.log(btnType);

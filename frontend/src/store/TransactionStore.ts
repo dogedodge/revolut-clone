@@ -18,7 +18,7 @@ class TransactionStore {
   public async fetchTransactions() {
     try {
       const resp = await axios.get(
-        `/api/accounts/${this.userStore.accounts[0].id}/transactions?page=1&limit=20`,
+        `/api/accounts/${this.userStore.currentAccount!.id}/transactions?page=1&limit=20`,
       );
       console.log(resp);
       this.updateTransactions(resp.data.transactions);
