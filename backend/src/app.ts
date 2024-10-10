@@ -63,35 +63,6 @@ app.post(
   },
 );
 
-app.get('/api/accounts', async (req, res, next) => {
-  try {
-    const accounts = await getUserAccounts(getDBContext(req));
-    return res.json({ code: 0, accounts });
-  } catch (err) {
-    return next(err);
-  }
-});
-
-app.get(
-  '/api/accounts/:accountId/transfers',
-  param('accountId')
-    .notEmpty()
-    .withMessage('Account ID is required')
-    .isInt()
-    .withMessage('Account ID must be an integer'),
-  reportBadRequestMiddleware,
-  async (req, res, next) => {
-    const { accountId } = req.params || {};
-
-    try {
-      const transfers = await getTransferRecords(getDBContext(req), accountId);
-      return res.json({ code: 0, transfers });
-    } catch (err) {
-      return next(err);
-    }
-  },
-);
-
 app.post(
   '/api/transfers',
   body('senderId')
