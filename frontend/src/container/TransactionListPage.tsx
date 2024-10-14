@@ -5,6 +5,7 @@ import SubpageLayout from '../component/layout/SubpageLayout';
 import { useStoreContext } from './provider/StoreProvider';
 import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
+import SubpageLayoutWithInfinite from '../component/layout/SubpageLayoutWithInfinite';
 
 const TransactionListPage = observer(() => {
   const navigate = useNavigate();
@@ -28,7 +29,15 @@ const TransactionListPage = observer(() => {
   };
 
   return (
-    <SubpageLayout title="Transactions" onDismiss={handleDismiss}>
+    <SubpageLayoutWithInfinite
+      title="Transactions"
+      onDismiss={handleDismiss}
+      hasMore={transactionStore.hasMore}
+      isLoading={transactionStore.isLoadingList}
+      loadMore={() => {
+        transactionStore.fetchTransactions();
+      }}
+    >
       {transactionStore.transactions.length > 0 && (
         <TransactionGroupList
           transactions={transactionStore.transactions}
@@ -36,7 +45,7 @@ const TransactionListPage = observer(() => {
         ></TransactionGroupList>
       )}
       <div className="h-[40vh]"></div>
-    </SubpageLayout>
+    </SubpageLayoutWithInfinite>
   );
 });
 
