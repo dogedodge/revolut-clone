@@ -31,6 +31,9 @@ class TransactionStore {
   );
 
   public async fetchTransactions() {
+    if (!this.hasMore || this.isLoadingList) {
+      return;
+    }
     try {
       this.startLoadList();
       const resp = await axios.get(
@@ -53,6 +56,7 @@ class TransactionStore {
   }
 
   public get hasMore(): boolean {
+    if (this.totalCount === 0) return true;
     return this.currentPage * LIMIT_PER_PAGE < this.totalCount;
   }
 

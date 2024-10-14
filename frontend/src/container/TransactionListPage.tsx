@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import TransactionGroupList from '../component/transaction/TransactionGroupList';
 import { TransactionListEvent } from '../component/transaction/TransactionList';
-import SubpageLayout from '../component/layout/SubpageLayout';
 import { useStoreContext } from './provider/StoreProvider';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import SubpageLayoutWithInfinite from '../component/layout/SubpageLayoutWithInfinite';
 
@@ -28,15 +27,19 @@ const TransactionListPage = observer(() => {
     }
   };
 
+  const loadMore = useCallback(() => {
+    if (userStore.authenticated && userStore.accounts.length > 0) {
+      transactionStore.fetchTransactions();
+    }
+  }, [userStore.authenticated, userStore.accounts.length]);
+
   return (
     <SubpageLayoutWithInfinite
       title="Transactions"
       onDismiss={handleDismiss}
       hasMore={transactionStore.hasMore}
       isLoading={transactionStore.isLoadingList}
-      loadMore={() => {
-        transactionStore.fetchTransactions();
-      }}
+      loadMore={loadMore}
     >
       {transactionStore.transactions.length > 0 && (
         <TransactionGroupList
