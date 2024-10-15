@@ -11,8 +11,17 @@ const ScrollerComponent = ({
   children,
   onScroll,
 }: ScrollerComponentProps) => {
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useScroll(onScroll);
 
+  return (
+    <div ref={scrollRef} className={`overflow-scroll ${className}`}>
+      {children}
+    </div>
+  );
+};
+
+export const useScroll = (onScroll: (position: number) => void) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
       onScroll(scrollRef.current.scrollTop);
@@ -32,11 +41,7 @@ const ScrollerComponent = ({
     };
   }, [handleScroll]);
 
-  return (
-    <div ref={scrollRef} className={`overflow-scroll ${className}`}>
-      {children}
-    </div>
-  );
+  return scrollRef;
 };
 
 export default ScrollerComponent;
