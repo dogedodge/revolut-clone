@@ -1,21 +1,24 @@
 import { ReactNode, useEffect, useRef } from 'react';
+import { useScroll } from './ScrollerComponent';
 
 interface InfiniteScrollerProps {
-  hasMore: boolean;
-  isLoading: boolean;
-  loadMore: () => void;
+  onScroll?: (position: number) => void;
+  hasMore?: boolean;
+  isLoading?: boolean;
+  loadMore?: () => void;
   children: ReactNode;
   className?: string;
 }
 
 const InfiniteScroller = ({
-  hasMore,
-  isLoading,
+  onScroll,
+  hasMore = false,
+  isLoading = false,
   loadMore,
   children,
-  className,
+  className = '',
 }: InfiniteScrollerProps) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useScroll(onScroll);
   const sentryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,7 +26,7 @@ const InfiniteScroller = ({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !isLoading && hasMore) {
-            loadMore();
+            loadMore && loadMore();
           }
         });
       },

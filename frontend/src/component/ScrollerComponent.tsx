@@ -20,26 +20,28 @@ const ScrollerComponent = ({
   );
 };
 
-export const useScroll = (onScroll: (position: number) => void) => {
+export const useScroll = (
+  onScroll: ((position: number) => void) | undefined,
+) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
-      onScroll(scrollRef.current.scrollTop);
+      onScroll && onScroll(scrollRef.current.scrollTop);
     }
   }, [onScroll]);
 
   useEffect(() => {
     const scrollElement = scrollRef.current;
     if (scrollElement) {
-      scrollElement.addEventListener('scroll', handleScroll);
+      onScroll && scrollElement.addEventListener('scroll', handleScroll);
     }
 
     return () => {
       if (scrollElement) {
-        scrollElement.removeEventListener('scroll', handleScroll);
+        onScroll && scrollElement.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [handleScroll]);
+  }, [handleScroll, onScroll]);
 
   return scrollRef;
 };
