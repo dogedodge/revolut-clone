@@ -4,7 +4,7 @@ import { TransactionListEvent } from '../component/transaction/TransactionList';
 import { useStoreContext } from './provider/StoreProvider';
 import { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import SubpageLayoutWithInfinite from '../component/layout/SubpageLayoutWithInfinite';
+import SubpageLayout from '../component/layout/SubpageLayout';
 
 const TransactionListPage = observer(() => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const TransactionListPage = observer(() => {
   }, [userStore.authenticated, userStore.accounts.length]);
 
   return (
-    <SubpageLayoutWithInfinite
+    <SubpageLayout
       title="Transactions"
       onDismiss={handleDismiss}
       hasMore={transactionStore.hasMore}
@@ -48,7 +48,7 @@ const TransactionListPage = observer(() => {
         ></TransactionGroupList>
       )}
       <div className="h-[40vh]"></div>
-    </SubpageLayoutWithInfinite>
+    </SubpageLayout>
   );
 });
 

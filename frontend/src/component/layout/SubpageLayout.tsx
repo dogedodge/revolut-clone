@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
 import SubpageHeader from './SubpageHeader';
-import ScrollerComponent from '../ScrollerComponent';
+import InfiniteScroller from '../InfiniteScroller';
 
 interface SubpageLayoutProps {
   title: string;
   children: React.ReactNode;
   onDismiss: () => void;
+  hasMore: boolean;
+  isLoading: boolean;
+  loadMore: () => void;
 }
 
-const SubpageLayout = ({ title, children, onDismiss }: SubpageLayoutProps) => {
+const SubpageLayout = ({
+  hasMore,
+  isLoading,
+  loadMore,
+  title,
+  children,
+  onDismiss,
+}: SubpageLayoutProps) => {
   const [animationStyle, setAnimationStyle] = useState('translate-x-full');
   const [hideTitle, setHideTitle] = useState(true);
 
@@ -48,14 +58,17 @@ const SubpageLayout = ({ title, children, onDismiss }: SubpageLayoutProps) => {
         hideTitle={hideTitle}
         onClick={handleDismiss}
       ></SubpageHeader>
-      <ScrollerComponent
+      <InfiniteScroller
+        hasMore={hasMore}
+        isLoading={isLoading}
+        loadMore={loadMore}
         onScroll={handleScroll}
         className="relative w-full flex-grow overflow-scroll pl-4 pr-4"
       >
         <div className="text-4xl font-semibold mt-4">{title}</div>
 
         {children}
-      </ScrollerComponent>
+      </InfiniteScroller>
     </div>
   );
 };
