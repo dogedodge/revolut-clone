@@ -26,7 +26,7 @@ import { useStoreContext } from './provider/StoreProvider';
 // ];
 
 const HomePage = observer(() => {
-  const { userStore } = useStoreContext();
+  const { userStore, transactionStore } = useStoreContext();
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [headerWhiteBg, setHeaderWhiteBg] = useState(false);
   const [bgMarginTop, setBgMarginTop] = useState(0);
@@ -37,6 +37,7 @@ const HomePage = observer(() => {
       userStore.fetchAccounts().then(() => {
         userStore.fetchRecentTransactions();
       });
+      transactionStore.resetTransactionList();
     }
   }, [userStore.authenticated, userStore.currentAccountIndex]);
 
