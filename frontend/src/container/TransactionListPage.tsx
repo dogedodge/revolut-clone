@@ -2,9 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import TransactionGroupList from '../component/transaction/TransactionGroupList';
 import { TransactionListEvent } from '../component/transaction/TransactionList';
 import { useStoreContext } from './provider/StoreProvider';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
 import SubpageLayout from '../component/layout/SubpageLayout';
+import splitTransactionGroup from '../utils/splitTransactionGroup';
 
 const TransactionListPage = observer(() => {
   const navigate = useNavigate();
@@ -33,6 +34,10 @@ const TransactionListPage = observer(() => {
     }
   }, [userStore.authenticated, userStore.accounts.length]);
 
+  const transactionGroups = useMemo(() => {
+    return splitTransactionGroup(transactionStore.transactions);
+  }, [transactionStore.transactions.length]);
+
   return (
     <SubpageLayout
       title="Transactions"
@@ -43,7 +48,8 @@ const TransactionListPage = observer(() => {
     >
       {transactionStore.transactions.length > 0 && (
         <TransactionGroupList
-          transactions={transactionStore.transactions}
+          // transactions={transactionStore.transactions}
+          transactionGroups={transactionGroups}
           onClick={onTransactionClick}
         ></TransactionGroupList>
       )}
