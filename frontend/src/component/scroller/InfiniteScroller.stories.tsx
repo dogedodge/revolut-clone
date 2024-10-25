@@ -1,20 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import ScrollerComponent from './ScrollerComponent';
-import testImg from '../assets/purple-waves.jpg';
+import InfiniteScroller from './InfiniteScroller';
+import testImg from '../../assets/purple-waves.jpg';
 
 const meta = {
-  title: 'Component/ScrollerComponent',
-  component: ScrollerComponent,
+  title: 'Component/Scroller/InfiniteScroller',
+  component: InfiniteScroller,
   tags: ['autodocs'],
-  args: { onScroll: fn() },
-} satisfies Meta<typeof ScrollerComponent>;
+  args: { loadMore: fn() },
+} satisfies Meta<typeof InfiniteScroller>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
+    hasMore: true,
+    isLoading: false,
     className: 'h-80',
     children: <img src={testImg}></img>,
   },

@@ -4,7 +4,7 @@ import bgImage from '../assets/purple-waves.jpg';
 import TransactionList, {
   TransactionListEvent,
 } from '../component/transaction/TransactionList';
-import ScrollerComponent from '../component/ScrollerComponent';
+import ScrollerComponent from '../component/scroller/ScrollerComponent';
 import { useEffect, useState } from 'react';
 // import mockTransactions from '../mock/mockTransactions';
 import { Outlet, useNavigate } from 'react-router-dom';

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import SubpageHeader from './SubpageHeader';
-import InfiniteScroller from '../InfiniteScroller';
+import InfiniteScroller from '../scroller/InfiniteScroller';
 
 interface SubpageLayoutProps {
   title: string;
