@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const useClickEffect = (onClick?: () => void) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -11,9 +11,7 @@ const useClickEffect = (onClick?: () => void) => {
     }
   }, [onClick, setIsClicked]);
 
-  return useMemo(() => {
-    return { isClicked, handleClick };
-  }, [isClicked, handleClick]);
+  return { isClicked, handleClick };
 };
 
 export default useClickEffect;
