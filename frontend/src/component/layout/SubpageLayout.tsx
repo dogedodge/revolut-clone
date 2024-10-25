@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import SubpageHeader from './SubpageHeader';
 import InfiniteScroller from '../scroller/InfiniteScroller';
 
@@ -6,6 +6,8 @@ interface SubpageLayoutProps {
   title: string;
   children: React.ReactNode;
   onDismiss: () => void;
+
+  // for infinite load
   hasMore: boolean;
   isLoading: boolean;
   loadMore: () => void;
@@ -19,6 +21,25 @@ const SubpageLayout = ({
   children,
   onDismiss,
 }: SubpageLayoutProps) => {
+  const { renderSubpage, handleScroll } = useSubpageLayout(title, onDismiss);
+
+  return renderSubpage(
+    <InfiniteScroller
+      hasMore={hasMore}
+      isLoading={isLoading}
+      loadMore={loadMore}
+      onScroll={handleScroll}
+      className="relative w-full flex-grow overflow-scroll pl-4 pr-4"
+    >
+      <div className="text-4xl font-semibold mt-4">{title}</div>
+      {children}
+    </InfiniteScroller>,
+  );
+};
+
+export default SubpageLayout;
+
+export const useSubpageLayout = (title: string, onDismiss: () => void) => {
   const [animationStyle, setAnimationStyle] = useState('translate-x-full');
   const [hideTitle, setHideTitle] = useState(true);
 
@@ -49,7 +70,7 @@ const SubpageLayout = ({
     }
   };
 
-  return (
+  const renderSubpage = (children: ReactNode) => (
     <div
       className={`absolute z-20 w-full h-full flex flex-col bg-gray-100 transition-transform duration-300 ${animationStyle}`}
     >
@@ -58,19 +79,12 @@ const SubpageLayout = ({
         hideTitle={hideTitle}
         onClick={handleDismiss}
       ></SubpageHeader>
-      <InfiniteScroller
-        hasMore={hasMore}
-        isLoading={isLoading}
-        loadMore={loadMore}
-        onScroll={handleScroll}
-        className="relative w-full flex-grow overflow-scroll pl-4 pr-4"
-      >
-        <div className="text-4xl font-semibold mt-4">{title}</div>
-
-        {children}
-      </InfiniteScroller>
+      {children}
     </div>
   );
-};
 
-export default SubpageLayout;
+  return {
+    renderSubpage,
+    handleScroll,
+  };
+};
