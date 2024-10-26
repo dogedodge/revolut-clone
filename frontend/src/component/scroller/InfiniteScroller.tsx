@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, RefObject, useEffect, useRef } from 'react';
 import { useScroll } from './ScrollerComponent';
 
 interface InfiniteScrollerProps {
@@ -19,6 +19,29 @@ const InfiniteScroller = ({
   className = '',
 }: InfiniteScrollerProps) => {
   const scrollRef = useScroll(onScroll);
+  const renderSentry = useInfiniteScroll(
+    scrollRef,
+    hasMore,
+    isLoading,
+    loadMore,
+  );
+
+  return (
+    <div ref={scrollRef} className={`overflow-scroll ${className}`}>
+      {children}
+      {renderSentry()}
+    </div>
+  );
+};
+
+export default InfiniteScroller;
+
+const useInfiniteScroll = (
+  scrollRef: RefObject<HTMLDivElement>,
+  hasMore?: boolean,
+  isLoading?: boolean,
+  loadMore?: () => void,
+) => {
   const sentryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,14 +66,10 @@ const InfiniteScroller = ({
     };
   }, [isLoading, hasMore]);
 
-  return (
-    <div ref={scrollRef} className={`overflow-scroll ${className}`}>
-      {children}
-      {(isLoading || hasMore) && (
-        <div ref={sentryRef} className="h-[1px] w-full"></div>
-      )}
-    </div>
-  );
-};
+  const renderSentry = () =>
+    (isLoading || hasMore) && (
+      <div ref={sentryRef} className="h-[1px] w-full"></div>
+    );
 
-export default InfiniteScroller;
+  return renderSentry;
+};
