@@ -8,14 +8,14 @@ interface SubpageLayoutProps {
   onDismiss: () => void;
 
   // for infinite load
-  hasMore: boolean;
-  isLoading: boolean;
-  loadMore: () => void;
+  hasMore?: boolean;
+  isLoading?: boolean;
+  loadMore?: () => void;
 }
 
 const SubpageLayout = ({
-  hasMore,
-  isLoading,
+  hasMore = false,
+  isLoading = false,
   loadMore,
   title,
   children,

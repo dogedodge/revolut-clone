@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
 import SubpageLayout from '../component/layout/SubpageLayout';
 import splitTransactionGroup from '../utils/splitTransactionGroup';
-import { useVirtualScroll } from '../component/scroller/VirtualScroller';
+// import { useVirtualScroll } from '../component/scroller/VirtualScroller';
 
 const TransactionListPage = observer(() => {
   const navigate = useNavigate();
@@ -39,13 +39,13 @@ const TransactionListPage = observer(() => {
     return splitTransactionGroup(transactionStore.transactions);
   }, [transactionStore.transactions.length]);
 
-  const itemHeightList = useMemo(() => {
-    const heightGroups = transactionGroups.map((group) =>
-      group.map((t, index) => (index === 0 ? 92 : 64)),
-    );
-    console.log('heightGroups:', heightGroups);
-    return heightGroups.flat();
-  }, [transactionGroups]);
+  // const itemHeightList = useMemo(() => {
+  //   const heightGroups = transactionGroups.map((group) =>
+  //     group.map((t, index) => (index === 0 ? 92 : 64)),
+  //   );
+  //   console.log('heightGroups:', heightGroups);
+  //   return heightGroups.flat();
+  // }, [transactionGroups]);
 
   // const {} = useVirtualScroll()
 
