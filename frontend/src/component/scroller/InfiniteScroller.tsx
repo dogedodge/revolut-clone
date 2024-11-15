@@ -1,5 +1,5 @@
 import { ReactNode, RefObject, useEffect, useRef } from 'react';
-import { useScroll } from './ScrollerComponent';
+import { useScroll } from './PlainScroller';
 
 interface InfiniteScrollerProps {
   onScroll?: (position: number) => void;

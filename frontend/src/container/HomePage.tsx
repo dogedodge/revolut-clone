@@ -4,7 +4,7 @@ import bgImage from '../assets/purple-waves.jpg';
 import TransactionList, {
   TransactionListEvent,
 } from '../component/transaction/TransactionList';
-import ScrollerComponent from '../component/scroller/ScrollerComponent';
+import PlainScroller from '../component/scroller/PlainScroller';
 import { useEffect, useState } from 'react';
 // import mockTransactions from '../mock/mockTransactions';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -98,7 +98,7 @@ const HomePage = observer(() => {
         whiteBg={headerWhiteBg}
       ></HomeHeader>
 
-      <ScrollerComponent
+      <PlainScroller
         className="relative flex-grow flex flex-col"
         onScroll={onScroll}
       >
@@ -118,7 +118,7 @@ const HomePage = observer(() => {
           ></TransactionList>
           <div className="h-[40vh]"></div>
         </div>
-      </ScrollerComponent>
+      </PlainScroller>
 
       <Outlet></Outlet>
     </div>

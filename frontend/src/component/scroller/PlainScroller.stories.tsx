@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import ScrollerComponent from './ScrollerComponent';
+import PlainScroller from './PlainScroller';
 import testImg from '../../assets/purple-waves.jpg';
 
 const meta = {
-  title: 'Component/Scroller/ScrollerComponent',
-  component: ScrollerComponent,
+  title: 'Component/Scroller/PlainScroller',
+  component: PlainScroller,
   tags: ['autodocs'],
   args: { onScroll: fn() },
-} satisfies Meta<typeof ScrollerComponent>;
+} satisfies Meta<typeof PlainScroller>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

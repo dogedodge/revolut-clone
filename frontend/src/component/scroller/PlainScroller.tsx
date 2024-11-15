@@ -1,16 +1,16 @@
 import { ReactNode, useCallback, useEffect, useRef } from 'react';
 
-interface ScrollerComponentProps {
+interface PlainScrollerProps {
   className?: string;
   children: ReactNode;
   onScroll: (position: number) => void;
 }
 
-const ScrollerComponent = ({
+const PlainScroller = ({
   className = '',
   children,
   onScroll,
-}: ScrollerComponentProps) => {
+}: PlainScrollerProps) => {
   const scrollRef = useScroll(onScroll);
 
   return (
@@ -46,4 +46,4 @@ export const useScroll = (
   return scrollRef;
 };
 
-export default ScrollerComponent;
+export default PlainScroller;
