@@ -64,7 +64,7 @@ const TransactionListPage = observer(() => {
           onClick={onTransactionClick}
         ></TransactionGroupList>
       )}
-      <div className="h-[40vh]"></div>
+      {/* <div className="h-[40vh]"></div> */}
     </SubpageLayout>
   );
 });
