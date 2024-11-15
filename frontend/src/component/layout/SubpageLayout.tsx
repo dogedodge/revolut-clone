@@ -1,39 +1,24 @@
 import { ReactNode, useEffect, useState } from 'react';
 import SubpageHeader from './SubpageHeader';
-import InfiniteScroller from '../scroller/InfiniteScroller';
+import PlainScroller from '../scroller/PlainScroller';
 
 interface SubpageLayoutProps {
   title: string;
   children: React.ReactNode;
   onDismiss: () => void;
-
-  // for infinite load
-  hasMore?: boolean;
-  isLoading?: boolean;
-  loadMore?: () => void;
 }
 
-const SubpageLayout = ({
-  hasMore = false,
-  isLoading = false,
-  loadMore,
-  title,
-  children,
-  onDismiss,
-}: SubpageLayoutProps) => {
+const SubpageLayout = ({ title, children, onDismiss }: SubpageLayoutProps) => {
   const { renderSubpage, handleScroll } = useSubpageLayout(title, onDismiss);
 
   return renderSubpage(
-    <InfiniteScroller
-      hasMore={hasMore}
-      isLoading={isLoading}
-      loadMore={loadMore}
+    <PlainScroller
       onScroll={handleScroll}
       className="relative w-full flex-grow overflow-scroll pl-4 pr-4"
     >
       <div className="text-4xl font-semibold mt-4">{title}</div>
       {children}
-    </InfiniteScroller>,
+    </PlainScroller>,
   );
 };
 
