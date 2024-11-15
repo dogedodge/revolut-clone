@@ -4,9 +4,11 @@ import { TransactionListEvent } from '../component/transaction/TransactionList';
 import { useStoreContext } from './provider/StoreProvider';
 import { useCallback, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
-import SubpageLayout from '../component/layout/SubpageLayout';
+import { useSubpageLayout } from '../component/layout/SubpageLayout';
 import splitTransactionGroup from '../utils/splitTransactionGroup';
-// import { useVirtualScroll } from '../component/scroller/VirtualScroller';
+import InfiniteScroller from '../component/scroller/InfiniteScroller';
+
+const title = 'Transactions';
 
 const TransactionListPage = observer(() => {
   const navigate = useNavigate();
@@ -39,33 +41,27 @@ const TransactionListPage = observer(() => {
     return splitTransactionGroup(transactionStore.transactions);
   }, [transactionStore.transactions.length]);
 
-  // const itemHeightList = useMemo(() => {
-  //   const heightGroups = transactionGroups.map((group) =>
-  //     group.map((t, index) => (index === 0 ? 92 : 64)),
-  //   );
-  //   console.log('heightGroups:', heightGroups);
-  //   return heightGroups.flat();
-  // }, [transactionGroups]);
+  const { renderSubpage, handleScroll } = useSubpageLayout(
+    title,
+    handleDismiss,
+  );
 
-  // const {} = useVirtualScroll()
-
-  return (
-    <SubpageLayout
-      title="Transactions"
-      onDismiss={handleDismiss}
+  return renderSubpage(
+    <InfiniteScroller
       hasMore={transactionStore.hasMore}
       isLoading={transactionStore.isLoadingList}
       loadMore={loadMore}
+      onScroll={handleScroll}
+      className="relative w-full flex-grow overflow-scroll pl-4 pr-4"
     >
+      <div className="text-4xl font-semibold mt-4">{title}</div>
       {transactionStore.transactions.length > 0 && (
         <TransactionGroupList
-          // transactions={transactionStore.transactions}
           transactionGroups={transactionGroups}
           onClick={onTransactionClick}
         ></TransactionGroupList>
       )}
-      {/* <div className="h-[40vh]"></div> */}
-    </SubpageLayout>
+    </InfiniteScroller>,
   );
 });
 
