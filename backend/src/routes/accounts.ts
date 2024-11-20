@@ -71,4 +71,9 @@ router.get(
   },
 );
 
+router.post('/accounts/:accountId/credit', async (req, res, next) => {
+  const { accountId } = req.params || {};
+  const { amount } = req.body;
+});
+
 export default router;
