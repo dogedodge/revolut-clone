@@ -5,6 +5,7 @@ import { param, query } from 'express-validator';
 import { reportBadRequestMiddleware } from '../middlewares/reportBadRequestMiddleware';
 import { getUserAccounts } from '../db/getUserAccounts';
 import { getTransferRecords } from '../db/getTransferRecords';
+import { accountAddCredit } from '../db/accountAddCredit';
 
 const router = Router();
 
@@ -73,7 +74,25 @@ router.get(
 
 router.post('/accounts/:accountId/credit', async (req, res, next) => {
   const { accountId } = req.params || {};
-  const { amount } = req.body;
+  const { action, amount } = req.body;
+
+  try {
+    const record = await accountAddCredit(
+      getDBContext(req),
+      accountId,
+      action,
+      amount,
+    );
+    return res.json({ code: 0, record });
+  } catch (err) {
+    const { message } = err as Error;
+    switch (message) {
+      case 'Account not exist':
+        return res.status(404).json({ code: 1, message });
+      default:
+        return next(err);
+    }
+  }
 });
 
 export default router;
