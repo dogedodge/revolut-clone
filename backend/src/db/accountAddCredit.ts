@@ -13,6 +13,6 @@ export async function accountAddCredit(
     amount,
   ]);
 
-  const record: TransactionRecord = (result as any)[0][0];
-  return record;
+  const updatedAccount: Account = (result as any)[0][0];
+  return updatedAccount;
 }

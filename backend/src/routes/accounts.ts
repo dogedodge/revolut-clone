@@ -77,13 +77,13 @@ router.post('/accounts/:accountId/credit', async (req, res, next) => {
   const { action, amount } = req.body;
 
   try {
-    const record = await accountAddCredit(
+    const account = await accountAddCredit(
       getDBContext(req),
       accountId,
       action,
       amount,
     );
-    return res.json({ code: 0, record });
+    return res.json({ code: 0, account });
   } catch (err) {
     const { message } = err as Error;
     switch (message) {

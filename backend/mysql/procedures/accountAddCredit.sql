@@ -9,7 +9,7 @@ CREATE PROCEDURE accountAddCredit(
 BEGIN
 
   DECLARE acc_currency VARCHAR(3);
-  DECLARE transaction_record_id INT;
+  -- DECLARE transaction_record_id INT;
 
   START TRANSACTION;
 
@@ -30,10 +30,12 @@ BEGIN
       VALUES
       (user_id, account_id, recipient, 'Deposit', acc_currency, amount, 'Apple Pay');
     
-    SET transaction_record_id = LAST_INSERT_ID();
+    -- SET transaction_record_id = LAST_INSERT_ID();
     COMMIT;
 
-    SELECT * from transactionRecords WHERE id = transaction_record_id;
+    -- SELECT * from transactionRecords WHERE id = transaction_record_id;
+    SELECT * FROM accounts
+      WHERE id = account_id AND userId = user_id;
   
   END IF;
 

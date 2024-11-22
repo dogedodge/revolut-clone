@@ -103,6 +103,36 @@ class UserStore {
       throw err;
     }
   }
+
+  private updateAccount = action((account: AccountData) => {
+    const index = this.accounts.findIndex((acc) => acc.id === account.id);
+    if (index >= 0) {
+      this.accounts[index] = account;
+    }
+  });
+
+  public async accountAddMoney(action: string, amount: number | string) {
+    try {
+      const resp = await axios.post(
+        `/api/accounts/${this.currentAccount!.id}/credit`,
+        { action, amount },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      console.log(resp);
+      this.updateAccount(resp.data.account);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.error('Error message:', err);
+      } else {
+        console.error('Unexpected error:', err);
+      }
+      throw err;
+    }
+  }
 }
 
 export default UserStore;
