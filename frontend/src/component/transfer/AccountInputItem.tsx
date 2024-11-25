@@ -8,24 +8,29 @@ import parseAmountWithCurrency from '../../utils/parseAmountWithCurrency';
 
 interface AccountInputItemProps {
   account: AccountData;
+  minAmount: number;
   onChange: (currentAmount: number) => void;
 }
 
-const AccountInputItem = ({ account, onChange }: AccountInputItemProps) => {
-  const minAmountText = formatAmountWithCurrency(account.currency, 10);
+const AccountInputItem = ({
+  account,
+  minAmount,
+  onChange,
+}: AccountInputItemProps) => {
+  const minAmountText = formatAmountWithCurrency(account.currency, minAmount);
   const [inputValue, setInputValue] = useState(minAmountText);
   const currentAmount = parseAmountWithCurrency(inputValue);
-  // console.log(`currentAmount: ${currentAmount}`);
-  const showMinHint = currentAmount < 10;
+  const showMinHint = currentAmount < minAmount;
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const currencySymbol = CurrencySymbol[account.currency];
-    const regex = new RegExp(`^${currencySymbol}\\d*$`);
+    const regex = new RegExp(`^\\${currencySymbol}\\d*(\\.\\d{0,2})?$`);
     let nextValue = evt.currentTarget.value;
+    console.log(nextValue);
     if (regex.test(nextValue) || nextValue === '') {
       setInputValue(nextValue);
       onChange(parseAmountWithCurrency(nextValue));
-    } else if (/^\d*$/.test(nextValue)) {
+    } else if (/^\d*(\.\d{0,2})?$/.test(nextValue)) {
       nextValue = `${currencySymbol}${nextValue}`;
       setInputValue(nextValue);
       onChange(parseAmountWithCurrency(nextValue));
