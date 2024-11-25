@@ -7,7 +7,7 @@ const formatAmountWithCurrency = (
   amount: number | string,
 ): string => {
   const _amount = Number(amount);
-  return `${_amount < 0 ? '-' : ''}${CurrencySymbol[currency]}${Math.abs(_amount)}`;
+  return `${_amount < 0 ? '-' : ''}${CurrencySymbol[currency]}${Math.abs(_amount).toFixed(2)}`;
 };
 
 export default formatAmountWithCurrency;
