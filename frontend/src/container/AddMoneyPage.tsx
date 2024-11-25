@@ -6,10 +6,12 @@ import { ArrowDownIcon } from '@heroicons/react/24/solid';
 import ApplePayButton from '../component/transfer/ApplePayButton';
 import { observer } from 'mobx-react-lite';
 import { useStoreContext } from './provider/StoreProvider';
+import { useState } from 'react';
 
 const AddMoneyPage = observer(() => {
   const navigate = useNavigate();
   const { userStore } = useStoreContext();
+  const [amount, setAmount] = useState(10);
 
   const handleDismiss = () => {
     navigate('/');
@@ -17,10 +19,12 @@ const AddMoneyPage = observer(() => {
 
   const handleInputChange = (inputAmount: number) => {
     console.log(`inputAmount: ${inputAmount}`);
+    setAmount(inputAmount);
   };
 
   const handleSubmit = () => {
     console.log('add money submit');
+    userStore.accountAddMoney('User add money', amount);
   };
 
   return (
@@ -34,6 +38,7 @@ const AddMoneyPage = observer(() => {
           <AccountInputItem
             account={userStore.currentAccount}
             onChange={handleInputChange}
+            minAmount={10}
           ></AccountInputItem>
         )}
       </div>

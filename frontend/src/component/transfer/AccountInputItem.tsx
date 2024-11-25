@@ -24,8 +24,9 @@ const AccountInputItem = ({
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const currencySymbol = CurrencySymbol[account.currency];
-    const regex = new RegExp(`^${currencySymbol}\\d*(\\.\\d{0,2})?$`);
+    const regex = new RegExp(`^\\${currencySymbol}\\d*(\\.\\d{0,2})?$`);
     let nextValue = evt.currentTarget.value;
+    console.log(nextValue);
     if (regex.test(nextValue) || nextValue === '') {
       setInputValue(nextValue);
       onChange(parseAmountWithCurrency(nextValue));
