@@ -19,5 +19,6 @@ export const Primary: Story = {
       currency: 'GBP',
       balance: 1000,
     },
+    minAmount: 10,
   },
 };

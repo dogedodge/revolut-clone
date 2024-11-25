@@ -8,15 +8,19 @@ import parseAmountWithCurrency from '../../utils/parseAmountWithCurrency';
 
 interface AccountInputItemProps {
   account: AccountData;
+  minAmount: number;
   onChange: (currentAmount: number) => void;
 }
 
-const AccountInputItem = ({ account, onChange }: AccountInputItemProps) => {
-  const minAmountText = formatAmountWithCurrency(account.currency, 10);
+const AccountInputItem = ({
+  account,
+  minAmount,
+  onChange,
+}: AccountInputItemProps) => {
+  const minAmountText = formatAmountWithCurrency(account.currency, minAmount);
   const [inputValue, setInputValue] = useState(minAmountText);
   const currentAmount = parseAmountWithCurrency(inputValue);
-  // console.log(`currentAmount: ${currentAmount}`);
-  const showMinHint = currentAmount < 10;
+  const showMinHint = currentAmount < minAmount;
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const currencySymbol = CurrencySymbol[account.currency];
