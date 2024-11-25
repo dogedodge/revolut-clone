@@ -39,7 +39,11 @@ const HomePage = observer(() => {
       });
       transactionStore.resetTransactionList();
     }
-  }, [userStore.authenticated, userStore.currentAccountIndex]);
+  }, [
+    userStore.authenticated,
+    userStore.currentAccountIndex,
+    userStore.userUpdateIndex,
+  ]);
 
   const onHeaderClick = (btnType: string) => {
     console.log(btnType);

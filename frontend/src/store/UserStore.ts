@@ -8,6 +8,7 @@ class UserStore {
   public accounts: AccountData[] = [];
   public currentAccountIndex: number = 0;
   public recentTransactions: TransactionData[] = [];
+  public userUpdateIndex: number = 0; // increase 1 everytime a update occur
 
   constructor() {
     makeAutoObservable(this);
@@ -109,6 +110,8 @@ class UserStore {
     if (index >= 0) {
       this.accounts[index] = account;
     }
+    this.fetchRecentTransactions();
+    this.userUpdateIndex++;
   });
 
   public async accountAddMoney(action: string, amount: number | string) {
