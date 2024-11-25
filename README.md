@@ -29,6 +29,7 @@ docker-compose up -d
 
 ```bash
 cd backend
+npm run resetDB
 npm run start
 ```
 
