@@ -3,11 +3,16 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 export interface CurrencySearchBarProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 }
 
-const CurrencySearchBar = ({ value, onChange }: CurrencySearchBarProps) => {
+const CurrencySearchBar = ({
+  value,
+  onChange,
+  className = '',
+}: CurrencySearchBarProps) => {
   return (
-    <div className="flex flex-row items-center">
+    <div className={`flex flex-row items-center ${className}`}>
       <div className="flex flex-row rounded-full h-10 items-center bg-gray-300 flex-1">
         <MagnifyingGlassIcon className="text-gray-700 size-5 ml-2"></MagnifyingGlassIcon>
         <input
