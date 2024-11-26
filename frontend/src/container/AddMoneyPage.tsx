@@ -7,7 +7,6 @@ import ApplePayButton from '../component/transfer/ApplePayButton';
 import { observer } from 'mobx-react-lite';
 import { useStoreContext } from './provider/StoreProvider';
 import { useState } from 'react';
-import useClickEffect from '../hooks/useClickEffect';
 
 const AddMoneyPage = observer(() => {
   const navigate = useNavigate();
@@ -23,12 +22,10 @@ const AddMoneyPage = observer(() => {
     setAmount(inputAmount);
   };
 
-  const { isClicked, handleClick: handleSubmit } = useClickEffect(() => {
+  const handleSubmit = () => {
     console.log('add money submit');
     userStore.accountAddMoney('User add money', amount);
-  });
-
-  // const handleSubmit = ;
+  };
 
   return (
     <SubpageLayout title="Add Money" onDismiss={handleDismiss}>
@@ -47,7 +44,7 @@ const AddMoneyPage = observer(() => {
       </div>
 
       <ApplePayButton
-        className={`fixed bottom-6 left-0 ${isClicked && 'scale-95'}`}
+        className="fixed bottom-6 left-0"
         onClick={handleSubmit}
       ></ApplePayButton>
     </SubpageLayout>
