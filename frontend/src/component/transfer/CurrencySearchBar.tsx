@@ -3,12 +3,14 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 export interface CurrencySearchBarProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClickCancel: () => void;
   className?: string;
 }
 
 const CurrencySearchBar = ({
   value,
   onChange,
+  onClickCancel,
   className = '',
 }: CurrencySearchBarProps) => {
   return (
@@ -24,7 +26,12 @@ const CurrencySearchBar = ({
         ></input>
       </div>
 
-      <div className="text-blue-600 text-xl font-light ml-2">Cancel</div>
+      <div
+        className="text-blue-600 text-xl font-light ml-2 select-none"
+        onClick={onClickCancel}
+      >
+        Cancel
+      </div>
     </div>
   );
 };

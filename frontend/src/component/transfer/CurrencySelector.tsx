@@ -8,6 +8,10 @@ const CurrencySelector = () => {
     setSearchValue(event.target.value);
   };
 
+  const onClickCancel = () => {
+    // dismiss
+  };
+
   return (
     <div className="px-4">
       <div className="text-2xl font-semibold">Choose currency</div>
@@ -15,6 +19,7 @@ const CurrencySelector = () => {
         className="mt-4"
         value={searchValue}
         onChange={onSearchValueChange}
+        onClickCancel={onClickCancel}
       ></CurrencySearchBar>
     </div>
   );

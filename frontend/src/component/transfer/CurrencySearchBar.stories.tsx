@@ -18,7 +18,7 @@ const meta = {
   title: 'Component/Transfer/CurrencySearchBar',
   component: Template,
   tags: ['autodocs'],
-  args: { onChange: fn() },
+  args: { onChange: fn(), onClickCancel: fn() },
 } satisfies Meta<typeof CurrencySearchBar>;
 
 export default meta;
